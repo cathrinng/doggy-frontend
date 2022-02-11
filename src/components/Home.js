@@ -10,10 +10,10 @@ class Home extends React.Component {
     }
   }
 
-  loadDogs() {
-    const dogs = await getUsers();
+  async loadDogs() {
+    const dogElements = await getUsers();
     this.setState({
-      dogs
+      dogs: dogElements
     })
   }
 
@@ -24,9 +24,12 @@ class Home extends React.Component {
   render() {
     const voffs = this.state.dogs.map((dog) => {
       return (
-        <div>
+        <div 
+        className="box-profile"
+        style={{border: '2px solid black'}}
+        >
           {/* <Link to={`/profile/${dog.id}`}> */}
-            {dog.firstname}{dog.surname}{dog.img_url}
+            {dog.surname} {dog.firstname} {dog.img_url}
           {/* </Link> */}
         </div>
       )
@@ -34,6 +37,7 @@ class Home extends React.Component {
 
     return (
       <div>
+        <h2>Available dogs</h2>
         {voffs}
       </div>
     )

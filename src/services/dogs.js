@@ -3,15 +3,15 @@ const API_URL = process.env.REACT_APP_API_URL;
 export function getUsers() {
   return fetch(`${API_URL}/users`)
   .then((response) =>  {
-     response.json()
+     return response.json()
     })
   .then((data) => {
     return data;
   })
 }
 
-export function getUsersById(userid) {
-  return fetch(`${API_URL}/users/${userid}`)
+export function getUsersById(id) {
+  return fetch(`${API_URL}/users/${id}`)
   .then((response) =>  {
      response.json()
     })
