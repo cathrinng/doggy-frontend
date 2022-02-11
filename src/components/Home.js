@@ -20,12 +20,13 @@ class Home extends React.Component {
   componentDidMount() {
     this.loadDogs()
   }
+
   render() {
     const voffs = this.state.dogs.map((dog) => {
       return (
         <div>
           {/* <Link to={`/profile/${dog.id}`}> */}
-            {dog.username}{dog.img_url}
+            {dog.firstname}{dog.surname}{dog.img_url}
           {/* </Link> */}
         </div>
       )
