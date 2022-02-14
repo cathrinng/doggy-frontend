@@ -1,20 +1,20 @@
-import React from 'react';
-import { getLoginToken } from '../services/session';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { getLoginToken } from "../services/session";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
   }
 
   handleInputChange(field, event) {
     this.setState({
-      [field]: event.target.value
+      [field]: event.target.value,
     });
   }
 
@@ -31,16 +31,37 @@ class Login extends React.Component {
       });
 
       if (!token) {
-        throw new Error('Unsuccessful login');
+        throw new Error("Unsuccessful login");
       }
 
       // 2. Store token in local storage
-      localStorage.setItem('doggytoken', token);
+      localStorage.setItem("doggytoken", token);
 
       // 3. Redirect back to feed
-      history.replace('/');
-    } catch (error) {
-    }
+      history.replace("/");
+    } catch (error) {}
+  }
+
+  componentDidMount() {
+    const bcrypt = require("bcryptjs");
+
+    const saltRounds = 10; //  Data processing speed
+    var password = "Fkdj^45ci@Jad"; // Original Password
+    var password2 = "Fkdj^45ci@Jad";
+    bcrypt.hash(password, saltRounds, function (err, hash) {
+      // Salt + Hash
+      bcrypt.compare(password2, hash, function (err, result) {
+        // Compare
+        // if passwords match
+        if (result) {
+          console.log("It matches!");
+        }
+        // if passwords do not match
+        else {
+          console.log("Invalid password!");
+        }
+      });
+    });
   }
 
   render() {
@@ -49,18 +70,28 @@ class Login extends React.Component {
         <h1>Login</h1>
         <label>
           Email:
-          <input type="text" value={this.state.email} onChange={this.handleInputChange.bind(this, 'email')} />
+          <input
+            type="text"
+            value={this.state.email}
+            onChange={this.handleInputChange.bind(this, "email")}
+          />
         </label>
         <label>
           Password:
-          <input type="password" value={this.state.password} onChange={this.handleInputChange.bind(this, 'password')} />
+          <input
+            type="password"
+            value={this.state.password}
+            onChange={this.handleInputChange.bind(this, "password")}
+          />
         </label>
         <div>
           <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
         </div>
         <div className="signup-info">
           <p>Not registered?</p>
-          <p><Link to="/signup">Sign up and join Doggy here!</Link></p>
+          <p>
+            <Link to="/signup">Sign up and join Doggy here!</Link>
+          </p>
         </div>
       </div>
     );

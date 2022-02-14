@@ -25,6 +25,7 @@ class Home extends React.Component {
     const voffs = this.state.dogs.map((dog) => {
       return (
         <div 
+        key={dog.id}
         className="box-profile"
         style={{border: '2px solid black'}}
         >
@@ -34,8 +35,6 @@ class Home extends React.Component {
         </div>
       )
     })
-
-    console.log(voffs);
 
     return (
       <div>
