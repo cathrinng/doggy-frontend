@@ -6,7 +6,7 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
   }
@@ -25,7 +25,7 @@ class Login extends React.Component {
     try {
       // 1. Make a POST request to /login in the API
       const { token } = await getLoginToken({
-        username: this.state.username,
+        email: this.state.email,
         password: this.state.password,
       });
 
@@ -49,8 +49,8 @@ class Login extends React.Component {
       <div>
         <h1>Login</h1>
         <label>
-          Username:
-          <input type="text" value={this.state.username} onChange={this.handleInputChange.bind(this, 'username')} />
+          Email:
+          <input type="text" value={this.state.email} onChange={this.handleInputChange.bind(this, 'email')} />
         </label>
         <label>
           Password:
