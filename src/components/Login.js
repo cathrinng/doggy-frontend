@@ -1,5 +1,6 @@
 import React from 'react';
 import { getLoginToken } from '../services/session';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
@@ -56,6 +57,10 @@ class Login extends React.Component {
         </label>
         <div>
           <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
+        </div>
+        <div className="signup-info">
+          <p>Not registered?</p>
+          <p><Link to="/signup">Sign up and join Doggy here!</Link></p>
         </div>
       </div>
     );
