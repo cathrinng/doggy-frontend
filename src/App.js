@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
-import Home from "./components/Home";
+import { Home, Login } from "./components/Home";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <h1>Who let the dogs out?</h1>
     <Switch>
       <Route path='/' exact component={Home}></Route>
+      <Route path='/login' exact component={Login}></Route>
     </Switch>
     </HashRouter>
   );
