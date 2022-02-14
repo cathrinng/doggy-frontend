@@ -34,7 +34,7 @@ class Login extends React.Component {
       }
 
       // 2. Store token in local storage
-      localStorage.setItem('twitter_clone_token', token);
+      localStorage.setItem('doggytoken', token);
       console.log(token, 'to Local storage');
 
       // 3. Redirect back to feed
