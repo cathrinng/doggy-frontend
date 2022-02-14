@@ -35,7 +35,7 @@ class Home extends React.Component {
       )
     })
 
-    console.log(voffs);
+    console.log(dog.surname);
 
     return (
       <div>
