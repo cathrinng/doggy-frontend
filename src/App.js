@@ -2,7 +2,9 @@
 import './App.css';
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
-import { Home, Login, SignUp } from "./components/Home";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
