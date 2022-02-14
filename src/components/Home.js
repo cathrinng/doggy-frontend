@@ -35,6 +35,8 @@ class Home extends React.Component {
       )
     })
 
+    console.log(voffs);
+
     return (
       <div>
         <h2>Available dogs</h2>
