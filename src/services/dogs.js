@@ -3,7 +3,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 export function getUsers() {
   return fetch(`${API_URL}/users`)
     .then((response) => {
-      return response.json();
+      response.json();
     })
     .then((data) => {
       return data;
@@ -12,9 +12,7 @@ export function getUsers() {
 
 export function getUsersById(id) {
   return fetch(`${API_URL}/users/${id}`)
-    .then((response) => {
-      response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       return data;
     });
@@ -35,20 +33,16 @@ export async function createUser(user) {
 
 export function getUserMatchesById(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-    .then((response) => {
-      response.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  .then((response) => response.json())
+  .then((data) => {
+    return data;
+  });
 }
 
 export function getMessages(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-    .then((response) => {
-      response.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  .then((response) => response.json())
+  .then((data) => {
+    return data;
+  });
 }
