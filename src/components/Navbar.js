@@ -13,7 +13,7 @@ class Navbar extends React.Component {
       return (
       <div className="public-navbar">
       <img src='#' className='logo-img'/>
-      <h1>Doggy</h1>
+      <Link to="/"><h1>Doggy</h1></Link>
       <Link to="/login"
       className="login-button">
       Register/Login</Link>
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
       return (
         <div className="private-navbar">
         <img src='#' className='logo-img'/>
-        <h1>Doggy</h1>
+        <Link to="/"><h1>Doggy</h1></Link>
         <img src='#'/>
         <Link to="/logout"
         className="logout-link">
