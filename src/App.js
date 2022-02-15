@@ -22,15 +22,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem("doggytoken");
-    const payload = jwtDecode(token);
+    // const token = localStorage.getItem("doggytoken");
+    // const payload = jwtDecode(token);
 
-    if (token) {
-      this.setState({
-        payload,
-        isLoggedIn: true,
-      });
-    }
+    // if (token) {
+    //   this.setState({
+    //     payload,
+    //     isLoggedIn: true,
+    //   });
+    // }
   }
 
   render() {
