@@ -44,7 +44,11 @@ class App extends React.Component {
       <Route path='/login' component={Login}></Route>
       <Route path='/logout' component={Logout}></Route>
       <Route path='/signup' component={SignUp}></Route>
-      <Route path='/swipecard' component={Swipecard}></Route>
+      <Route 
+      payload={this.state.payload}
+      path="/swipecard"
+      component={Swipecard}>
+      </Route>
     </Switch>
     </HashRouter>
     );
