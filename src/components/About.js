@@ -1,59 +1,29 @@
 import React from "react";
-import { getUsers } from "../services/dogs";
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom'
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dogs: []
-    }
-  }
-
-  async loadDogs() {
-    const dogElements = await getUsers();
-    this.setState({
-      dogs: dogElements
-    })
-  }
-
-  componentDidMount() {
-    this.loadDogs()
-  }
-  handleLoginAttempt(){
-    const { history } = this.props;
-    history.replace('/about');
-  }
-
+class About extends React.Component {
   render() {
-    const voffs = this.state.dogs.map((dog) => {
-      return (
-        <div 
-        className="box-profile"
-        style={{border: '2px solid black'}}
-        >
-          <Link to={`/profile/${dog.id}`}>
-            {dog.surname} {dog.firstname} {dog.img_url}
-          </Link>
-        </div>
-      )
-    })
-
-    console.log(voffs);
-
     return (
       <div>
-        <h2>Available dogs</h2>
-        {voffs}
-
-
-        <button onClick={this.handleLoginAttempt.bind(this)}>trykk her</button>
+        <header>
+        </header>
+        <h3>Who let the dogs out?</h3>
+        <div className="container-about">
+          <div className="sucess-story-box">
+            <p className="sucess-story-text">erhwehrwoerwoh</p>
+            <img src="#" classname="success-story-img"/>
+          </div>
+          <div className="dream-team">
+            <h3>Meet the dreamteam behind doggy!</h3>
+            <p className="dream-team-text">erwerwerwe</p>
+            <img src="#" className="ahmed"/><div>Ahmed</div>
+            <img src="#" className="amanda"/><div>Amanda</div>
+            <img src="#" className="anders"/><div>Anders</div>
+            <img src="#" className="cathrin"/><div>Cathrin</div>
+          </div>
+        </div>
       </div>
     )
   }
- 
 }
 
-export default Home;
+export default About;
