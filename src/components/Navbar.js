@@ -23,13 +23,13 @@ class Navbar extends React.Component {
 
     else {
       return (
-        <div>
+        <div className="private-navbar">
         <img src='#' className='logo-img'/>
         <h1>Doggy</h1>
-        <img src='#'
-        className='profile-img'
-        // onClick={logout}
-        />Logout
+        <img src='#'/>
+        <Link to="/logout"
+        className="logout-link">
+        Logout</Link>
       </div>
       )
     }
