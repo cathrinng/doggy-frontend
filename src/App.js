@@ -21,6 +21,12 @@ class App extends React.Component {
     };
   }
 
+  handleLoginStatusChange() {
+    this.setState({
+      isLoggedIn: !!localStorage.getItem("Doggytoken"),
+    });
+  }
+
   // componentDidMount() {
   //   const token = localStorage.getItem("doggytoken");
   //   const payload = jwtDecode(token);
