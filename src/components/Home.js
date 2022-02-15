@@ -47,9 +47,6 @@ class Home extends React.Component {
       <div>
         <h2>Available dogs</h2>
         {voffs}
-
-
-        <button  onClick={()=>handleLoginAttempt.bind(this)}>trykk her</button>
       </div>
     )
   }

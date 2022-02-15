@@ -5,6 +5,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Test from './components/Messages';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/' exact component={Home}></Route>
       <Route path='/login' exact component={Login}></Route>
       <Route path="/signup" exact component={SignUp}></Route>
+      <Route path='/messages' exact component={Test}></Route>
     </Switch>
     </HashRouter>
   );
