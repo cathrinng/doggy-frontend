@@ -26,6 +26,7 @@ class SignUp extends React.Component {
       breed: this.breedRef.current.value,
       bio: this.bioRef.current.value,
     };
+    console.log(user);
     if (Object.values(user).some((field) => field === "")) {
       console.log("You must fill out all the fields in sign up.");
       return;
