@@ -32,3 +32,13 @@ export async function createUser(user) {
     return response.json();
   });
 }
+
+export function getMessages(myId, matchId) {
+  return fetch(`${API_URL}/messages/${myId}/${matchId}`)
+    .then((response) => {
+      response.json();
+    })
+    .then((data) => {
+      return data;
+    });
+}
