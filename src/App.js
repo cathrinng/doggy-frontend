@@ -5,7 +5,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Test from './components/Messages';
+import Test from './components/Message';
 
 function App() {
   return (

@@ -46,3 +46,19 @@ export function getMessages(myId, matchId) {
     return data;
   });
 }
+
+export function submitMessage(data, myId, matchId ) {
+  console.log(data);
+ 
+  fetch(`${API_URL}/messages/${myId}/${matchId}`, {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+  
+}).then(response => 
+    response.json()).then(json => console.log(json));
+
+  return Promise.resolve();
+}
