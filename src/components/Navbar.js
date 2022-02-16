@@ -22,10 +22,10 @@ class Navbar extends React.Component {
     }
   }
 
-  goToLoginPage() {
-    const { history } = this.props;
-    history.replace('/login');
-  }
+  // goToLoginPage() {
+  //   const { history } = this.props;
+  //   history.replace('/login');
+  // }
 
   render() {
     if(!this.props.loggedIn)  {
