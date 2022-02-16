@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
+import Edit from "./components/Edit";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends React.Component {
   }
 
   // componentDidMount() {
-  //   const token = localStorage.getItem("doggytoken");
+  //   const token = localStorage.getItem("doggytoken"); // Dette burde være window.localStorage.doggytoken
   //   const payload = jwtDecode(token);
 
   //   if (token) {
@@ -43,6 +44,7 @@ class App extends React.Component {
           <Route path="/login" component={Login}></Route>
           <Route path="/logout" component={Logout}></Route>
           <Route path="/signup" component={SignUp}></Route>
+          <Route path="/edit" component={Edit}></Route>
           <Route
             payload={this.state.payload}
             path="/swipecard"

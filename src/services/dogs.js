@@ -1,4 +1,5 @@
-const API_URL = process.env.REACT_APP_API_URL;
+//const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://localhost:8080";
 
 export function getUsers() {
   return fetch(`${API_URL}/users`)
@@ -33,16 +34,30 @@ export async function createUser(user) {
 
 export function getUserMatchesById(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    return data;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
 }
 
 export function getMessages(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    return data;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
+
+export async function editUser(user) {
+  return fetch(`${API_URL}/users/${user.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
 }

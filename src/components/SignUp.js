@@ -28,7 +28,7 @@ class SignUp extends React.Component {
     };
     console.log(user);
     if (Object.values(user).some((field) => field === "")) {
-      console.log("You must fill out all the fields in sign up.");
+      console.log("You must fill out all the fields in sign up."); // Check if all the fields are filled
       return;
     }
 
@@ -55,19 +55,39 @@ class SignUp extends React.Component {
         >
           <label htmlFor="first name">
             First Name
-            <input type="text" name="first name" ref={this.firstnameRef} />
+            <input
+              type="text"
+              name="first name"
+              placeholder="First Name"
+              ref={this.firstnameRef}
+            />
           </label>
           <label htmlFor="surname">
             Surname
-            <input type="text" name="surname" ref={this.surnameRef} />
+            <input
+              type="text"
+              name="surname"
+              placeholder="Surname"
+              ref={this.surnameRef}
+            />
           </label>
           <label htmlFor="email">
             E-mail
-            <input type="text" name="email" ref={this.emailRef} />
+            <input
+              type="text"
+              name="email"
+              placeholder="E-mail"
+              ref={this.emailRef}
+            />
           </label>
           <label htmlFor="password">
             Password
-            <input type="password" name="password" ref={this.passwordRef} />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              ref={this.passwordRef}
+            />
           </label>
           <label htmlFor="sex">
             Sex
@@ -85,11 +105,21 @@ class SignUp extends React.Component {
           </label>
           <label htmlFor="breed">
             Breed
-            <input type="text" name="breed" ref={this.breedRef} />
+            <input
+              type="text"
+              name="breed"
+              placeholder="Breed"
+              ref={this.breedRef}
+            />
           </label>
           <label htmlFor="bio">
             Bio
-            <input type="text" name="bio" ref={this.bioRef} />
+            <input
+              type="text"
+              name="bio"
+              placeholder="Write something..."
+              ref={this.bioRef}
+            />
           </label>
           <button type="submit">Sign Up</button>
           {/* <span>You must fill out all the fields in sign up.</span> */}
