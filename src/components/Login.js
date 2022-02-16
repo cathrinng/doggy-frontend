@@ -37,6 +37,9 @@ class Login extends React.Component {
       // 2. Store token in local storage
       localStorage.setItem("doggytoken", token);
 
+      //2.1 Change Login status
+      this.props.onLoginChange();
+
       // 3. Redirect back to feed
       history.replace("/");
     } catch (error) {}

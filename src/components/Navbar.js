@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-
 class Navbar extends React.Component {
-  goToLoginPage() {
-    const { history } = this.props;
-    history.replace('/login');
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: false,
+    }
+  }
+  componentDidMount() {
+    this.props.onLoginChange();
   }
 
   render() {
