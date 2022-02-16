@@ -10,7 +10,7 @@ class About extends React.Component {
         <div className="container-about">
           <div className="sucess-story-box">
             <p className="sucess-story-text">erhwehrwoerwoh</p>
-            <img src="#" classname="success-story-img"/>
+            <img src="#" className="success-story-img"/>
           </div>
           <div className="dream-team">
             <h3>Meet the dreamteam behind doggy!</h3>
