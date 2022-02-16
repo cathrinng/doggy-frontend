@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 
 import Homepage from "./components/Homepage";
 import About from "./components/About";
@@ -25,18 +24,6 @@ class App extends React.Component {
       isLoggedIn: !!localStorage.getItem("Doggytoken"),
     });
   }
-
-  // componentDidMount() {
-  //   const token = localStorage.getItem("doggytoken");
-  //   const payload = jwtDecode(token);
-
-  //   if (token) {
-  //     this.setState({
-  //       payload,
-  //       isLoggedIn: true,
-  //     });
-  //   }
-  // }
 
   render() {
     return (
