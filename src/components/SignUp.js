@@ -1,6 +1,5 @@
 import React from "react";
 import { createUser } from "../services/dogs";
-import { getBreeds } from "../services/dogBreedsList";
 import Autocomplete from "./Autocomplete";
 
 class SignUp extends React.Component {
@@ -38,8 +37,9 @@ class SignUp extends React.Component {
     }
 
     try {
-      const registeredUser = await createUser(user);
-      console.log(registeredUser);
+      // const registeredUser = await createUser(user);
+      // console.log(registeredUser);
+      console.log(user);
     } catch (error) {
       console.log("Creating user failed", error);
     }
@@ -47,14 +47,6 @@ class SignUp extends React.Component {
 
   handleSexSelct(e) {
     this.setState({ selectSexValue: e.target.value });
-  }
-
-  async componentDidMount() {
-    const dogBreeds = getBreeds();
-    this.setState({
-      dogBreeds,
-    });
-
   }
 
   render() {
@@ -124,7 +116,7 @@ class SignUp extends React.Component {
               placeholder="Breed"
               ref={this.breedRef}
             />
-            <Autocomplete suggestions={this.state.dogBreeds}/>
+            <Autocomplete />
           </label>
           <label htmlFor="bio">
             Bio

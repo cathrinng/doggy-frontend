@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { getBreeds } from "../services/dogBreedsList";
 
 class Autocomplete extends Component {
   constructor(props) {
@@ -8,11 +9,12 @@ class Autocomplete extends Component {
       filteredSuggestions: [],
       showSuggestions: false,
       userInput: "",
+      dogBreeds: []
     };
   }
 
   onChange = (e) => {
-    const { suggestions } = this.props;
+    const suggestions = this.state.dogBreeds;
     const userInput = e.currentTarget.value;
 
     const filteredSuggestions = suggestions.filter(
@@ -61,6 +63,13 @@ class Autocomplete extends Component {
     }
   };
 
+  async componentDidMount() {
+    const dogBreeds = getBreeds();
+    this.setState({
+      dogBreeds,
+    });
+  }
+
   render() {
     const {
       onChange,
@@ -108,6 +117,9 @@ class Autocomplete extends Component {
       <Fragment>
         <input
           type="text"
+          name="breed"
+          placeholder="Breed"
+          ref={this.breedRef}
           onChange={onChange}
           onKeyDown={onKeyDown}
           value={userInput}
