@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
+import Messages from "./components/Message";
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class App extends React.Component {
           <Route path="/login" component={Login}></Route>
           <Route path="/logout" component={Logout}></Route>
           <Route path="/signup" component={SignUp}></Route>
+          <Route path="/messages" component={Messages}></Route>
           <Route
             path="/swipecard"
             component={Swipecard}
