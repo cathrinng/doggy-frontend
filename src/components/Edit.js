@@ -1,7 +1,8 @@
 import React from "react";
-import { createUser } from "../services/dogs";
+import { editUser, getUsersById } from "../services/dogs";
+import jwtDecode from "jwt-decode";
 
-class SignUp extends React.Component {
+class Edit extends React.Component {
   constructor(props) {
     super(props);
 
@@ -12,42 +13,107 @@ class SignUp extends React.Component {
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
-    this.state = { selectSexValue: "" };
+    this.state = { selectSexValue: "", user: {}, isLoading: false };
   }
 
-  async handleSignUp(e) {
-    e.preventDefault();
-    const user = {
-      firstname: this.firstnameRef.current.value,
-      surname: this.surnameRef.current.value,
-      email: this.emailRef.current.value,
-      password: this.passwordRef.current.value,
-      sex: this.state.selectSexValue,
-      breed: this.breedRef.current.value,
-      bio: this.bioRef.current.value,
-    };
-    console.log(user);
-    if (Object.values(user).some((field) => field === "")) {
-      console.log("You must fill out all the fields in sign up."); // Check if all the fields are filled
+  async componentDidMount() {
+    if (!window.localStorage.doggytoken) {
       return;
     }
 
+    const id = await this.getUserIdFromToken(window.localStorage.doggytoken);
+
     try {
-      const registeredUser = await createUser(user);
-      console.log(registeredUser);
+      this.setState({ isLoading: true });
+      const user = await getUsersById(id);
+      this.setState({ user, isLoading: false });
     } catch (error) {
-      console.log("Creating user failed", error);
+      this.setState({ error });
     }
   }
 
-  handleSexSelct(e) {
+  async getUserIdFromToken(token) {
+    const { id } = await jwtDecode(token);
+    return id;
+  }
+
+  handleCancelClick(e) {
+    e.preventDefault();
+  }
+
+  async handleSaveClick(e) {
+    e.preventDefault();
+    const { user } = this.state;
+    const editedUser = {
+      id: user.id,
+      firstname:
+        this.firstnameRef.current.value == ""
+          ? user.firstname
+          : this.firstnameRef.current.value,
+      surname:
+        this.surnameRef.current.value == ""
+          ? user.surname
+          : this.surnameRef.current.value,
+      email:
+        this.emailRef.current.value == ""
+          ? user.email
+          : this.emailRef.current.value,
+      password:
+        this.passwordRef.current.value == ""
+          ? user.password
+          : this.passwordRef.current.value,
+      sex:
+        this.state.selectSexValue == "" ? user.sex : this.state.selectSexValue,
+      breed:
+        this.breedRef.current.value == ""
+          ? user.breed
+          : this.breedRef.current.value,
+      bio:
+        this.bioRef.current.value == "" ? user.bio : this.bioRef.current.value,
+    };
+
+    try {
+      await editUser(editedUser);
+    } catch (error) {
+      console.log("Deleting user failed", error);
+    }
+  }
+
+  handleSexSelect(e) {
     this.setState({ selectSexValue: e.target.value });
   }
 
   render() {
+    const { id } = this.props;
+    const { user, isLoading, error } = this.state;
+
+    if (error) {
+      return (
+        <div>
+          <p>Error: {error.message}</p>
+        </div>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <div>
+          <p>Loading user details...</p>
+        </div>
+      );
+    }
+
+    if (!user) {
+      return (
+        <div>
+          <p>No user with id: {id} found</p>
+        </div>
+      );
+    }
+
     return (
       <div>
-        <h1>Sign Up</h1>
+        <h1>Edit User</h1>
         <form
           id="form"
           className="sign-up-form"
@@ -94,7 +160,7 @@ class SignUp extends React.Component {
             <select
               name="sex"
               defaultValue={this.state.selectSexValue || ""}
-              onChange={(e) => this.handleSexSelct(e)}
+              onChange={(e) => this.handleSexSelect(e)}
             >
               <option disabled value="">
                 -- select an option --
@@ -121,11 +187,13 @@ class SignUp extends React.Component {
               ref={this.bioRef}
             />
           </label>
-          <button type="submit">Sign Up</button>
-          {/* <span>You must fill out all the fields in sign up.</span> */}
+          <button onClick={(e) => this.handleSaveClick(e)}>
+            Save changes!
+          </button>
+          <a href="">Deactivate your account</a>
         </form>
       </div>
     );
   }
 }
-export default SignUp;
+export default Edit;

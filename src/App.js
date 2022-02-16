@@ -9,7 +9,9 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
+import Edit from "./components/Edit";
 import Messages from "./components/Message";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class App extends React.Component {
   componentDidMount() {
     this.handleLoginStatusChange();
   }
+
 
   handleLoginStatusChange() {
     console.log(this.state.isLoggedIn);
@@ -74,6 +77,7 @@ class App extends React.Component {
               />
             )} 
           />
+          <Route path="/edit" component={Edit}></Route>
           <Route
             path="/swipecard"
             component={Swipecard}>
@@ -81,7 +85,6 @@ class App extends React.Component {
           <Route 
           path="/messages"
           component={Messages}>
-            
           </Route>
         </Switch>
       </HashRouter>
