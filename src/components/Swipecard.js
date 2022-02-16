@@ -13,7 +13,6 @@ class Swipecard extends React.Component {
 
     this.state = {
       matches: [],
-      matchId: 7,
     };
   }
 
@@ -27,8 +26,10 @@ class Swipecard extends React.Component {
     });
   }
 
-  submitReaction(id, boolean) {
+  async submitReaction(id, boolean) {
     postReaction(id, boolean);
+
+    // SPØR HVORDAN Å RETURNERE FULL TABLE!
   }
 
   render() {
