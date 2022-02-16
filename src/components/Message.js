@@ -1,6 +1,8 @@
 import React from "react";
 import { getMessages } from "../services/dogs";
-import { submitMessage } from "../services/dogs";
+// import { submitMessage } from "../services/dogs";
+import MessagesInput from './MessageInput'
+
 
 
 
@@ -23,24 +25,27 @@ class Messages extends React.Component {
   componentDidMount() {
     this.loadmessages()
   }
-  handleKeyDown(e) {
-    if(e.keyCode !== 13) {
-      return
-    }
-    const inputText = this.refs.messageInput;
-    console.log(inputText.value);
+  // handleKeyDown(e) {
+  //   if(e.keyCode !== 13) {
+  //     return
+  //   }
+  //   const inputText = this.refs.messageInput;
+  //   console.log(inputText.value);
   
-    submitMessage({message: inputText.value}, 4, 7);
-    inputText.value = "";
-    this.loadmessages()
+  //   submitMessage({message: inputText.value}, 4, 7);
+  //   inputText.value = "";
+  //   this.loadmessages()
    
-  }
+  // }
 
 
   render() {
     const renderMessages = this.state.messages.map((data) => {
+      
       return (
-        <div>
+        <div
+        
+        >
          {data.message}
         </div>
       )
@@ -49,13 +54,7 @@ class Messages extends React.Component {
     return (
       <div>
         {renderMessages}
-        
-        <input
-          ref="messageInput"
-          type="text"
-          placeholder="skriv en twaat bro"
-          onKeyDown={this.handleKeyDown.bind(this)}
-        />
+        <MessagesInput/>
       </div>
     )
   }
@@ -63,3 +62,6 @@ class Messages extends React.Component {
 }
 
 export default Messages;
+
+
+
