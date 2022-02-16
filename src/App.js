@@ -12,7 +12,6 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,66 +25,61 @@ class App extends React.Component {
     this.handleLoginStatusChange();
   }
 
-
   handleLoginStatusChange() {
     console.log(this.state.isLoggedIn);
     this.setState({
-      isLoggedIn: !!localStorage.getItem("doggytoken")
+      isLoggedIn: !!localStorage.getItem("doggytoken"),
     });
   }
 
   render() {
     return (
       <HashRouter>
-        <Navbar 
-        loggedIn={this.state.isLoggedIn} 
-        onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+        <Navbar
+          loggedIn={this.state.isLoggedIn}
+          onLoginChange={() => this.handleLoginStatusChange.bind(this)}
         />
         <Switch>
-          <Route 
-            path="/" 
-            exact component={Homepage}>
-          </Route>
-          <Route 
-            path="/about" 
-            component={About}>
-          </Route>
-          <Route 
-            path="/login" 
+          <Route path="/" exact component={Homepage}></Route>
+          <Route path="/about" component={About}></Route>
+          <Route
+            path="/login"
             render={(routeProps) => (
               <Login
-              {...routeProps}
-              onLoginChange={this.handleLoginStatusChange.bind(this)}
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
               />
-            )} 
+            )}
           />
-          <Route 
-            path="/logout" 
+          <Route
+            path="/logout"
             render={(routeProps) => (
               <Logout
-              {...routeProps}
-              onLoginChange={this.handleLoginStatusChange.bind(this)}
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
               />
-            )} 
+            )}
           />
-          <Route 
-            path="/signup" 
+          <Route
+            path="/signup"
             render={(routeProps) => (
               <SignUp
-              {...routeProps}
-              onLoginChange={this.handleLoginStatusChange.bind(this)}
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
               />
-            )} 
+            )}
           />
-          <Route path="/edit" component={Edit}></Route>
           <Route
-            path="/swipecard"
-            component={Swipecard}>
-          </Route>
-          <Route 
-          path="/messages"
-          component={Messages}>
-          </Route>
+            path="/edit"
+            render={(routeProps) => (
+              <Edit
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )}
+          />
+          <Route path="/swipecard" component={Swipecard}></Route>
+          <Route path="/messages" component={Messages}></Route>
         </Switch>
       </HashRouter>
     );
