@@ -9,6 +9,7 @@ class Logout extends React.Component {
     });
 
     localStorage.removeItem('doggytoken');
+    this.props.onLoginChange();
     history.replace('/');
   }
 

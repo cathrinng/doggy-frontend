@@ -19,6 +19,10 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.handleLoginStatusChange();
+  }
+
   handleLoginStatusChange() {
     this.setState({
       isLoggedIn: !!localStorage.getItem("doggytoken"),
@@ -26,21 +30,53 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.isLoggedIn)
     return (
       <HashRouter>
-        <Navbar loggedIn={this.state.isLoggedIn} />
+        <Navbar 
+        loggedIn={this.state.isLoggedIn} 
+        onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+        />
         <Switch>
-          <Route path="/" exact component={Homepage}></Route>
-          <Route path="/about" component={About}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/logout" component={Logout}></Route>
-          <Route path="/signup" component={SignUp}></Route>
+          <Route 
+            path="/" 
+            exact component={Homepage}>
+          </Route>
+          <Route 
+            path="/about" 
+            component={About}>
+          </Route>
+          <Route 
+            path="/login" 
+            render={(routeProps) => (
+              <Login
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
+          <Route 
+            path="/logout" 
+            render={(routeProps) => (
+              <Logout
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
+          <Route 
+            path="/signup" 
+            render={(routeProps) => (
+              <SignUp
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
           <Route
             payload={this.state.payload}
             path="/swipecard"
-            component={Swipecard}
-          ></Route>
+            component={Swipecard}>
+          </Route>
         </Switch>
       </HashRouter>
     );
