@@ -26,7 +26,6 @@ export async function createUser(user) {
     },
     body: JSON.stringify(user),
   }).then((response) => {
-    console.log(response);
     return response.json();
   });
 }
