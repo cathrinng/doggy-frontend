@@ -40,7 +40,7 @@ class Messages extends React.Component {
 
 
   render() {
-    const renderMessages = this.state.messages.map((data) => {
+    const renderMessages = this.state.messages.reverse().map((data) => {
       
       return (
         <div
