@@ -39,6 +39,14 @@ export function getUserMatchesById(myId, matchId) {
   });
 }
 
+export function getPotentialMatchesByUserId(id) {
+  return fetch(`${API_URL}/swipecards/${id}`)
+  .then((response) => response.json())
+  .then((data) => {
+    return data;
+  });
+}
+
 export function getMessages(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
   .then((response) => response.json())
