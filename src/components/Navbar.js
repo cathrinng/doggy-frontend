@@ -13,9 +13,9 @@ class Navbar extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem("doggytoken");
-    const payload = jwtDecode(token);
 
     if (token) {
+      const payload = jwtDecode(token);
       this.setState({
         payload,
       });
