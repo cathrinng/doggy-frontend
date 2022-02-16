@@ -1,12 +1,31 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-
+import jwtDecode from "jwt-decode";
 
 class Navbar extends React.Component {
-  goToLoginPage() {
-    const { history } = this.props;
-    history.replace('/login');
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      payload: {},
+    }
   }
+
+  componentDidMount() {
+    const token = localStorage.getItem("doggytoken");
+    const payload = jwtDecode(token);
+
+    if (token) {
+      this.setState({
+        payload,
+      });
+    }
+  }
+
+  // goToLoginPage() {
+  //   const { history } = this.props;
+  //   history.replace('/login');
+  // }
 
   render() {
     if(!this.props.loggedIn)  {
