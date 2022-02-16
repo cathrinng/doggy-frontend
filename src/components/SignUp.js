@@ -1,5 +1,7 @@
 import React from "react";
 import { createUser } from "../services/dogs";
+import { getBreeds } from "../services/dogBreedsList";
+import Autocomplete from "./Autocomplete";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -12,7 +14,10 @@ class SignUp extends React.Component {
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
-    this.state = { selectSexValue: "" };
+    this.state = {
+      selectSexValue: "",
+      dogBreeds: [],
+    };
   }
 
   async handleSignUp(e) {
@@ -42,6 +47,14 @@ class SignUp extends React.Component {
 
   handleSexSelct(e) {
     this.setState({ selectSexValue: e.target.value });
+  }
+
+  async componentDidMount() {
+    const dogBreeds = getBreeds();
+    this.setState({
+      dogBreeds,
+    });
+
   }
 
   render() {
@@ -111,6 +124,7 @@ class SignUp extends React.Component {
               placeholder="Breed"
               ref={this.breedRef}
             />
+            <Autocomplete suggestions={this.state.dogBreeds}/>
           </label>
           <label htmlFor="bio">
             Bio

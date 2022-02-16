@@ -98,3 +98,16 @@ export function postReaction(userId, boolean) {
   })
   .then((res) => res.json());
 }
+
+export function getDogBreeds() {
+  return fetch(`https://api.thedogapi.com/v1/breeds`, {
+    headers: {
+      "x-api-key": "7c5c1b88-b0d3-4fe8-be31-4111a3eb5eed"
+    }
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
+
