@@ -24,7 +24,10 @@ class Swipecard extends React.Component {
     this.setState({
       matches,
     });
-    
+  }
+
+  submitReaction(id, boolean) {
+    console.log(id, boolean);
   }
 
   render() {
@@ -39,6 +42,10 @@ class Swipecard extends React.Component {
           </p>
           <p>{user.age}</p>
           <p>{user.bio}</p>
+          <div className="buttons">
+            <button onClick={() => this.submitReaction(user.id, "true")}>Like</button>
+            <button onClick={() => this.submitReaction(user.id, "false")}>Dislike</button>
+          </div>
         </div>
       );
     });
