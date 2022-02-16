@@ -3,6 +3,7 @@ import {
   getUserMatchesById,
   getUsersById,
   getPotentialMatchesByUserId,
+  postReaction,
 } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 
@@ -27,7 +28,7 @@ class Swipecard extends React.Component {
   }
 
   submitReaction(id, boolean) {
-    console.log(id, boolean);
+    postReaction(id, boolean);
   }
 
   render() {
