@@ -22,7 +22,7 @@ class App extends React.Component {
 
   handleLoginStatusChange() {
     this.setState({
-      isLoggedIn: !!localStorage.getItem("Doggytoken"),
+      isLoggedIn: !!localStorage.getItem("doggytoken"),
     });
   }
 
