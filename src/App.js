@@ -78,6 +78,11 @@ class App extends React.Component {
             path="/swipecard"
             component={Swipecard}>
           </Route>
+          <Route 
+          path="/messages"
+          component={Messages}>
+            
+          </Route>
         </Switch>
       </HashRouter>
     );
