@@ -13,10 +13,7 @@ class SignUp extends React.Component {
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
-    this.state = {
-      selectSexValue: "",
-      dogBreeds: [],
-    };
+    this.state = { selectSexValue: "" };
   }
 
   async handleSignUp(e) {
@@ -37,9 +34,10 @@ class SignUp extends React.Component {
     }
 
     try {
-      // const registeredUser = await createUser(user);
-      // console.log(registeredUser);
-      console.log(user);
+      const registeredUser = await createUser(user);
+      console.log(registeredUser);
+      const { history } = this.props;
+      history.push("/");
     } catch (error) {
       console.log("Creating user failed", error);
     }
@@ -116,7 +114,6 @@ class SignUp extends React.Component {
               placeholder="Breed"
               ref={this.breedRef}
             />
-            <Autocomplete />
           </label>
           <label htmlFor="bio">
             Bio
