@@ -33,10 +33,10 @@ export async function createUser(user) {
 
 export function getUserMatchesById(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    return data;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
 }
 
 export function getPotentialMatchesByUserId(id) {
@@ -49,10 +49,24 @@ export function getPotentialMatchesByUserId(id) {
 
 export function getMessages(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
-  .then((response) => response.json())
-  .then((data) => {
-    return data;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
+}
+
+export async function editUser(user) {
+  return fetch(`${API_URL}/users/${user.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    });
 }
 
 export function postMessage(message, id) {
