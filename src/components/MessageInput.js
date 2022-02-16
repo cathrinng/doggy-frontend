@@ -21,11 +21,11 @@ class MessagesInput extends React.Component {
     }
     const inputText = this.refs.messageInput;
     this.setState({
-      messagesInput:inputText
+      messagesInput:inputText.value
     })
     
     // console.log(inputText.value);
-    postMessage(this.state.messagesInput, 7)
+    postMessage(inputText.value, 4)
     inputText.value = "";
   }
 
