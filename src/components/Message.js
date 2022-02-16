@@ -1,15 +1,16 @@
 import React from "react";
 import { getMessages } from "../services/dogs";
-import { submitMessage } from "../services/dogs";
-
-
+// import { submitMessage } from "../services/dogs";
+import MessagesInput from './MessageInput'
+import jwtDecode from "jwt-decode";
 
 class Messages extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      payload: {},
     }
   }
 
@@ -22,40 +23,46 @@ class Messages extends React.Component {
 
   componentDidMount() {
     this.loadmessages()
-  }
-  handleKeyDown(e) {
-    if(e.keyCode !== 13) {
-      return
+    const token = localStorage.getItem("doggytoken");
+    const payload = jwtDecode(token);
+
+    console.log(payload)
+
+    if (token) {
+      this.setState({
+        payload: payload
+      });
+    //   this.loadmessagesInput()
+    console.log("you are logged inn")
     }
-    const inputText = this.refs.messageInput;
-    console.log(inputText.value);
-  
-    submitMessage({message: inputText.value}, 4, 7);
-    inputText.value = "";
-    this.loadmessages()
-   
   }
+  render() {   
+    const userId = this.state.payload.id
+    const renderMessages = this.state.messages.reverse().map((data) => {
+      let isUser;
 
-
-  render() {
-    const renderMessages = this.state.messages.map((data) => {
-      return (
-        <div>
-         {data.message}
-        </div>
-      )
+      switch(userId == data.from_user_id){
+        case true: 
+        isUser = true;
+        break;
+        case false: 
+        isUser = false;
+        break;
+      }
+     
+        return (
+          <div 
+          className={isUser ? "user-post" : "match-post"}
+          >
+           {data.message}
+          </div>
+        )      
     })
 
     return (
       <div>
         {renderMessages}
-        
-        <input
-          ref="messageInput"
-          type="text"
-          placeholder="skriv en twaat bro"
-          onKeyDown={this.handleKeyDown.bind(this)}
-        />
+        <MessagesInput/>
       </div>
     )
   }
@@ -63,3 +70,6 @@ class Messages extends React.Component {
 }
 
 export default Messages;
+
+
+

@@ -1,7 +1,6 @@
-import "./App.css";
+import "./App.scss";
 import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 
 import Homepage from "./components/Homepage";
 import About from "./components/About";
@@ -11,6 +10,8 @@ import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
 import Edit from "./components/Edit";
+import Messages from "./components/Message";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -18,38 +19,73 @@ class App extends React.Component {
 
     this.state = {
       isLoggedIn: false,
-      payload: {},
     };
   }
 
-  // componentDidMount() {
-  //   const token = localStorage.getItem("doggytoken"); // Dette burde være window.localStorage.doggytoken
-  //   const payload = jwtDecode(token);
+  componentDidMount() {
+    this.handleLoginStatusChange();
+  }
 
-  //   if (token) {
-  //     this.setState({
-  //       payload,
-  //       isLoggedIn: true,
-  //     });
-  //   }
-  // }
+
+  handleLoginStatusChange() {
+    console.log(this.state.isLoggedIn);
+    this.setState({
+      isLoggedIn: !!localStorage.getItem("doggytoken")
+    });
+  }
 
   render() {
     return (
       <HashRouter>
-        <Navbar loggedIn={this.state.isLoggedIn} />
+        <Navbar 
+        loggedIn={this.state.isLoggedIn} 
+        onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+        />
         <Switch>
-          <Route path="/" exact component={Homepage}></Route>
-          <Route path="/about" component={About}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/logout" component={Logout}></Route>
-          <Route path="/signup" component={SignUp}></Route>
+          <Route 
+            path="/" 
+            exact component={Homepage}>
+          </Route>
+          <Route 
+            path="/about" 
+            component={About}>
+          </Route>
+          <Route 
+            path="/login" 
+            render={(routeProps) => (
+              <Login
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
+          <Route 
+            path="/logout" 
+            render={(routeProps) => (
+              <Logout
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
+          <Route 
+            path="/signup" 
+            render={(routeProps) => (
+              <SignUp
+              {...routeProps}
+              onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )} 
+          />
           <Route path="/edit" component={Edit}></Route>
           <Route
-            payload={this.state.payload}
             path="/swipecard"
-            component={Swipecard}
-          ></Route>
+            component={Swipecard}>
+          </Route>
+          <Route 
+          path="/messages"
+          component={Messages}>
+          </Route>
         </Switch>
       </HashRouter>
     );

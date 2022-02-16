@@ -40,6 +40,14 @@ export function getUserMatchesById(myId, matchId) {
     });
 }
 
+export function getPotentialMatchesByUserId(id) {
+  return fetch(`${API_URL}/swipecards/${id}`)
+  .then((response) => response.json())
+  .then((data) => {
+    return data;
+  });
+}
+
 export function getMessages(myId, matchId) {
   return fetch(`${API_URL}/messages/${myId}/${matchId}`)
     .then((response) => response.json())
@@ -60,4 +68,34 @@ export async function editUser(user) {
     .then((data) => {
       return data;
     });
+}
+
+export function postMessage(message, id) {
+  return fetch(`${API_URL}/message`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth-Token': localStorage.getItem('doggytoken')
+    },
+    body: JSON.stringify({ 
+      newMessage: message,
+      toUserId: id
+    })
+  })
+  .then((res) => res.json());
+}
+
+export function postReaction(userId, boolean) {
+  return fetch(`${API_URL}/swipecards`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Auth-Token': localStorage.getItem('doggytoken')
+    },
+    body: JSON.stringify({ 
+      to_user_id: userId,
+      likes: boolean
+    })
+  })
+  .then((res) => res.json());
 }
