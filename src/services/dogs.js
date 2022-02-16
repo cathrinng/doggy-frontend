@@ -52,7 +52,7 @@ export function postMessage(message, toUserId) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Auth-Token': localStorage.getItem('Doggytoken')
+      'X-Auth-Token': localStorage.getItem('doggytoken')
     },
     body: JSON.stringify({ 
       message,
