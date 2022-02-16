@@ -36,7 +36,6 @@ class App extends React.Component {
           <Route path="/logout" component={Logout}></Route>
           <Route path="/signup" component={SignUp}></Route>
           <Route
-            payload={this.state.payload}
             path="/swipecard"
             component={Swipecard}
           ></Route>
