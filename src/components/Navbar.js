@@ -21,13 +21,14 @@ class Navbar extends React.Component {
       case true:
        this.setState({
          displayDropdown: false,
-       }); break;
+       }); 
+       break;
        case false:
          this.setState({
            displayDropdown: true,
-      }); break;
+      }); 
+      break;
     }}
-
 
   render() {
     console.log(this.state.displayDropdown);
@@ -50,7 +51,7 @@ class Navbar extends React.Component {
           <button className={this.state.displayDropdown ? "menu active" : "menu"} onClick={this.toggleDropdown}><img src="/"></img></button>
             {this.state.displayDropdown ? (
             <ul>
-              <li className="swipcard-option" onClick={this.toggleDropdown}><Link to="/swipecards">Matching page</Link></li>
+              <li className="swipcard-option" onClick={this.toggleDropdown}><Link to="/swipecard">Swipecards</Link></li>
               <li className="profile-option" onClick={this.toggleDropdown}><Link to="/edit">Edit profile</Link></li>
               <li className="preferences-option" onClick={this.toggleDropdown}><Link to="/preferences">Edit preferences</Link></li>
               <li className="logout-option" onClick={this.toggleDropdown}><Link to="/logout">Log out</Link></li>

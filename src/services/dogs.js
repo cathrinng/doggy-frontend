@@ -31,8 +31,8 @@ export async function createUser(user) {
   });
 }
 
-export function getUserMatchesById(myId, matchId) {
-  return fetch(`${API_URL}/messages/${myId}/${matchId}`)
+export function getUserMatchesById(myId) {
+  return fetch(`${API_URL}/users/${myId}/matches`)
     .then((response) => response.json())
     .then((data) => {
       return data;

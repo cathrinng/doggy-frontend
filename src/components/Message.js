@@ -39,6 +39,7 @@ class Messages extends React.Component {
     const userId = this.state.payload.id;
     const renderMessages = this.state.messages.reverse().map((data) => {
       let isUser;
+      
 
       switch (userId == data.from_user_id) {
         case true:
@@ -50,7 +51,7 @@ class Messages extends React.Component {
       }
 
       return (
-        <div className={isUser ? "Loged_inn_user-post" : "match-post"}>
+        <div key={data.id} className={isUser ? "Loged_inn_user-post" : "match-post"}>
           {data.message}
         </div>
       );
