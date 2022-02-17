@@ -1,58 +1,21 @@
-import React, { Component, Fragment } from "react";
-import { getUserMatchesById, getMessages, getUsersById } from "../services/dogs";
+import React from "react";
+import { getUserMatchesById, getMessages} from "../services/dogs";
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      matchArray: [],
-      detailTweet: [],
+      matches: [],
+     
     }
   }
 
   async loadFeed() {
     const matches = await getUserMatchesById(4);
-
-    // const users = await getUsersById();
-    const getMatchIdArray = matches.map((matchId) => {
-     return matchId.user_who_matched
-    });
-
-    let matchInfo = getMatchIdArray.map(async (id) => {
-      let output = await getUsersById(id)
-      return output;
+    this.setState({
+      matches,
     })
-
-    let something = Promise.all(matchInfo).then(function(values) {
-      return values;
-    });
-
-  console.log(something);
-    
-
-    // this.setState({
-    //   matchArray: getMatchId
-     
-    // })
-
-    // for (let i = 0; i < getMatchId.length; i++) {
-    //   const detailTweet = getUsersById(getMatchId[i]);
-    //   detailTweet.then((res) => {
-    //     this.setState({
-    //       detailTweet: res,
-    //     });
-    //   });
-    // }
-
-    // this.setState({
-    //   users:users
-    // })
-
-    
-    
-    // console.log("matchId:", getMatchId);
-
   }
 
   componentDidMount() {
@@ -60,26 +23,22 @@ class Feed extends React.Component {
   }
 
   render() {
-    
-
-    const makeToAnArry = Object.keys(this.state.detailTweet);
-    const renderMtches = makeToAnArry.map((matchInfo)=>{
+    const renderMatches = this.state.matches.map((matchInfo)=>{
       return(
-        <div>
-          {matchInfo.surname}
+        <div className="match_info">
+          <img src ={matchInfo.img_url} alt="" />
+          
+         {matchInfo.surname}
+         {matchInfo.firstname}
+         {matchInfo.age}
+          
+          
         </div>
       )
-
     })
-    console.log(this.state.detailTweet)
-    // const matchElements = getUsersById(this.state.matchArray);
-    // console.log("matchlist:", matchElements);
-    
-    
-
     return (
-      <div>
-        {renderMtches}
+      <div className="match_info_redrer">
+        {renderMatches}
       </div>
     )
   }
