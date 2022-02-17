@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
+import Messages from "./components/Message";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,8 +25,9 @@ class App extends React.Component {
   }
 
   handleLoginStatusChange() {
+    console.log(this.state.isLoggedIn);
     this.setState({
-      isLoggedIn: !!localStorage.getItem("doggytoken"),
+      isLoggedIn: !!localStorage.getItem("doggytoken")
     });
   }
 
@@ -73,7 +75,6 @@ class App extends React.Component {
             )} 
           />
           <Route
-            payload={this.state.payload}
             path="/swipecard"
             component={Swipecard}>
           </Route>

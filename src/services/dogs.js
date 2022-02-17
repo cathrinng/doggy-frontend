@@ -47,16 +47,16 @@ export function getMessages(myId, matchId) {
   });
 }
 
-export function postMessage(message, toUserId) {
+export function postMessage(message, id) {
   return fetch(`${API_URL}/message`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Auth-Token': localStorage.getItem('Doggytoken')
+      'X-Auth-Token': localStorage.getItem('doggytoken')
     },
     body: JSON.stringify({ 
-      message,
-      toUserId
+      newMessage: message,
+      toUserId: id
     })
   })
   .then((res) => res.json());
