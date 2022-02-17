@@ -25,7 +25,7 @@ class Feed extends React.Component {
   render() {
     const renderMatches = this.state.matches.map((matchInfo)=>{
       return(
-        <div className="match_info">
+        <div key={matchInfo.id} className="match_info">
           <img src ={matchInfo.img_url} alt="" />
           
          {matchInfo.surname}
