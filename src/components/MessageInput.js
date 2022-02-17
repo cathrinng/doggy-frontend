@@ -25,7 +25,7 @@ class MessagesInput extends React.Component {
     })
     
     // console.log(inputText.value);
-    postMessage(inputText.value, 4)
+    postMessage(inputText.value, 7)
     inputText.value = "";
   }
 
