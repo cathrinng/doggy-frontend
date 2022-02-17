@@ -1,5 +1,4 @@
-//const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = "http://localhost:8080";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function getUsers() {
   return fetch(`${API_URL}/users`)
