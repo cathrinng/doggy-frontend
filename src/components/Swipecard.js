@@ -4,7 +4,9 @@ import {
   getUsersById,
   getPotentialMatchesByUserId,
   postReaction,
-} from "../services/dogs";
+} 
+from "../services/dogs";
+import Advanced from "../services/TinderCard";
 import jwtDecode from "jwt-decode";
 
 class Swipecard extends React.Component {
