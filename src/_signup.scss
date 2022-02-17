@@ -1,0 +1,54 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+
+  & > * {
+    margin-bottom: 10px;
+  }
+
+  .two-column-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .input-label {
+      width: 45%;
+    }
+  }
+
+  .input-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-style-surname {
+    margin-right: 10px;
+  }
+
+  .sign-up-button {
+    background-color: #b08968;
+    color: white;
+    margin: 20px auto 0;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    border-style: none;
+  }
+
+  select {
+    padding: 1px 2px;
+    border-radius: 2px;
+  }
+
+  .text-area-style {
+    height: 70px;
+  }
+}

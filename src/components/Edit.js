@@ -84,21 +84,12 @@ class Edit extends React.Component {
   }
 
   async handleDeleteClick(e) {
-    await deleteUser(user.id);
-  }
-
-  async handleDeleteClick() {
-    const { changeView, id } = this.props;
-
-    if (!window.confirm("Are you sure?")) {
-      return;
-    }
-
+    e.preventDefault();
+    console.log("handle delete click");
     try {
-      await deleteBookById(id);
-      changeView("");
+      await deleteUser();
     } catch (error) {
-      console.log("Deleting book failed", error);
+      console.log("Deleting user failed", error);
     }
   }
 
@@ -209,7 +200,9 @@ class Edit extends React.Component {
           <button onClick={(e) => this.handleSaveClick(e)}>
             Save changes!
           </button>
-          <a href="">Deactivate your account</a>
+          <button onClick={(e) => this.handleDeleteClick(e)}>
+            Deactivate your account
+          </button>
         </form>
       </div>
     );
