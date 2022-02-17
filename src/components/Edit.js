@@ -1,5 +1,5 @@
 import React from "react";
-import { editUser, getUsersById } from "../services/dogs";
+import { editUser, getUsersById, deleteUser } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 
 class Edit extends React.Component {
@@ -81,6 +81,25 @@ class Edit extends React.Component {
 
   handleSexSelect(e) {
     this.setState({ selectSexValue: e.target.value });
+  }
+
+  async handleDeleteClick(e) {
+    await deleteUser(user.id);
+  }
+
+  async handleDeleteClick() {
+    const { changeView, id } = this.props;
+
+    if (!window.confirm("Are you sure?")) {
+      return;
+    }
+
+    try {
+      await deleteBookById(id);
+      changeView("");
+    } catch (error) {
+      console.log("Deleting book failed", error);
+    }
   }
 
   render() {
