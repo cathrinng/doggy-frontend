@@ -24,7 +24,7 @@ class SignUp extends React.Component {
       email: this.emailRef.current.value,
       password: this.passwordRef.current.value,
       sex: this.state.selectSexValue,
-      breed: this.breedRef.current.value,
+      breed: this.breedRef.current,
       bio: this.bioRef.current.value,
     };
     console.log(user);
@@ -109,12 +109,13 @@ class SignUp extends React.Component {
           </label>
           <label htmlFor="breed">
             Breed
-            <input
-              type="text"
-              name="breed"
-              placeholder="Breed"
-              ref={this.breedRef}
+        
+            <Autocomplete 
+            setBreedValue = {(value) => 
+              {console.log(value);
+                this.breedRef.current = value}}
             />
+
           </label>
           <label htmlFor="bio">
             Bio
