@@ -10,27 +10,27 @@ class Navbar extends React.Component {
       isLoggedIn: false,
       displayDropdown: false,
     }
-    this.showDropdown = this.showDropdown.bind(this);
-    this.hideDropdown = this.hideDropdown.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
   }
   componentDidMount() {
     this.props.onLoginChange();
   }
 
-  showDropdown(event) {
-    event.preventDefault();
-    this.setState({
-      displayDropdown: true,
-    })
-    }
-  
-  hideDropdown() {
-    this.setState({
-      displayDropdown: false,
-    })
-  }
+  toggleDropdown() {
+    switch(this.state.displayDropdown) {
+      case true:
+       this.setState({
+         displayDropdown: false,
+       }); break;
+       case false:
+         this.setState({
+           displayDropdown: true,
+      }); break;
+    }}
+
 
   render() {
+    console.log(this.state.displayDropdown);
     if(!this.props.loggedIn)  {
       return (
       <div className="public-navbar">
@@ -47,18 +47,18 @@ class Navbar extends React.Component {
         <div className="private-navbar">
           <img src='#' className='logo-img'/>
           <Link to="/"><h1>Doggy</h1></Link>          
-          <div className="dropdown-button" onClick={this.showDropdown}><img src="/"></img></div>
-          {this.state.displayDropdown ? (
+          <button className={this.state.displayDropdown ? "menu active" : "menu"} onClick={this.toggleDropdown}><img src="/"></img></button>
+            {this.state.displayDropdown ? (
             <ul>
-              <li className="swipcard-option"><Link to="/swipecards" onClick={this.hideDropdown}>Matching page</Link></li>
-              <li className="profile-option"><Link to="/edit" onClick={this.hideDropdown}>Edit profile</Link></li>
-              <li className="preferences-option"><Link to="/preferences" onClick={this.hideDropdown}>Edit preferences</Link></li>
-              <li className="logout-option"><Link to="/logout" onClick={this.hideDropdown}>Log out</Link></li>
+              <li className="swipcard-option" onClick={this.toggleDropdown}><Link to="/swipecards">Matching page</Link></li>
+              <li className="profile-option" onClick={this.toggleDropdown}><Link to="/edit">Edit profile</Link></li>
+              <li className="preferences-option" onClick={this.toggleDropdown}><Link to="/preferences">Edit preferences</Link></li>
+              <li className="logout-option" onClick={this.toggleDropdown}><Link to="/logout">Log out</Link></li>
             </ul>
-          ) : (
+            ) : (
             null
-          )
-          }
+            )
+            }
       </div>
       )
     }
