@@ -14,6 +14,7 @@ class Messages extends React.Component {
       matchedUserInfo:[],
       payload: {},
       
+      
     };
   }
 
@@ -37,6 +38,7 @@ class Messages extends React.Component {
   componentDidMount() {
     // console.log("funksjon som returnerer en verdi" + this.sendparamstomessageinput())
     
+    
     const token = localStorage.getItem("doggytoken");
     const payload = jwtDecode(token);
 
@@ -49,7 +51,15 @@ class Messages extends React.Component {
     }
     this.loadmessages(payload);
     this.loadMatchedUserInfo()
+    // this.scrollToBottom();
   }
+  // scrollToBottom = () => {
+  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  // }
+  
+  // componentDidUpdate() {
+  //   this.scrollToBottom();
+  // }
 
   sendParamsMatch(){
     const { user_who_matched } = this.props.match.params;
@@ -85,12 +95,14 @@ class Messages extends React.Component {
 
     return (
       
-      <div className="bubble recipient">
+      <div >
         @{renderMatchedUserInfo}
-        <div className="chat_container">
+        <div className="chat_container" /* ref={(el) => { this.messagesEnd = el; }}*/>
         {renderMessages}
         </div>
-        <div className="inputBox"> <MessagesInput user_who_matched={this.sendParamsMatch() }/></div>
+        <div> 
+          <MessagesInput user_who_matched={this.sendParamsMatch() }/>
+        </div>
       </div>
      
     );

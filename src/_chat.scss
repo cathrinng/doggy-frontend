@@ -1,11 +1,17 @@
-.chat_container{
-   width: 300px;
-   height: auto;
-   border: 2px solid black;
+div.chat_container{
+   width: 100vw;
+   height: 450px;
+   border: 3px solid lightgray;
    display: flex;
    flex-direction: column;
+   overflow-x: hidden;
+   overflow-y: auto;
+   
+  
    
 }
+
+// link for css https://codepen.io/jmpp/pen/mprGZo
 
 .match-post{
 	border-radius: 1em;
@@ -44,8 +50,28 @@
 }
 
 
-.inputBox{
+//input message styling
+
+.inputContainer{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
     
+}
+
+.inputTextBox{
+    padding: 5px;
+    margin-top: 5px;
+	border-radius: 30px;
+    width: 350px;
+	background-color: #efefef;
+}
+
+.sendIcon{
+	width: 25px;
+	height: 25px;
 }
 
 
