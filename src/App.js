@@ -12,6 +12,7 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Swipe from "./components/Swipe";
 import Messages from "./components/Message";
+import Feed from "./components/Feed";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class App extends React.Component {
   }
 
   handleLoginStatusChange() {
-    console.log(this.state.isLoggedIn);
+    // console.log(this.state.isLoggedIn);
     this.setState({
       isLoggedIn: !!localStorage.getItem("doggytoken"),
     });
@@ -82,6 +83,8 @@ class App extends React.Component {
           <Route path="/swipecard" component={Swipecard}></Route>
           <Route path="/messages" component={Messages}></Route>
           <Route path="/swipe" component={Swipe}></Route>
+          <Route path="/feed" component={Feed}></Route>
+
         </Switch>
       </HashRouter>
     );

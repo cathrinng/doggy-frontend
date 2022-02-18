@@ -31,7 +31,7 @@ class Navbar extends React.Component {
     }}
 
   render() {
-    console.log(this.state.displayDropdown);
+    // console.log(this.state.displayDropdown);
     if(!this.props.loggedIn)  {
       return (
       <div className="public-navbar">

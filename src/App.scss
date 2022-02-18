@@ -1,6 +1,14 @@
+
 @import 'swipecard';
 @import 'autocomplete';
 @import 'chat';
+@import "login";
+@import "matches";
+@import "swipecard";
+// @import 'autocomplete';
+@import "chat";
+@import "signup";
+@import "edit";
 
 body, html, #root {
   box-sizing: border-box;

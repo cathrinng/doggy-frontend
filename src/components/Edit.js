@@ -112,32 +112,34 @@ class Edit extends React.Component {
     }
 
     return (
-      <div>
+      <div className="edit-user">
         <h1>Edit User</h1>
         <form
           id="form"
-          className="sign-up-form"
+          className="edit-user-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
-          <label htmlFor="first name">
-            First Name
-            <input
-              type="text"
-              name="first name"
-              placeholder="First Name"
-              ref={this.firstnameRef}
-            />
-          </label>
-          <label htmlFor="surname">
-            Surname
-            <input
-              type="text"
-              name="surname"
-              placeholder="Surname"
-              ref={this.surnameRef}
-            />
-          </label>
-          <label htmlFor="email">
+          <div className="two-column-row">
+            <label className="input-label" htmlFor="first name">
+              First Name
+              <input
+                type="text"
+                name="first name"
+                placeholder="First Name"
+                ref={this.firstnameRef}
+              />
+            </label>
+            <label className="input-label" htmlFor="surname">
+              Surname
+              <input
+                type="text"
+                name="surname"
+                placeholder="Surname"
+                ref={this.surnameRef}
+              />
+            </label>
+          </div>
+          <label className="input-label" htmlFor="email">
             E-mail
             <input
               type="text"
@@ -146,7 +148,7 @@ class Edit extends React.Component {
               ref={this.emailRef}
             />
           </label>
-          <label htmlFor="password">
+          <label className="input-label" htmlFor="password">
             Password
             <input
               type="password"
@@ -155,42 +157,56 @@ class Edit extends React.Component {
               ref={this.passwordRef}
             />
           </label>
-          <label htmlFor="sex">
-            Sex
-            <select
-              name="sex"
-              defaultValue={this.state.selectSexValue || ""}
-              onChange={(e) => this.handleSexSelect(e)}
-            >
-              <option disabled value="">
-                -- select an option --
-              </option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-          </label>
-          <label htmlFor="breed">
-            Breed
-            <input
-              type="text"
-              name="breed"
-              placeholder="Breed"
-              ref={this.breedRef}
-            />
-          </label>
-          <label htmlFor="bio">
+          <div className="two-column-row">
+            <label className="input-label" htmlFor="sex">
+              Sex
+              <select
+                className="input-style-sex"
+                name="sex"
+                defaultValue={this.state.selectSexValue || ""}
+                onChange={(e) => this.handleSexSelect(e)}
+              >
+                <option disabled value="">
+                  - select an option -
+                </option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </label>
+            <label className="input-label" htmlFor="breed">
+              Breed
+              <input
+                className="input-style"
+                type="text"
+                name="breed"
+                placeholder="Breed"
+                ref={this.breedRef}
+              />
+            </label>
+          </div>
+          <label className="input-label" htmlFor="bio">
             Bio
-            <input
-              type="text"
+            <textarea
+              className="text-area-style"
               name="bio"
               placeholder="Write something..."
               ref={this.bioRef}
             />
           </label>
-          <button onClick={(e) => this.handleSaveClick(e)}>
-            Save changes!
-          </button>
-          <a href="">Deactivate your account</a>
+          <div className="buttons-edit-user-form">
+            <a
+              href="https://doggy-frontend.herokuapp.com/#/feed"
+              className="cancel-button-link"
+            >
+              Cancel
+            </a>
+            <button
+              className="save-changes-button"
+              onClick={(e) => this.handleSaveClick(e)}
+            >
+              Save
+            </button>
+          </div>
         </form>
       </div>
     );
