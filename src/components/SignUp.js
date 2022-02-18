@@ -50,84 +50,99 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Sign Up</h1>
+      <div className="sign-up">
+        <h1 className="title-text">Sign Up</h1>
         <form
           id="form"
           className="sign-up-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
-          <label htmlFor="first name">
-            First Name
-            <input
-              type="text"
-              name="first name"
-              placeholder="First Name"
-              ref={this.firstnameRef}
-            />
-          </label>
-          <label htmlFor="surname">
-            Surname
-            <input
-              type="text"
-              name="surname"
-              placeholder="Surname"
-              ref={this.surnameRef}
-            />
-          </label>
-          <label htmlFor="email">
+          <div className="two-column-row">
+            <label className="input-label" htmlFor="first name">
+              First Name
+              <input
+                className="input-style"
+                type="text"
+                name="first name"
+                placeholder="First Name"
+                ref={this.firstnameRef}
+              />
+            </label>
+
+            <label className="input-label" htmlFor="surname">
+              Surname
+              <input
+                className="input-style"
+                type="text"
+                name="surname"
+                placeholder="Surname"
+                ref={this.surnameRef}
+              />
+            </label>
+          </div>
+          <label className="input-label" htmlFor="email">
             E-mail
             <input
+              className="input-style"
               type="text"
               name="email"
               placeholder="E-mail"
               ref={this.emailRef}
             />
           </label>
-          <label htmlFor="password">
+          <label className="input-label" htmlFor="password">
             Password
             <input
+              className="input-style"
               type="password"
               name="password"
               placeholder="Password"
               ref={this.passwordRef}
             />
           </label>
-          <label htmlFor="sex">
-            Sex
-            <select
-              name="sex"
-              defaultValue={this.state.selectSexValue || ""}
-              onChange={(e) => this.handleSexSelct(e)}
-            >
-              <option disabled value="">
-                -- select an option --
-              </option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-          </label>
-          <label htmlFor="breed">
-            Breed
-        
-            <Autocomplete 
-            setBreedValue = {(value) => 
-              {console.log(value);
-                this.breedRef.current = value}}
-            />
-
-          </label>
-          <label htmlFor="bio">
+          <div className="two-column-row">
+            <label className="input-label" htmlFor="sex">
+              Sex
+              <select
+                className="input-style"
+                name="sex"
+                defaultValue={this.state.selectSexValue || ""}
+                onChange={(e) => this.handleSexSelct(e)}
+              >
+                <option disabled value="">
+                  -- select an option --
+                </option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </label>
+            <label className="input-label" htmlFor="breed">
+              Breed
+              <Autocomplete
+                className="input-style"
+                setBreedValue={(value) => {
+                  console.log(value);
+                  this.breedRef.current = value;
+                }}
+              />
+            </label>
+          </div>
+          <label className="input-label" htmlFor="bio">
             Bio
-            <input
-              type="text"
+            <textarea
+              className="text-area-style"
               name="bio"
               placeholder="Write something..."
               ref={this.bioRef}
             />
           </label>
-          <button type="submit">Sign Up</button>
+          <button className="sign-up-button" type="submit">
+            Sign Up
+          </button>
           {/* <span>You must fill out all the fields in sign up.</span> */}
+          <button className="cancel-button" type="button">
+            Cancel
+          </button>
         </form>
       </div>
     );

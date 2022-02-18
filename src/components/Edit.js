@@ -190,7 +190,6 @@ class Edit extends React.Component {
           <button onClick={(e) => this.handleSaveClick(e)}>
             Save changes!
           </button>
-          <a href="">Deactivate your account</a>
         </form>
       </div>
     );

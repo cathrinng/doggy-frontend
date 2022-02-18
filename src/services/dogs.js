@@ -40,10 +40,10 @@ export function getUserMatchesById(myId) {
 
 export function getPotentialMatchesByUserId(id) {
   return fetch(`${API_URL}/swipecards/${id}`)
-  .then((response) => response.json())
-  .then((data) => {
-    return data;
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    });
 }
 
 export function getMessages(myId, matchId) {
@@ -70,39 +70,37 @@ export async function editUser(user) {
 
 export function postMessage(message, id) {
   return fetch(`${API_URL}/message`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-Auth-Token': localStorage.getItem('doggytoken')
+      "Content-Type": "application/json",
+      "X-Auth-Token": localStorage.getItem("doggytoken"),
     },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       newMessage: message,
-      toUserId: id
-    })
-  })
-  .then((res) => res.json());
+      toUserId: id,
+    }),
+  }).then((res) => res.json());
 }
 
 export function postReaction(userId, boolean) {
   return fetch(`${API_URL}/swipecards`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-Auth-Token': localStorage.getItem('doggytoken')
+      "Content-Type": "application/json",
+      "X-Auth-Token": localStorage.getItem("doggytoken"),
     },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       to_user_id: userId,
-      likes: boolean
-    })
-  })
-  .then((res) => res.json());
+      likes: boolean,
+    }),
+  }).then((res) => res.json());
 }
 
 export function getDogBreeds() {
   return fetch(`https://api.thedogapi.com/v1/breeds`, {
     headers: {
-      "x-api-key": "7c5c1b88-b0d3-4fe8-be31-4111a3eb5eed"
-    }
+      "x-api-key": "7c5c1b88-b0d3-4fe8-be31-4111a3eb5eed",
+    },
   })
     .then((response) => response.json())
     .then((data) => {
@@ -110,3 +108,12 @@ export function getDogBreeds() {
     });
 }
 
+// export function deleteUser() {
+//   console.log("test delete user");
+//   return fetch(`${API_URL}/delete`, {
+//     method: "DELETE",
+//     headers: {
+//       "X-Auth-Token": localStorage.getItem("doggytoken"),
+//     },
+//   }).then((res) => res.json());
+// }
