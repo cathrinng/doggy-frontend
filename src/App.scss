@@ -1,9 +1,10 @@
 @import 'swipecard';
-// @import 'autocomplete';
+@import 'autocomplete';
 @import 'chat';
 
-body {
+body, html, #root {
   box-sizing: border-box;
+  overflow-x: hidden;
   max-width: 100vw;
   min-height: 100vh;
 }
