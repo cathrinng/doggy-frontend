@@ -1,5 +1,5 @@
 import React from "react";
-import { editUser, getUsersById, deleteUser } from "../services/dogs";
+import { editUser, getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 
 class Edit extends React.Component {
@@ -81,16 +81,6 @@ class Edit extends React.Component {
 
   handleSexSelect(e) {
     this.setState({ selectSexValue: e.target.value });
-  }
-
-  async handleDeleteClick(e) {
-    e.preventDefault();
-    console.log("handle delete click");
-    try {
-      await deleteUser();
-    } catch (error) {
-      console.log("Deleting user failed", error);
-    }
   }
 
   render() {
@@ -199,9 +189,6 @@ class Edit extends React.Component {
           </label>
           <button onClick={(e) => this.handleSaveClick(e)}>
             Save changes!
-          </button>
-          <button onClick={(e) => this.handleDeleteClick(e)}>
-            Deactivate your account
           </button>
         </form>
       </div>

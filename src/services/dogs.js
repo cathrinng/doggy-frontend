@@ -108,12 +108,12 @@ export function getDogBreeds() {
     });
 }
 
-export function deleteUser() {
-  console.log("test delete user");
-  return fetch(`${API_URL}/delete`, {
-    method: "DELETE",
-    headers: {
-      "X-Auth-Token": localStorage.getItem("doggytoken"),
-    },
-  }).then((res) => res.json());
-}
+// export function deleteUser() {
+//   console.log("test delete user");
+//   return fetch(`${API_URL}/delete`, {
+//     method: "DELETE",
+//     headers: {
+//       "X-Auth-Token": localStorage.getItem("doggytoken"),
+//     },
+//   }).then((res) => res.json());
+// }

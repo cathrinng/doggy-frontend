@@ -140,6 +140,9 @@ class SignUp extends React.Component {
             Sign Up
           </button>
           {/* <span>You must fill out all the fields in sign up.</span> */}
+          <button className="cancel-button" type="button">
+            Cancel
+          </button>
         </form>
       </div>
     );
