@@ -8,41 +8,10 @@ import {
   BsArrowCounterclockwise,
 } from "react-icons/bs";
 
-const fghfhg = [
-  {
-    id: 24,
-    surname: "aaa",
-    firstname: "AAAghhfgh",
-    created_at: "2022-02-17T09:09:19.120Z",
-    email: "aaa",
-    bio: "Hei hei",
-    img_url: null,
-    sex: "male",
-    breed: null,
-    age: null,
-    password: "aaa",
-  },
-  {
-    id: 25,
-    surname: "aa",
-    firstname: "aa",
-    created_at: "2022-02-17T09:10:00.207Z",
-    email: "aa",
-    bio: "TEST",
-    img_url: null,
-    sex: "male",
-    breed: null,
-    age: null,
-    password: "aa",
-  },
-];
-
 function Swipe(props) {
   const db = props.matches;
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
-
-  console.log(db);
 
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
@@ -70,12 +39,13 @@ function Swipe(props) {
 
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
+    props.submitReaction(nameToDelete, direction)
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
 
   const outOfFrame = (id, idx) => {
-    console.log(`${id} (${idx}) left the screen!`, currentIndexRef.current);
+    // console.log(`${id} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
     // TODO: when quickly swipe and restore multiple times the same card,
@@ -107,6 +77,7 @@ function Swipe(props) {
             key={character.id.toString()}
             onSwipe={(dir) => swiped(dir, character.id, index)}
             onCardLeftScreen={() => outOfFrame(character.id, index)}
+            preventSwipe={['up', 'down']}
           >
             <div className="card">
               <img src={character.img_url} alt="User image" />

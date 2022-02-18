@@ -28,10 +28,18 @@ class Swipecard extends React.Component {
     });
   }
 
-  async submitReaction(id, boolean) {
-    postReaction(id, boolean);
+  async submitReaction(id, direction) {
+    switch(direction) {
+      case 'right':
+      console.log(id, 'right');
+      postReaction(id, true);
+      break;
+      case 'left':
+      console.log(id, 'left');
+      break;
+    }
 
-    // SPØR HVORDAN Å RETURNERE FULL TABLE!
+    // postReaction(id, boolean);
   }
 
   render() {
@@ -60,7 +68,9 @@ class Swipecard extends React.Component {
     return (
       <div className="swipecards">{true ? <div>
         { this.state.matches.length && <Swipe
-      matches={this.state.matches}/>}
+      matches={this.state.matches}
+      submitReaction={this.submitReaction}
+      />}
       </div> : <p>Loading</p>}</div>
     );
   }
