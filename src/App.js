@@ -1,4 +1,5 @@
 import "./App.scss";
+import "./chat.css"
 import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
@@ -12,6 +13,7 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
+import MessagesInput from "./components/MessageInput";
 
 class App extends React.Component {
   constructor(props) {
@@ -80,7 +82,8 @@ class App extends React.Component {
             )}
           />
           <Route path="/swipecard" component={Swipecard}></Route>
-          <Route path="/messages" component={Messages}></Route>
+          <Route path="/messages/:user_who_matched" component={Messages}></Route>
+          <Route path="/messages/:user_who_matched" component={MessagesInput}></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
       </HashRouter>

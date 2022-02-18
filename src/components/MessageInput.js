@@ -25,8 +25,15 @@ class MessagesInput extends React.Component {
     })
     
     // console.log(inputText.value);
-    postMessage(inputText.value, 7)
+    const user_who_matched= this.props.user_who_matched
+    postMessage(inputText.value,  user_who_matched)
     inputText.value = "";
+  }
+
+  componentDidMount(){
+  //  const user_who_matched= this.props.user_who_matched
+  //  console.log("console.log fra input "+ user_who_matched);
+
   }
 
 

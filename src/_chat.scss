@@ -8,20 +8,44 @@
 }
 
 .match-post{
-    display: flex;
-    color: blue;
-    justify-content: flex-start;
-    border: 2px solid black;
-    height: 30px;
-
+	border-radius: 1em;
+	padding: 0.25em 0.75em;
+	margin: 0.0625em;
+	max-width: 50%;
+	max-width: 600px;
+	display: flex;
+	flex-flow: column wrap;
+	margin-top: 10px;
+	align-self: flex-start;
+	background-color: #efefef;
+	color: black;
+	border-bottom-left-radius: 0.1em;
 }
 
 .Loged_inn_user-post{
-    
-    display: flex;
-    color: red;
-    justify-content: flex-end;
-    border: 2px solid black;
+	border-radius: 1em;
+	padding: 0.25em 0.75em;
+	margin: 0.0625em;
+	max-width: 50%;
+	max-width: 600px;
+	display: flex;
+	flex-flow: column wrap;
+	margin-top: 10px;
+	align-self: flex-end;
+	background-color: cornflowerblue;
+	color: #fff;
+	border-bottom-right-radius: 0.1em;
+}
+
+.message-img{
+    width: 30px;
     height: 30px;
+    border-radius: 40px;
+}
+
+
+.inputBox{
     
 }
+
+
