@@ -1,5 +1,7 @@
 import React from "react";
 import { getUserMatchesById, getMessages} from "../services/dogs";
+import jwtDecode from "jwt-decode";
+
 
 class Feed extends React.Component {
   constructor(props) {
@@ -19,7 +21,19 @@ class Feed extends React.Component {
   }
 
   componentDidMount() {
+    const token = localStorage.getItem("doggytoken");
+    const payload = jwtDecode(token);
+
+    if (token) {
+      this.setState({
+        payload: payload,
+      });
+     
+      console.log("you are logged inn as " + payload.surname);
+    }
+  
     this.loadFeed();
+    
   }
 
   render() {
