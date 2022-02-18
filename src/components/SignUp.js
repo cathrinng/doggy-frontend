@@ -110,7 +110,7 @@ class SignUp extends React.Component {
                 onChange={(e) => this.handleSexSelct(e)}
               >
                 <option disabled value="">
-                  -- select an option --
+                  - select an option -
                 </option>
                 <option value="female">Female</option>
                 <option value="male">Male</option>
@@ -136,13 +136,18 @@ class SignUp extends React.Component {
               ref={this.bioRef}
             />
           </label>
-          <button className="sign-up-button" type="submit">
-            Sign Up
-          </button>
-          {/* <span>You must fill out all the fields in sign up.</span> */}
-          <button className="cancel-button" type="button">
-            Cancel
-          </button>
+          <div className="buttons-sign-up-form">
+            <a
+              href="https://doggy-frontend.herokuapp.com/#/"
+              className="cancel-button-link"
+            >
+              Cancel
+            </a>
+            <button className="sign-up-button" type="submit">
+              Sign Up
+            </button>
+            {/* <span>You must fill out all the fields in sign up.</span> */}
+          </div>
         </form>
       </div>
     );
