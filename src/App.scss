@@ -1,3 +1,7 @@
+
+@import 'swipecard';
+@import 'autocomplete';
+@import 'chat';
 @import "login";
 @import "matches";
 @import "swipecard";
@@ -6,8 +10,9 @@
 @import "signup";
 @import "edit";
 
-body {
+body, html, #root {
   box-sizing: border-box;
+  overflow-x: hidden;
   max-width: 100vw;
   min-height: 100vh;
 }

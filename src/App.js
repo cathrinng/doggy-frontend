@@ -1,5 +1,4 @@
 import "./App.scss";
-import "./chat.css"
 import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
@@ -83,7 +82,6 @@ class App extends React.Component {
           />
           <Route path="/swipecard" component={Swipecard}></Route>
           <Route path="/messages/:user_who_matched" component={Messages}></Route>
-          <Route path="/messages/:user_who_matched" component={MessagesInput}></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
       </HashRouter>
