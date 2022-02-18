@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 import Swipecard from "./components/Swipecard";
 import Logout from "./components/Logout";
 import Edit from "./components/Edit";
+import Swipe from "./components/Swipe";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
 
@@ -81,7 +82,9 @@ class App extends React.Component {
           />
           <Route path="/swipecard" component={Swipecard}></Route>
           <Route path="/messages" component={Messages}></Route>
+          <Route path="/swipe" component={Swipe}></Route>
           <Route path="/feed" component={Feed}></Route>
+
         </Switch>
       </HashRouter>
     );
