@@ -1,6 +1,7 @@
 import "./App.scss";
 import React, { Component } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 import Homepage from "./components/Homepage";
 import About from "./components/About";
@@ -12,7 +13,9 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
+import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -20,26 +23,47 @@ class App extends React.Component {
 
     this.state = {
       isLoggedIn: false,
+      loggedInUserInfo: {},
     };
   }
 
   componentDidMount() {
     this.handleLoginStatusChange();
+    this.updateUserInformation();
+  }
+
+  async updateUserInformation() {
+    if (
+      this.state.isLoggedIn &&
+      Object.keys(this.state.loggedInUserInfo).length === 0
+    ) {
+      const token = localStorage.getItem("doggytoken");
+      const payload = jwtDecode(token);
+      let loggedInUserInfo = await getUsersById(payload.id);
+      this.setState({
+        loggedInUserInfo,
+      });
+      console.log(this.state.loggedInUserInfo);
+    } else return;
   }
 
   handleLoginStatusChange() {
-    // console.log(this.state.isLoggedIn);
     this.setState({
       isLoggedIn: !!localStorage.getItem("doggytoken"),
     });
   }
 
   render() {
+    if (
+      this.state.isLoggedIn &&
+      Object.keys(this.state.loggedInUserInfo).length === 0
+    ) {this.updateUserInformation()}
     return (
       <HashRouter>
         <Navbar
           loggedIn={this.state.isLoggedIn}
           onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+          userInfo={this.state.userInfo}
         />
         <Switch>
           <Route path="/" exact component={Homepage}></Route>
