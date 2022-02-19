@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 4px solid white;
+    border: 8px solid white;
     background-color: white;
     border-radius: 5px;
   }
@@ -38,6 +38,7 @@
   .cardContainer {
     width: fit-content;
     height: 500px;
+    margin-top: 16px;
     box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
     -webkit-box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
@@ -51,7 +52,6 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 6px;
     img {
       display: block;
       width: 100%;
