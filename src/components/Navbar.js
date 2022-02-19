@@ -64,7 +64,7 @@ class Navbar extends React.Component {
             </div>
           </Link>
           <Link to="/login" className="login-button">
-            Register/Login
+            Login
           </Link>
         </div>
       );
