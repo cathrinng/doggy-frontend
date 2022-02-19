@@ -2,7 +2,8 @@ import React from "react";
 import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import NewMatches from "./NewMatches";
 
 
 class Feed extends React.Component {
@@ -100,6 +101,7 @@ class Feed extends React.Component {
     })
 
     return (
+      <div><NewMatches/>
       <div className="match-container">
         <h1>Feed for {this.state.payload.firstname}</h1>
         <div className="match-box">
@@ -108,6 +110,7 @@ class Feed extends React.Component {
         <div className="message-box">
           {renderMessages}
         </div>
+      </div>
       </div>
     )
   }
