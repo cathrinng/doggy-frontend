@@ -15,31 +15,44 @@ $background-color: #e07a5f;
   }
 
   .login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    align-content: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    .input-container {
       display: flex;
-      flex-direction: column;
-      max-width: 80%;
-      align-content: center;
-      justify-content: center;
-      margin: 0 auto;
+      width: 99%;
+      margin-bottom: 16px;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 8px;
 
-      label {
-          font-weight: bold;
+      svg {
+        padding: 10px;
+        text-align: center;
       }
+    }
 
-      input {
-          box-sizing: border-box;
-          margin-bottom: 16px;
-      }
+    input {
+      align-self: center;
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 8px;
+      outline: none;
+    }
 
-      button {
-          margin-top: 16px;
-          float: right;
-          border: none;
-          padding: 8px;
-          color: white;
-          font-weight: bold;
-          border-radius: 8px;
-          background-color: $background-color;
-      }
+    button {
+      margin-top: 16px;
+      width: 100%;
+      border: none;
+      padding: 12px;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      background-color: $background-color;
+    }
   }
 }
