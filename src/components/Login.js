@@ -1,6 +1,7 @@
 import React from "react";
 import { getLoginToken } from "../services/session";
 import { Link } from "react-router-dom";
+import { BiLockAlt, BiUser, BiShow, BiHide } from "react-icons/bi";
 
 class Login extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      showPassword: false,
     };
   }
 
@@ -67,23 +69,49 @@ class Login extends React.Component {
     });
   }
 
+  toggleShowPassword() {
+    switch (this.state.showPassword) {
+      case true:
+        this.setState({
+          showPassword: false,
+        });
+        break;
+      case false:
+        this.setState({
+          showPassword: true,
+        });
+        break;
+    }
+  }
+
   render() {
     return (
       <div className="login-container">
         <h1>Login</h1>
         <div className="login-form">
-          <label>Email:</label>
-          <input
-            type="text"
-            value={this.state.email}
-            onChange={this.handleInputChange.bind(this, "email")}
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChange.bind(this, "password")}
-          />
+          <div className="input-container">
+            <BiUser />
+            <input
+              type="text"
+              value={this.state.email}
+              placeholder="email"
+              onChange={this.handleInputChange.bind(this, "email")}
+            />
+          </div>
+          <div className="input-container">
+            <BiLockAlt />
+            <input
+              type={!this.state.showPassword ? "password" : "text"}
+              value={this.state.password}
+              placeholder="password"
+              onChange={this.handleInputChange.bind(this, "password")}
+            />
+            {!this.state.showPassword ? (
+              <BiShow onClick={this.toggleShowPassword.bind(this)} />
+            ) : (
+              <BiHide onClick={this.toggleShowPassword.bind(this)} />
+            )}
+          </div>
           <div>
             <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
           </div>
