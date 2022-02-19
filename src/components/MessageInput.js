@@ -2,7 +2,10 @@ import React from "react";
 import { postMessage } from "../services/dogs";
 // import { submitMessage } from "../services/dogs";
 // import { getLoginToken } from "../services/session";
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
+
+import { FiSend } from 'react-icons/fi';
+import { IconName } from "react-icons/ai";
 
 class MessagesInput extends React.Component {
   constructor(props) {
@@ -25,20 +28,29 @@ class MessagesInput extends React.Component {
     })
     
     // console.log(inputText.value);
-    postMessage(inputText.value, 7)
+    const user_who_matched= this.props.user_who_matched
+    postMessage(inputText.value,  user_who_matched)
     inputText.value = "";
+  }
+
+  componentDidMount(){
+  //  const user_who_matched= this.props.user_who_matched
+  //  console.log("console.log fra input "+ user_who_matched);
+
   }
 
 
   render() {
     return (
-      <div>
+      <div className="inputContainer">
         <input
+          className="inputTextBox"
           ref="messageInput" 
           type="text"
           placeholder="til min fremtidige babbyboo"
           onKeyDown={this.handleKeyDown.bind(this)}
         />
+          <FiSend className="sendIcon"></FiSend>
       </div>
     )
   }
@@ -48,3 +60,5 @@ class MessagesInput extends React.Component {
 export default MessagesInput;
 
 // lage en input felt som sette inn verdien av en melding i state, den kobles til en funksjon med 3 parametere, token, matchId og 
+
+
