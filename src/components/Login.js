@@ -69,32 +69,30 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-container">
         <h1>Login</h1>
-        <label>
-          Email:
+        <div className="login-form">
+          <label>Email:</label>
           <input
             type="text"
             value={this.state.email}
             onChange={this.handleInputChange.bind(this, "email")}
           />
-        </label>
-        <label>
-          Password:
+          <label>Password:</label>
           <input
             type="password"
             value={this.state.password}
             onChange={this.handleInputChange.bind(this, "password")}
           />
-        </label>
-        <div>
-          <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
-        </div>
-        <div className="signup-info">
-          <p>Not registered?</p>
-          <p>
-            <Link to="/signup">Sign up and join Doggy here!</Link>
-          </p>
+          <div>
+            <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
+          </div>
+          <div className="signup-info">
+            <p>Not registered?</p>
+            <p>
+              <Link to="/signup">Sign up to join Doggy here!</Link>
+            </p>
+          </div>
         </div>
       </div>
     );
