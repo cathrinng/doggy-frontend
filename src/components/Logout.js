@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Loadingdog from "../components/Loadingdog";
 
 class Logout extends React.Component {
   async componentDidMount() {
@@ -8,14 +9,19 @@ class Logout extends React.Component {
       setTimeout(resolve, 3000);
     });
 
-    localStorage.removeItem('doggytoken');
+    localStorage.removeItem("doggytoken");
     this.props.onLoginChange();
-    history.replace('/');
+    history.replace("/");
   }
 
   render() {
     return (
-      <div>Logging out...</div>
+      <div className="loading-container">
+        <Loadingdog />
+        <div className="loading-message">
+          <h1>See you soon!</h1>
+        </div>
+      </div>
     );
   }
 }
