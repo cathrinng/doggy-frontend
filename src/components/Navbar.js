@@ -54,6 +54,7 @@ class Navbar extends React.Component {
   }
 
   render() {
+
     if (!this.props.loggedIn) {
       return (
         <div className="navbar public-navbar">
@@ -82,7 +83,7 @@ class Navbar extends React.Component {
             <img
               className="profile-img"
               src={
-                this.state.loggedInUserInfo
+                this.props.loggedIn
                   ? this.state.loggedInUserInfo.img_url
                   : "nei"
               }
