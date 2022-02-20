@@ -102,8 +102,7 @@ export function getMessagesByUserId() {
     headers: {
       "X-Auth-Token": localStorage.getItem("doggytoken"),
     },
-  })
-    .then((response) => response.json())
+  }).then((response) => response.json());
 }
 
 // export function deleteUser() {
