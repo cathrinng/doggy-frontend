@@ -3,27 +3,35 @@ import React from "react";
 class Homepage extends React.Component {
   handleClick() {
     const { history } = this.props;
-    history.push('/about');
+    history.push("/about");
   }
 
   render() {
-    
     return (
-      <div>
-        <h3>Welcome to doggy</h3>
-        <div className="container-homepage" style={{border: '2px solid black', width: '300px'}}>
-          <img src="#" className="img-homepage"/>
-          <div className="text-homepage">
+      <div className="homepage-container">
+        <div className="welcome-card">
+          <img
+            src="https://www.sunnyskyz.com/uploads/2015/03/pqm0a-cuddle-time.jpg"
+            className="img-homepage"
+          />
+          <div className="card-info">
             <h4>Meet other single dogs near you!</h4>
-            <div>Doggy is the largest dating app for dogs in the world. Card desription. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit rhoncus imperdiet nisi.</div>
+            <p>
+              Doggy is the largest dating app for dogs looking for dogs. Stop
+              barking up the wrong tree and join us to find out why! We'll see
+              you in the park.
+            </p>
+            <button
+              className="button-homepage"
+              onClick={this.handleClick.bind(this)}
+            >
+              Learn more!
+            </button>
+            <div className="clearfix"></div>
           </div>
-          <button 
-          className="button-homepage"
-          onClick={this.handleClick.bind(this)}>Learn more!
-          </button>
         </div>
       </div>
-    )
+    );
   }
 }
 
