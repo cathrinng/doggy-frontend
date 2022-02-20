@@ -16,7 +16,6 @@ import Feed from "./components/Feed";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +56,9 @@ class App extends React.Component {
     if (
       this.state.isLoggedIn &&
       Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {this.updateUserInformation()}
+    ) {
+      this.updateUserInformation();
+    }
     return (
       <HashRouter>
         <Navbar
@@ -101,11 +102,15 @@ class App extends React.Component {
               <Edit
                 {...routeProps}
                 onLoginChange={this.handleLoginStatusChange.bind(this)}
+                loggedIn={this.state.isLoggedIn}
               />
             )}
           />
           <Route path="/swipecard" component={Swipecard}></Route>
-          <Route path="/messages/:user_who_matched" component={Messages}></Route>
+          <Route
+            path="/messages/:user_who_matched"
+            component={Messages}
+          ></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
       </HashRouter>
