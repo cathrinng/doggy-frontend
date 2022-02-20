@@ -17,14 +17,14 @@ class Homepage extends React.Component {
           <div className="card-info">
             <h4>Meet other single dogs near you!</h4>
             <p>
-              Doggy is the largest dating app for dogs looking for dogs. Stop
+              Doggy is the largest dating app for dogs. Stop
               barking up the wrong tree and join us to find out why!
             </p>
             <button
               className="button-homepage"
               onClick={this.handleClick.bind(this)}
             >
-              Learn more!
+              Woof Woof
             </button>
             <div className="clearfix"></div>
           </div>
