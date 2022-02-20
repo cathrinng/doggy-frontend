@@ -1,4 +1,9 @@
+$text-color: #f4f1de;
+$background-color: #e07a5f;
+
 .swipecards {
+  background-image: url("https://media.istockphoto.com/photos/blurred-public-park-nature-green-background-picture-id1046851064?k=20&m=1046851064&s=170667a&w=0&h=tN0euy2v6AyoMsMmvWeDyHVmIGlRLLDZH2J6ISl5DJo=");
+  background-size: cover;
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -73,8 +78,8 @@
     }
   }
 
-  .swipe:last-of-type {
-  }
+  // .swipe:last-of-type {
+  // }
 
   .card h3 {
     position: absolute;
@@ -95,31 +100,35 @@
 
   .buttons {
     display: flex;
-    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: white;
+    padding: 8px;
+
+    // button:hover {
+    //   transform: scale(1.05);
+    // }
+
+    :nth-child(2) {
+      margin: 0 24px;
+    }
 
     button {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      border: none;
+      // transition: 200ms;
+      padding: 0;
+
       svg {
-        color: gray;
-        height: 40px;
-        width: 40px;
+        fill: $background-color;
+        background-color: white;
+        fill-opacity: 1;
+        height: 100%;
+        width: 100%;
       }
     }
-  }
-
-  .buttons button {
-    flex-shrink: 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    font-size: 18px;
-    background-color: rgba(255, 255, 255, 0);
-    transition: 200ms;
-    margin: 0 10px;
-    font-weight: bolder;
-  }
-
-  .buttons button:hover {
-    transform: scale(1.05);
   }
 
   @keyframes popup {
