@@ -43,7 +43,7 @@ class App extends React.Component {
       this.setState({
         loggedInUserInfo,
       });
-      console.log(this.state.loggedInUserInfo);
+      console.log('info');
     } else return;
   }
 
@@ -54,10 +54,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {this.updateUserInformation()}
+   
     return (
       <HashRouter>
         <Navbar

@@ -83,7 +83,6 @@ export function postMessage(message, id) {
 }
 
 export function postReaction(userId, boolean) {
-  console.log(userId, boolean);
   return fetch(`${API_URL}/swipecards`, {
     method: "POST",
     headers: {
