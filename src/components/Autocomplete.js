@@ -9,7 +9,7 @@ class Autocomplete extends Component {
       filteredSuggestions: [],
       showSuggestions: false,
       userInput: "",
-      dogBreeds: []
+      dogBreeds: [],
     };
   }
 
@@ -17,7 +17,7 @@ class Autocomplete extends Component {
     const suggestions = this.state.dogBreeds;
     const userInput = e.currentTarget.value;
 
-    this.props.setBreedValue(e.currentTarget.value)
+    this.props.setBreedValue(e.currentTarget.value);
 
     const filteredSuggestions = suggestions.filter(
       (suggestion) =>
@@ -33,7 +33,7 @@ class Autocomplete extends Component {
   };
 
   onClick = (e) => {
-    this.props.setBreedValue(e.currentTarget.innerText)
+    this.props.setBreedValue(e.currentTarget.innerText);
     this.setState({
       activeSuggestion: 0,
       filteredSuggestions: [],
@@ -119,9 +119,10 @@ class Autocomplete extends Component {
     return (
       <Fragment>
         <input
+          className="input-style"
+          autocomplete="off"
           type="text"
           name="breed"
-          placeholder="Breed"
           ref={this.breedRef}
           onChange={onChange}
           onKeyDown={onKeyDown}

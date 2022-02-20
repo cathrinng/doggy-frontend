@@ -1,6 +1,7 @@
 import React from "react";
 import { createUser } from "../services/dogs";
 import Autocomplete from "./Autocomplete";
+import { CgProfile } from "react-icons/cg";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -10,20 +11,27 @@ class SignUp extends React.Component {
     this.surnameRef = React.createRef();
     this.emailRef = React.createRef();
     this.passwordRef = React.createRef();
+    this.ageRef = React.createRef();
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
-    this.state = { selectSexValue: "" };
+    this.state = {
+      selectSexValue: "",
+      profilePictureUrl: "",
+      showProfilePictureError: false,
+    };
   }
 
   async handleSignUp(e) {
     e.preventDefault();
     const user = {
+      img_url: this.state.profilePictureUrl,
       firstname: this.firstnameRef.current.value,
       surname: this.surnameRef.current.value,
       email: this.emailRef.current.value,
       password: this.passwordRef.current.value,
       sex: this.state.selectSexValue,
+      age: this.ageRef.current.value,
       breed: this.breedRef.current,
       bio: this.bioRef.current.value,
     };
@@ -38,7 +46,7 @@ class SignUp extends React.Component {
       const registeredUser = await createUser(user);
       console.log(registeredUser);
       const { history } = this.props;
-      history.push("/");
+      history.push("/login");
     } catch (error) {
       console.log("Creating user failed", error);
     }
@@ -46,6 +54,17 @@ class SignUp extends React.Component {
 
   handleSexSelct(e) {
     this.setState({ selectSexValue: e.target.value });
+  }
+
+  handlePictureInput(e) {
+    this.setState({
+      profilePictureUrl: e.target.value,
+      showProfilePictureError: false,
+    });
+  }
+
+  handlePictureInputError() {
+    this.setState({ profilePictureUrl: "", showProfilePictureError: true });
   }
 
   render() {
@@ -57,6 +76,28 @@ class SignUp extends React.Component {
           className="sign-up-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
+          <div className="profile-picture">
+            {this.state.profilePictureUrl === "" ? (
+              <CgProfile size="50px" className="default-profile-picture" />
+            ) : (
+              <img
+                className="profile-picture-circle"
+                src={this.state.profilePictureUrl}
+                alt="Profile Image"
+                onError={() => this.handlePictureInputError()}
+              />
+            )}
+            <input
+              className="picture-input"
+              type="text"
+              name="profile picture"
+              placeholder="Input profile picture url"
+              onBlur={(e) => this.handlePictureInput(e)}
+            />
+            {this.state.showProfilePictureError && (
+              <span className="image-error">Image does not exist</span>
+            )}
+          </div>
           <div className="two-column-row">
             <label className="input-label" htmlFor="first name">
               First Name
@@ -64,7 +105,6 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="first name"
-                placeholder="First Name"
                 ref={this.firstnameRef}
               />
             </label>
@@ -75,18 +115,16 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="surname"
-                placeholder="Surname"
                 ref={this.surnameRef}
               />
             </label>
           </div>
           <label className="input-label" htmlFor="email">
-            E-mail
+            Email
             <input
               className="input-style"
               type="text"
               name="email"
-              placeholder="E-mail"
               ref={this.emailRef}
             />
           </label>
@@ -96,7 +134,6 @@ class SignUp extends React.Component {
               className="input-style"
               type="password"
               name="password"
-              placeholder="Password"
               ref={this.passwordRef}
             />
           </label>
@@ -104,7 +141,7 @@ class SignUp extends React.Component {
             <label className="input-label" htmlFor="sex">
               Sex
               <select
-                className="input-style"
+                className="input-style-sex"
                 name="sex"
                 defaultValue={this.state.selectSexValue || ""}
                 onChange={(e) => this.handleSexSelct(e)}
@@ -116,23 +153,31 @@ class SignUp extends React.Component {
                 <option value="male">Male</option>
               </select>
             </label>
-            <label className="input-label" htmlFor="breed">
-              Breed
-              <Autocomplete
+            <label className="input-label" htmlFor="age">
+              Age
+              <input
                 className="input-style"
-                setBreedValue={(value) => {
-                  console.log(value);
-                  this.breedRef.current = value;
-                }}
+                type="text"
+                name="age"
+                ref={this.ageRef}
               />
             </label>
           </div>
+          <label className="input-label" htmlFor="breed">
+            Breed
+            <Autocomplete
+              className="input-style"
+              setBreedValue={(value) => {
+                console.log(value);
+                this.breedRef.current = value;
+              }}
+            />
+          </label>
           <label className="input-label" htmlFor="bio">
             Bio
             <textarea
               className="text-area-style"
               name="bio"
-              placeholder="Write something..."
               ref={this.bioRef}
             />
           </label>
