@@ -27,11 +27,13 @@ $background-color: #e07a5f;
     .menu-items {
       z-index: 1000;
       position: absolute;
-      right: -4px;
-      top: 72px;
+      right: -17px;
+      top: 66px;
       height: fit-content;
       padding: 16px;
-      border: 1px solid black;
+      border-left: 1px solid rgba(36, 36, 36, 0.473);
+      border-bottom-left-radius: 8px;
+      border-bottom: 1px solid rgba(36, 36, 36, 0.473);
       animation: growDown 100ms ease-in-out forwards;
 
       .profile-name {
