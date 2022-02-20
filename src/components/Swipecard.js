@@ -98,7 +98,8 @@ class Swipecard extends React.Component {
               <div class="tail test"></div>
             </div>
             <div className="loading-message">
-              <h1>Fetching Barks!</h1>
+            {!this.state.matches.length > 0 ? <h1>No barks at the moment!</h1> :
+              <h1>Fetching Barks!</h1>}
             </div>
           </div>
         )}
