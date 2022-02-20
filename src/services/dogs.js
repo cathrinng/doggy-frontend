@@ -1,5 +1,4 @@
-//const API_URL = process.env.REACT_APP_API_URL;
-const API_URL = "http://localhost:8080"
+const API_URL = process.env.REACT_APP_API_URL;
 
 export function getUsers() {
   return fetch(`${API_URL}/users`)
@@ -103,8 +102,7 @@ export function getMessagesByUserId() {
     headers: {
       "X-Auth-Token": localStorage.getItem("doggytoken"),
     },
-  })
-    .then((response) => response.json())
+  }).then((response) => response.json());
 }
 
 // export function deleteUser() {
