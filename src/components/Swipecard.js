@@ -41,7 +41,7 @@ class Swipecard extends React.Component {
   render() {
     return (
       <div className="swipecards">
-        {false ? (
+        {this.state.matches.length > 0 ? (
           <div>
             <Swipe
               matches={this.state.matches}
