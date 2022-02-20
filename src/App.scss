@@ -10,10 +10,16 @@
 @import "chat";
 @import "signup";
 @import "edit";
+@import "homepage";
 
 body, html, #root {
   box-sizing: border-box;
   overflow-x: hidden;
   max-width: 100vw;
   min-height: 100vh;
+}
+
+.clearfix {
+  clear: both;
+  display: table;
 }

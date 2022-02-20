@@ -1,0 +1,41 @@
+.homepage-container {
+  background-image: url("https://media.istockphoto.com/photos/blurred-public-park-nature-green-background-picture-id1046851064?k=20&m=1046851064&s=170667a&w=0&h=tN0euy2v6AyoMsMmvWeDyHVmIGlRLLDZH2J6ISl5DJo=");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 82px);
+  justify-content: center;
+}
+
+.welcome-card {
+  z-index: 99999;
+  background-color: white;
+  width: 90vw;
+  margin: 0 5vw;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+
+  img {
+    width: 100%;
+  }
+
+  h4 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-info {
+    margin-top: 4px;
+    padding: 8px;
+  }
+
+  button {
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px;
+    float: right;
+  }
+}
