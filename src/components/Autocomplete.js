@@ -123,7 +123,6 @@ class Autocomplete extends Component {
           autocomplete="off"
           type="text"
           name="breed"
-          placeholder="Breed"
           ref={this.breedRef}
           onChange={onChange}
           onKeyDown={onKeyDown}

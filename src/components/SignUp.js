@@ -11,6 +11,7 @@ class SignUp extends React.Component {
     this.surnameRef = React.createRef();
     this.emailRef = React.createRef();
     this.passwordRef = React.createRef();
+    this.ageRef = React.createRef();
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
@@ -30,6 +31,7 @@ class SignUp extends React.Component {
       email: this.emailRef.current.value,
       password: this.passwordRef.current.value,
       sex: this.state.selectSexValue,
+      age: this.ageRef.current.value,
       breed: this.breedRef.current,
       bio: this.bioRef.current.value,
     };
@@ -81,7 +83,7 @@ class SignUp extends React.Component {
               <img
                 className="profile-picture-circle"
                 src={this.state.profilePictureUrl}
-                alt="Image does not exist"
+                alt="Profile Image"
                 onError={() => this.handlePictureInputError()}
               />
             )}
@@ -103,7 +105,6 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="first name"
-                placeholder="First Name"
                 ref={this.firstnameRef}
               />
             </label>
@@ -114,18 +115,16 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="surname"
-                placeholder="Surname"
                 ref={this.surnameRef}
               />
             </label>
           </div>
           <label className="input-label" htmlFor="email">
-            E-mail
+            Email
             <input
               className="input-style"
               type="text"
               name="email"
-              placeholder="E-mail"
               ref={this.emailRef}
             />
           </label>
@@ -135,27 +134,35 @@ class SignUp extends React.Component {
               className="input-style"
               type="password"
               name="password"
-              placeholder="Password"
               ref={this.passwordRef}
             />
           </label>
-
-          <label className="input-label" htmlFor="sex">
-            Sex
-            <select
-              className="input-style"
-              name="sex"
-              defaultValue={this.state.selectSexValue || ""}
-              onChange={(e) => this.handleSexSelct(e)}
-            >
-              <option disabled value="">
-                - select an option -
-              </option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-          </label>
-
+          <div className="two-column-row">
+            <label className="input-label" htmlFor="sex">
+              Sex
+              <select
+                className="input-style-sex"
+                name="sex"
+                defaultValue={this.state.selectSexValue || ""}
+                onChange={(e) => this.handleSexSelct(e)}
+              >
+                <option disabled value="">
+                  - select an option -
+                </option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </label>
+            <label className="input-label" htmlFor="age">
+              Age
+              <input
+                className="input-style"
+                type="text"
+                name="age"
+                ref={this.ageRef}
+              />
+            </label>
+          </div>
           <label className="input-label" htmlFor="breed">
             Breed
             <Autocomplete
@@ -171,7 +178,6 @@ class SignUp extends React.Component {
             <textarea
               className="text-area-style"
               name="bio"
-              placeholder="Write something..."
               ref={this.bioRef}
             />
           </label>

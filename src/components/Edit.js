@@ -1,6 +1,8 @@
 import React from "react";
 import { editUser, getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
+import Autocomplete from "./Autocomplete";
+import { CgProfile } from "react-icons/cg";
 
 class Edit extends React.Component {
   constructor(props) {
@@ -10,15 +12,24 @@ class Edit extends React.Component {
     this.surnameRef = React.createRef();
     this.emailRef = React.createRef();
     this.passwordRef = React.createRef();
+    this.ageRef = React.createRef();
     this.breedRef = React.createRef();
     this.bioRef = React.createRef();
 
-    this.state = { selectSexValue: "", user: {}, isLoading: false };
+    this.state = {
+      selectSexValue: "",
+      user: {},
+      isLoading: false,
+      profilePictureUrl: "",
+      showProfilePictureError: false,
+      breed: "",
+    };
   }
 
   async componentDidMount() {
-    if (!window.localStorage.doggytoken) {
-      return;
+    if (!this.props.loggedIn) {
+      const { history } = this.props;
+      history.push("/");
     }
 
     const id = await this.getUserIdFromToken(window.localStorage.doggytoken);
@@ -39,6 +50,8 @@ class Edit extends React.Component {
 
   handleCancelClick(e) {
     e.preventDefault();
+    const { history } = this.props;
+    history.push("/");
   }
 
   async handleSaveClick(e) {
@@ -46,6 +59,10 @@ class Edit extends React.Component {
     const { user } = this.state;
     const editedUser = {
       id: user.id,
+      img_url:
+        this.state.profilePictureUrl == ""
+          ? user.img_url
+          : this.state.profilePictureUrl,
       firstname:
         this.firstnameRef.current.value == ""
           ? user.firstname
@@ -64,19 +81,31 @@ class Edit extends React.Component {
           : this.passwordRef.current.value,
       sex:
         this.state.selectSexValue == "" ? user.sex : this.state.selectSexValue,
-      breed:
-        this.breedRef.current.value == ""
-          ? user.breed
-          : this.breedRef.current.value,
+      age:
+        this.ageRef.current.value == "" ? user.age : this.ageRef.current.value,
+      breed: this.state.breed == "" ? user.breed : this.state.breed,
       bio:
         this.bioRef.current.value == "" ? user.bio : this.bioRef.current.value,
     };
-
+    console.log(editedUser);
     try {
       await editUser(editedUser);
+      const { history } = this.props;
+      history.push("/");
     } catch (error) {
       console.log("Deleting user failed", error);
     }
+  }
+
+  handlePictureInput(e) {
+    this.setState({
+      profilePictureUrl: e.target.value,
+      showProfilePictureError: false,
+    });
+  }
+
+  handlePictureInputError() {
+    this.setState({ profilePictureUrl: "", showProfilePictureError: true });
   }
 
   handleSexSelect(e) {
@@ -119,41 +148,63 @@ class Edit extends React.Component {
           className="edit-user-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
+          <div className="profile-picture">
+            {this.state.profilePictureUrl === "" ? (
+              <CgProfile size="50px" className="default-profile-picture" />
+            ) : (
+              <img
+                className="profile-picture-circle"
+                src={this.state.profilePictureUrl}
+                alt="Profile Image"
+                onError={() => this.handlePictureInputError()}
+              />
+            )}
+            <input
+              className="picture-input"
+              type="text"
+              name="profile picture"
+              placeholder="Input profile picture url"
+              onBlur={(e) => this.handlePictureInput(e)}
+            />
+            {this.state.showProfilePictureError && (
+              <span className="image-error">Image does not exist</span>
+            )}
+          </div>
           <div className="two-column-row">
             <label className="input-label" htmlFor="first name">
               First Name
               <input
+                className="input-style"
                 type="text"
                 name="first name"
-                placeholder="First Name"
                 ref={this.firstnameRef}
               />
             </label>
             <label className="input-label" htmlFor="surname">
               Surname
               <input
+                className="input-style"
                 type="text"
                 name="surname"
-                placeholder="Surname"
                 ref={this.surnameRef}
               />
             </label>
           </div>
           <label className="input-label" htmlFor="email">
-            E-mail
+            Email
             <input
+              className="input-style"
               type="text"
               name="email"
-              placeholder="E-mail"
               ref={this.emailRef}
             />
           </label>
           <label className="input-label" htmlFor="password">
             Password
             <input
+              className="input-style"
               type="password"
               name="password"
-              placeholder="Password"
               ref={this.passwordRef}
             />
           </label>
@@ -173,33 +224,41 @@ class Edit extends React.Component {
                 <option value="male">Male</option>
               </select>
             </label>
-            <label className="input-label" htmlFor="breed">
-              Breed
+            <label className="input-label" htmlFor="age">
+              Age
               <input
                 className="input-style"
                 type="text"
-                name="breed"
-                placeholder="Breed"
-                ref={this.breedRef}
+                name="age"
+                ref={this.ageRef}
               />
             </label>
           </div>
+          <label className="input-label" htmlFor="breed">
+            Breed
+            <Autocomplete
+              className="input-style"
+              setBreedValue={(value) => {
+                console.log(value);
+                this.setState({ breed: value });
+              }}
+            />
+          </label>
           <label className="input-label" htmlFor="bio">
             Bio
             <textarea
               className="text-area-style"
               name="bio"
-              placeholder="Write something..."
               ref={this.bioRef}
             />
           </label>
           <div className="buttons-edit-user-form">
-            <a
-              href="https://doggy-frontend.herokuapp.com/#/feed"
+            <button
               className="cancel-button-link"
+              onClick={(e) => this.handleCancelClick(e)}
             >
               Cancel
-            </a>
+            </button>
             <button
               className="save-changes-button"
               onClick={(e) => this.handleSaveClick(e)}
