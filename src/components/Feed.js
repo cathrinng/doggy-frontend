@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
+import { getUserMatchesById, getMessagesByUserId, getMessages} from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
@@ -29,7 +29,8 @@ class Feed extends React.Component {
     const payload = jwtDecode(token);
     const matches = await getUserMatchesById(payload.id);
     const newMessages = await getMessagesByUserId();
-    console.log(newMessages);
+    // const getChat = await getMessages(payload.id)
+    // console.log(newMessages);
 
     this.setState({
       matches,
@@ -68,49 +69,78 @@ class Feed extends React.Component {
       )
     }
 
-    const renderMessages = newMessages.map(({ id, from_img_url, from_firstname, from_surname, to_user_id, from_user_id, message, created_at }) => {
-      const timeAgo = formatDistance(
-        new Date(created_at),
-        new Date(),
-        { addSuffix: true }
-      );
+    const messageElements = {};
+    const myID = this.state.payload.id;
+    
+    newMessages.forEach(msg => {
+      let indexID = 0;
+      if(msg.to_user_id !== myID) {
+        indexID = msg.to_user_id;
+      } else {
+        indexID = msg.from_user_id
+      }
+      if(messageElements[indexID]) {
+        messageElements[indexID].push(msg)
+      } else {
+        messageElements[indexID] = [msg]
+      }
+    });
 
+    const messageList = Object.values(messageElements);
+    console.log("messagelist", messageList)
+
+    const renderMessages = messageList
+    .map((listElement) => {
+      const lastMessage = listElement[0];
+      const myID = this.state.payload.id;
+
+      const {displayed_fname, displayed_lname} = {};
+
+      if (lastMessage.from_user_id == myID) {
+        displayed_fname = lastMessage.to_user_id;
+        displayed_lname = lastMessage.to_user_id;
+      } else {
+        displayed_fname = lastMessage.from_firstname;
+        displayed_lname = lastMessage.from_firstname;
+      }
+
+      const timeAgo = formatDistance(
+          new Date(lastMessage.created_at),
+          new Date(),
+          { addSuffix: true }
+        );
 
       return (
-        <div key={id}>
-          <Link to={`/messages/${from_user_id}/${to_user_id}`}>
-          <p><img className="img-message" src={from_img_url}/> {from_firstname} {from_surname} - {timeAgo}</p>
-          <p>{message}</p> 
-          </Link>
-        </div>
-      );
-    })
-
-    const renderMatches = matches.map((matchInfo)=>{
-      return(
-        
-          <div key={matchInfo.id} className="match_info">
-            <Link to={`/messages/${matchInfo.user_who_matched}`}>
-              <img src ={matchInfo.img_url} alt=""/>
-              {matchInfo.surname}
-              {matchInfo.firstname}
-              {matchInfo.age}
-            </Link>
+        <div key={lastMessage.id}>
+          <Link to={`/messages/${lastMessage.from_user_id}/${lastMessage.to_user_id}`}>
+          <p><img className="img-message" src={lastMessage.from_img_url}/>{displayed_fname}{displayed_lname} - {timeAgo}</p>
+          <p>{lastMessage.message}</p></Link>
           </div>
       )
     })
+  
+    // const renderMessages = messageList.map(({ id, from_img_url, from_firstname, from_surname, message, created_at }) => {
+    //   const timeAgo = formatDistance(
+    //     new Date(created_at),
+    //     new Date(),
+    //     { addSuffix: true }
+    //   );
+
+    //   return (
+    //     <div key={id}>
+    //       {/* <Link to={`/messages/${from_user_id}/${to_user_id}`}> */}
+    //       <p><img className="img-message" src={from_img_url}/> {from_firstname} {from_surname} - {timeAgo}</p>
+    //       <p>{message}</p> 
+    //       {/* </Link> */}
+    //     </div>
+    //   );
+    // })
 
     return (
       <div><NewMatches/>
-      <div className="match-container">
         <h1>Feed for {this.state.payload.firstname}</h1>
-        <div className="match-box">
-          {renderMatches}
-        </div>
-        <div className="message-box">
-          {renderMessages}
-        </div>
-      </div>
+        <div className="message-box"></div>
+        {renderMessages}
       </div>
     )
   }

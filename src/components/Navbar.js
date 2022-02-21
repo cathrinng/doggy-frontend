@@ -49,7 +49,7 @@ class Navbar extends React.Component {
       this.setState({
         loggedInUserInfo,
       });
-      console.log(this.state.loggedInUserInfo);
+      // console.log(this.state.loggedInUserInfo);
     } else return;
   }
 
