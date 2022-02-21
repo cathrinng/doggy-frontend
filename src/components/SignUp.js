@@ -18,7 +18,7 @@ class SignUp extends React.Component {
     this.state = {
       selectSexValue: "",
       profilePictureUrl: "",
-      showProfilePictureError: false,
+      showFormError: false,
     };
   }
 
@@ -37,7 +37,7 @@ class SignUp extends React.Component {
     };
     console.log(user);
     if (Object.values(user).some((field) => field === "")) {
-      console.log("You must fill out all the fields in sign up."); // Check if all the fields are filled
+      this.setState({ showFormError: true });
       return;
     }
 
@@ -56,19 +56,7 @@ class SignUp extends React.Component {
     this.setState({ selectSexValue: e.target.value });
   }
 
-  handlePictureInput(e) {
-    this.setState({
-      profilePictureUrl: e.target.value,
-      showProfilePictureError: false,
-    });
-  }
-
-  handlePictureInputError() {
-    this.setState({ profilePictureUrl: "", showProfilePictureError: true });
-  }
-
   async uploadImageToCloud(imgFile) {
-
     const data = new FormData();
     data.append("file", imgFile);
     data.append("upload_preset", "img_url");
@@ -96,7 +84,7 @@ class SignUp extends React.Component {
           className="sign-up-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
-          {/* <div className="profile-picture">
+          <div className="profile-picture">
             {this.state.profilePictureUrl === "" ? (
               <CgProfile size="50px" className="default-profile-picture" />
             ) : (
@@ -107,23 +95,16 @@ class SignUp extends React.Component {
                 onError={() => this.handlePictureInputError()}
               />
             )}
-            <input
-              className="picture-input"
-              type="text"
-              name="profile picture"
-              placeholder="Input profile picture url"
-              onBlur={(e) => this.handlePictureInput(e)}
-            />
-            {this.state.showProfilePictureError && (
-              <span className="image-error">Image does not exist</span>
-            )}
-          </div> */}
-
-          <div className="img-input">
-            <input
-              type="file"
-              onChange={(e) => this.uploadImageToCloud(e.target.files[0])}
-            ></input>
+            <label className="input-label">
+              Upload profile picture
+              <input
+                className="picture-input"
+                type="file"
+                name="profile picture"
+                placeholder="Input profile picture url"
+                onChange={(e) => this.uploadImageToCloud(e.target.files[0])}
+              />
+            </label>
           </div>
 
           <div className="two-column-row">
@@ -208,6 +189,11 @@ class SignUp extends React.Component {
               ref={this.bioRef}
             />
           </label>
+          {this.state.showFormError && (
+            <span className="form-error-text">
+              You must fill out all the fields in sign up.
+            </span>
+          )}
           <div className="buttons-sign-up-form">
             <a
               href="https://doggy-frontend.herokuapp.com/#/"
@@ -218,7 +204,6 @@ class SignUp extends React.Component {
             <button className="sign-up-button" type="submit">
               Sign Up
             </button>
-            {/* <span>You must fill out all the fields in sign up.</span> */}
           </div>
         </form>
       </div>

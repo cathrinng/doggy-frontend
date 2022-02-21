@@ -51,13 +51,15 @@
       border: 2px solid #e07a5f;
     }
 
+    .input-label {
+      text-align: center;
+      margin-top: 10px;
+    }
+
     .picture-input {
       border-style: none;
       font-style: italic;
-    }
-
-    .image-error {
-      color: red;
+      width: 11rem;
     }
   }
 
