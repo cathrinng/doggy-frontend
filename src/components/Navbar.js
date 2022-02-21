@@ -39,27 +39,12 @@ class Navbar extends React.Component {
         });
         break;
     }
-<<<<<<< HEAD
-  }
-
-  async updateUserInformation() {
-    if (Object.keys(this.state.loggedInUserInfo).length === 0) {
-      const token = localStorage.getItem("doggytoken");
-      const payload = jwtDecode(token);
-      let loggedInUserInfo = await getUsersById(payload.id);
-      this.setState({
-        loggedInUserInfo,
-      });
-      // console.log(this.state.loggedInUserInfo);
-    } else return;
-=======
     switch (action) {
       case "close":
         this.setState({
           displayDropdown: false,
         });
     }
->>>>>>> 266054a5427bb8c47a74ab4bfdb3297985db339c
   }
 
   render() {
