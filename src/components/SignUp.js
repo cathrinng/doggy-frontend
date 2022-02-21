@@ -2,7 +2,6 @@ import React from "react";
 import { createUser } from "../services/dogs";
 import Autocomplete from "./Autocomplete";
 import { CgProfile } from "react-icons/cg";
-import Imageupload from "../components/Imageupload";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -44,10 +43,10 @@ class SignUp extends React.Component {
 
     try {
       console.log(user);
-      // const registeredUser = await createUser(user);
-      // console.log(registeredUser);
-      // const { history } = this.props;
-      // history.push("/login");
+      const registeredUser = await createUser(user);
+      console.log(registeredUser);
+      const { history } = this.props;
+      history.push("/login");
     } catch (error) {
       console.log("Creating user failed", error);
     }
