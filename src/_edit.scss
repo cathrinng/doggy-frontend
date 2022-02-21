@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #eeeeee;
 }
 
 .edit-user-form {
@@ -32,18 +31,49 @@
     display: flex;
     flex-direction: column;
   }
+
+  .input-style {
+    border-radius: 8px;
+  }
+
   .input-style-sex {
     background-color: white;
+    border-radius: 8px;
+  }
+
+  .profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .profile-picture-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #e07a5f;
+    }
+
+    .picture-input {
+      border-style: none;
+      font-style: italic;
+    }
+
+    .image-error {
+      color: red;
+    }
   }
 
   select {
     padding: 1px 2px;
     border-radius: 2px;
+    height: 35px;
   }
 
   .text-area-style {
     height: 70px;
+    border-radius: 8px;
   }
+
   .buttons-edit-user-form {
     display: flex;
     flex-direction: row;

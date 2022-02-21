@@ -91,6 +91,7 @@ class App extends React.Component {
               <Edit
                 {...routeProps}
                 onLoginChange={this.handleLoginStatusChange.bind(this)}
+                loggedIn={this.state.isLoggedIn}
               />
             )}
           />
