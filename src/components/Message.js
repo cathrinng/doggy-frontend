@@ -4,8 +4,13 @@ import { getMessages } from "../services/dogs";
 import MessagesInput from "./MessageInput";
 import { getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
-import ScrollToBottom from 'react-scroll-to-bottom';
 // import ScrollableFeed from 'react-scrollable-feed'
+import ScrollToBottom from 'react-scroll-to-bottom';
+
+import socketIOClient from "socket.io-client";
+const API_URL = process.env.REACT_APP_API_URL;
+var socket = socketIOClient("http://localhost:8080");
+
 
 class Messages extends React.Component {
   constructor(props) {
@@ -38,6 +43,8 @@ class Messages extends React.Component {
   }
 
   componentDidMount() {
+
+    
     // console.log("funksjon som returnerer en verdi" + this.sendparamstomessageinput())
     
     
@@ -48,19 +55,31 @@ class Messages extends React.Component {
       this.setState({
         payload: payload,
       });
-     
-      console.log("you are logged inn as " + payload.surname);
     }
+
     this.loadmessages(payload);
     this.loadMatchedUserInfo()
     this.scrollToBottom();
+
+    socket.emit("getMessages", token);
+    socket.on("recieveMessages", (messages) => {
+      this.setState({
+        messages
+      })
+    })
   }
+
+
   scrollToBottom = () => {
     this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
   }
   
   componentDidUpdate() {
     this.scrollToBottom();
+  }
+
+  componentWillUnmount() {
+    socket.emit('end');
   }
 
   sendParamsMatch(){
@@ -80,8 +99,6 @@ class Messages extends React.Component {
     
     
     //renderMatcheser et objekt og kan ikke mappes gjennom
-   
-    console.log(this.state.matchedUserInfo.id)
     const userId = this.state.payload.id;
     const renderMessages = this.state.messages.reverse().map((data) => {
       let isUser;
