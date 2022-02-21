@@ -101,9 +101,18 @@ class Navbar extends React.Component {
                       <p>Find Matches</p>
                     </div>
                   </Link>
-                  <Link to="/edit">
+                  <Link to="/profile">
                     <div
                       className="profile-option"
+                      onClick={this.toggleDropdown}
+                    >
+                      <BsGear />
+                      <p>Profile</p>
+                    </div>
+                  </Link>
+                  <Link to="/edit">
+                    <div
+                      className="edit-option"
                       onClick={this.toggleDropdown}
                     >
                       <BsGear />
