@@ -13,8 +13,6 @@ class Messages extends React.Component {
       messages: [],
       matchedUserInfo:[],
       payload: {},
-      
-      
     };
   }
 
