@@ -16,7 +16,6 @@ import Feed from "./components/Feed";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,22 +28,17 @@ class App extends React.Component {
 
   componentDidMount() {
     this.handleLoginStatusChange();
-    this.updateUserInformation();
   }
 
-  async updateUserInformation() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.isLoggedIn !== prevState.isLoggedIn) {
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);
       let loggedInUserInfo = await getUsersById(payload.id);
       this.setState({
         loggedInUserInfo,
       });
-      console.log('info');
-    } else return;
+    }
   }
 
   handleLoginStatusChange() {
@@ -54,13 +48,12 @@ class App extends React.Component {
   }
 
   render() {
-   
     return (
       <HashRouter>
         <Navbar
           loggedIn={this.state.isLoggedIn}
           onLoginChange={() => this.handleLoginStatusChange.bind(this)}
-          userInfo={this.state.userInfo}
+          loggedInUserInfo={this.state.loggedInUserInfo}
         />
         <Switch>
           <Route path="/" exact component={Homepage}></Route>
@@ -102,7 +95,10 @@ class App extends React.Component {
             )}
           />
           <Route path="/swipecard" component={Swipecard}></Route>
-          <Route path="/messages/:user_who_matched" component={Messages}></Route>
+          <Route
+            path="/messages/:user_who_matched"
+            component={Messages}
+          ></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
       </HashRouter>
