@@ -36,9 +36,10 @@ class UserFeed extends Component {
         const renderImage = this.state.user.img_ur
     
         return (
-            <div>
+            <div className='user-feed contain'>
                 <h2>{renderFirstname} {renderSurname} {renderAge}</h2>
                 <img src={renderImage} alt="" />
+                <p>{renderBio}</p>
                 <p>{renderBio}</p>
             </div>
         );
