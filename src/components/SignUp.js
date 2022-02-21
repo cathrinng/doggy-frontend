@@ -2,6 +2,7 @@ import React from "react";
 import { createUser } from "../services/dogs";
 import Autocomplete from "./Autocomplete";
 import { CgProfile } from "react-icons/cg";
+import Imageupload from "../components/Imageupload";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -43,10 +44,10 @@ class SignUp extends React.Component {
 
     try {
       console.log(user);
-      const registeredUser = await createUser(user);
-      console.log(registeredUser);
-      const { history } = this.props;
-      history.push("/login");
+      // const registeredUser = await createUser(user);
+      // console.log(registeredUser);
+      // const { history } = this.props;
+      // history.push("/login");
     } catch (error) {
       console.log("Creating user failed", error);
     }
@@ -67,6 +68,26 @@ class SignUp extends React.Component {
     this.setState({ profilePictureUrl: "", showProfilePictureError: true });
   }
 
+  async uploadImageToCloud(imgFile) {
+
+    const data = new FormData();
+    data.append("file", imgFile);
+    data.append("upload_preset", "img_url");
+    data.append("cloud_name", "dbniwuu7z");
+    console.log(data);
+    fetch("  https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({
+          profilePictureUrl: data.url,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     return (
       <div className="sign-up">
@@ -76,7 +97,7 @@ class SignUp extends React.Component {
           className="sign-up-form"
           onSubmit={(e) => this.handleSignUp(e)}
         >
-          <div className="profile-picture">
+          {/* <div className="profile-picture">
             {this.state.profilePictureUrl === "" ? (
               <CgProfile size="50px" className="default-profile-picture" />
             ) : (
@@ -97,7 +118,15 @@ class SignUp extends React.Component {
             {this.state.showProfilePictureError && (
               <span className="image-error">Image does not exist</span>
             )}
+          </div> */}
+
+          <div className="img-input">
+            <input
+              type="file"
+              onChange={(e) => this.uploadImageToCloud(e.target.files[0])}
+            ></input>
           </div>
+
           <div className="two-column-row">
             <label className="input-label" htmlFor="first name">
               First Name
@@ -168,7 +197,6 @@ class SignUp extends React.Component {
             <Autocomplete
               className="input-style"
               setBreedValue={(value) => {
-                console.log(value);
                 this.breedRef.current = value;
               }}
             />
