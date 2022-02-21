@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserMatchesById, getMessagesByUserId, getMessages} from "../services/dogs";
+import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
@@ -29,8 +29,6 @@ class Feed extends React.Component {
     const payload = jwtDecode(token);
     const matches = await getUserMatchesById(payload.id);
     const newMessages = await getMessagesByUserId();
-    // const getChat = await getMessages(payload.id)
-    // console.log(newMessages);
 
     this.setState({
       matches,
