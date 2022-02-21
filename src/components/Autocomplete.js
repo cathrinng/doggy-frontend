@@ -120,7 +120,7 @@ class Autocomplete extends Component {
       <Fragment>
         <input
           className="input-style"
-          autocomplete="off"
+          autoComplete="off"
           type="text"
           name="breed"
           ref={this.breedRef}
