@@ -61,9 +61,6 @@ class MessagesInput extends React.Component {
     return (
       <div className="inputContainer">
         {/* <div onClick={this.toggleEmojis.bind(this)}><GrEmoji></GrEmoji></div> */}
-        <div className={this.state.displayEmojis ? "showEmojis" : "hideEmojis"}>
-          <Picker></Picker>
-        </div>
         <input
           className="inputTextBox"
           ref="messageInput"

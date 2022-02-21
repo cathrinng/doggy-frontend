@@ -1,15 +1,23 @@
 $logo-size: 50px;
 
 .message-container{
-	background-color: white;
-	height: 700px;
+	
+	// height: 700px;
 	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	background-color: #efefef;
+	width: 100vw;
+	height: 600px;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .matched-user{
 	display: flex;
 	align-items: center;
-	
+	width: 100vw;
+	background-color: white;
 	
 	img{
 		height: $logo-size;
@@ -20,21 +28,22 @@ $logo-size: 50px;
 }
 
 
-.chat_container{
-	border: 3px solid lightgray;
-	display: flex;
-	flex-direction: column;
-	background-color: #efefef;
+// .chat_container{
+// 	border: 3px solid lightgray;
+// 	display: flex;
+// 	flex-direction: column;
+// 	background-color: #efefef;
 	
- }
+	
+//  }
  
- .Scrollbox{
-	 width: 100vw;
-	 height: 600px;
-	 overflow-x: hidden;
-	 overflow-y: auto;
+//  .Scrollbox{
+// 	 width: 100vw;
+// 	 height: 600px;
+// 	 overflow-x: hidden;
+// 	 overflow-y: auto;
 	 
- }
+//  }
  
  // link for css https://codepen.io/jmpp/pen/mprGZo
  
@@ -97,6 +106,7 @@ $logo-size: 50px;
 	 margin-top: 5px;
 	 border-radius: 30px;
 	 width: 350px;
+	 height: 30px;
 	 background-color: #efefef;
  }
  

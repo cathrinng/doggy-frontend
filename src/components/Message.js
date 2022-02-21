@@ -81,7 +81,7 @@ class Messages extends React.Component {
     
     //renderMatcheser et objekt og kan ikke mappes gjennom
    
-    console.log(this.state.matchedUserInfo.id)
+    // console.log(this.state.matchedUserInfo.id)
     const userId = this.state.payload.id;
     const renderMessages = this.state.messages.reverse().map((data) => {
       let isUser;
@@ -104,23 +104,21 @@ class Messages extends React.Component {
     });
 
     return (
-      
-      <div className="message-container" >
-        <div className="matched-user">
+      <div>
+      <div className="matched-user">
           <img src={renderMatchedUserImg}  alt="" />
           <h2 className="h2">{renderMatchedUserSurName} {renderMatchedUserFirstName}</h2>
         </div>
-
-        <div className="Scrollbox">
-          <div className="chat_container">
+      
+      <div className="message-container" >         
            {renderMessages}
-        </div>
-        <div style={{ float:"left", clear: "both" }}
+           <div style={{ float:"left", clear: "both" }}
              ref={(el) => { this.messagesEndRef = el; }}>
-        </div>
+
         </div>
        
-        <div> 
+      </div>
+      <div> 
           <MessagesInput user_who_matched={this.sendParamsMatch() }/>
         </div>
       </div>
