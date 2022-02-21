@@ -49,7 +49,6 @@ class Login extends React.Component {
 
   componentDidMount() {
     // const bcrypt = require("bcryptjs");
-
     // const saltRounds = 10; //  Data processing speed
     // var password = "Fkdj^45ci@Jad"; // Original Password
     // var password2 = "Fkdj^45ci@Jad";
@@ -67,7 +66,6 @@ class Login extends React.Component {
     //     }
     //   });
     // });
-    
   }
 
   toggleShowPassword() {
@@ -114,7 +112,7 @@ class Login extends React.Component {
             )}
           </div>
           <div>
-            <button onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
+            <button onClick={this.handleLoginAttempt.bind(this)}>Log In</button>
           </div>
           <div className="signup-info">
             <p>Not registered?</p>

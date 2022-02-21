@@ -1,9 +1,7 @@
 @import "mixins";
 
 .sign-up {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include form-style;
 }
 
 .sign-up-form {

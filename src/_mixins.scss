@@ -6,3 +6,10 @@
   border-radius: 5px;
   border-style: none;
 }
+
+@mixin form-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
