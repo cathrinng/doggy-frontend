@@ -13,6 +13,7 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
+import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 
