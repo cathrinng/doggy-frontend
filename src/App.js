@@ -16,6 +16,8 @@ import Feed from "./components/Feed";
 import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
+import Footer from "./components/Footer";
+import UserFeed from "./components/UserFeed";
 import socketIOClient from "socket.io-client";
 const API_URL = process.env.REACT_APP_API_URL;
 var socket = socketIOClient(API_URL);
@@ -111,7 +113,9 @@ class App extends React.Component {
             component={Messages}
           ></Route>
           <Route path="/feed" component={Feed}></Route>
+          <Route path="/Userfeed" component={UserFeed}></Route>
         </Switch>
+        <Footer></Footer>
       </HashRouter>
     );
   }
