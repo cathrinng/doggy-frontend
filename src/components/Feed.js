@@ -3,7 +3,6 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-import NewMatches from "./NewMatches";
 
 
 class Feed extends React.Component {
@@ -27,15 +26,15 @@ class Feed extends React.Component {
 
     const token = localStorage.getItem("doggytoken");
     const payload = jwtDecode(token);
-    const matches = await getUserMatchesById(payload.id);
     const newMessages = await getMessagesByUserId();
-    console.log("all new messages", newMessages);
+    const matches = await getUserMatchesById(payload.id);
+    // console.log("all new messages", newMessages);
 
     this.setState({
-      matches,
       newMessages,
       payload,
       isLoading: false,
+      matches,
     })
   }
 
@@ -50,7 +49,6 @@ class Feed extends React.Component {
 
   render() {
     const {
-      matches,
       isLoading,
       newMessages,
       error,
@@ -67,6 +65,17 @@ class Feed extends React.Component {
         <div>Loading feed...</div>
       )
     }
+
+    const renderMatches = this.state.matches.map((matchInfo) => {
+      return (
+        <div key={matchInfo.id} className="match-info">
+          <Link to={`/messages/${matchInfo.user_who_matched}`}>
+            <img src={matchInfo.img_url} alt="" className="match-img"/>
+            {matchInfo.surname} {matchInfo.firstname}
+          </Link>
+        </div>
+      );
+    });
 
     const messageElements = {};
     const myID = this.state.payload.id;
@@ -109,13 +118,18 @@ class Feed extends React.Component {
           <p>{lastMessage.message}</p></Link>
           </div>
       )
-    })
+    });
   
     return (
-      <div><NewMatches/>
-        <h1>Feed for {this.state.payload.firstname}</h1>
-        <div className="scroll-box"></div>
-        {renderMessages}
+      <div className="feed-container">
+        <h4>Chat with your new matches, {this.state.payload.firstname}!</h4>
+        <div className="match-container">
+          {renderMatches}
+        </div>
+        <h4>Messages</h4>
+        <div className="message-container">
+          {renderMessages}
+        </div>
       </div>
     )
   }
