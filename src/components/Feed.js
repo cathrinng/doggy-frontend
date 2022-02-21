@@ -111,27 +111,10 @@ class Feed extends React.Component {
       )
     })
   
-    // const renderMessages = messageList.map(({ id, from_img_url, from_firstname, from_surname, message, created_at }) => {
-    //   const timeAgo = formatDistance(
-    //     new Date(created_at),
-    //     new Date(),
-    //     { addSuffix: true }
-    //   );
-
-    //   return (
-    //     <div key={id}>
-    //       {/* <Link to={`/messages/${from_user_id}/${to_user_id}`}> */}
-    //       <p><img className="img-message" src={from_img_url}/> {from_firstname} {from_surname} - {timeAgo}</p>
-    //       <p>{message}</p> 
-    //       {/* </Link> */}
-    //     </div>
-    //   );
-    // })
-
     return (
       <div><NewMatches/>
         <h1>Feed for {this.state.payload.firstname}</h1>
-        <div className="message-box"></div>
+        <div className="scroll-box"></div>
         {renderMessages}
       </div>
     )
