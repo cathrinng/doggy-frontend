@@ -18,6 +18,7 @@ import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 import Footer from "./components/Footer";
 import UserFeed from "./components/UserFeed";
+// import Profile from "/.components/Profile";
 
 class App extends React.Component {
   constructor(props) {
@@ -99,6 +100,16 @@ class App extends React.Component {
               />
             )}
           />
+            {/* <Route
+            path="/profile"
+            render={(routeProps) => (
+              <Edit
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
+                loggedIn={this.state.isLoggedIn}
+              />
+            )}
+          /> */}
           <Route path="/swipecard" component={Swipecard}></Route>
           <Route
             path="/messages/:user_who_matched"
