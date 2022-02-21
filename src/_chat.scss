@@ -1,77 +1,112 @@
-div.chat_container{
-   width: 100vw;
-   height: 450px;
-   border: 3px solid lightgray;
-   display: flex;
-   flex-direction: column;
-   overflow-x: hidden;
-   overflow-y: auto;
-   
-  
-   
+.message-container{
+	background-color: white;
+	height: 700px;
+	width: 100vw;
 }
 
-// link for css https://codepen.io/jmpp/pen/mprGZo
+.Matched-use{
 
-.match-post{
-	border-radius: 1em;
-	padding: 0.25em 0.75em;
-	margin: 0.0625em;
-	max-width: 50%;
-	max-width: 600px;
+	
+}
+
+.h2{
+	margin-top: 0px;
+
+}
+.chat_container{
+	border: 3px solid lightgray;
 	display: flex;
-	flex-flow: column wrap;
-	margin-top: 10px;
-	align-self: flex-start;
+	flex-direction: column;
 	background-color: #efefef;
-	color: black;
-	border-bottom-left-radius: 0.1em;
-}
-
-.Loged_inn_user-post{
-	border-radius: 1em;
-	padding: 0.25em 0.75em;
-	margin: 0.0625em;
-	max-width: 50%;
-	max-width: 600px;
-	display: flex;
-	flex-flow: column wrap;
-	margin-top: 10px;
-	align-self: flex-end;
-	background-color: cornflowerblue;
-	color: #fff;
-	border-bottom-right-radius: 0.1em;
-}
-
-.message-img{
-    width: 30px;
-    height: 30px;
-    border-radius: 40px;
-}
-
-
-//input message styling
-
-.inputContainer{
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-    
-}
-
-.inputTextBox{
-    padding: 5px;
-    margin-top: 5px;
-	border-radius: 30px;
-    width: 350px;
-	background-color: #efefef;
-}
-
-.sendIcon{
-	width: 25px;
-	height: 25px;
-}
-
-
+	
+ }
+ 
+ .Scrollbox{
+	 width: 100vw;
+	 height: 600px;
+	 overflow-x: hidden;
+	 overflow-y: auto;
+ }
+ 
+ // link for css https://codepen.io/jmpp/pen/mprGZo
+ 
+ 
+ .match-post{
+	 display: flex;
+	 border-radius: 1em;
+	 padding: 0.25em 0.75em;
+	 margin: 0.0625em;
+	 width: max-content;
+	 margin-top: 10px;
+	 background-color: #efefef;
+	 color: black;
+	 border-bottom-left-radius: 0.1em;
+	 justify-content: flex-start;
+ 
+	 // max-width: 50%;
+	 // max-width: 600px;
+	 // align-self: flex-start;
+	 // flex-flow: column wrap;
+ }
+ 
+ .Loged_inn_user-post{
+	 border-radius: 1em;
+	 padding: 0.25em 0.75em;
+	 margin: 0.0625em;
+	 // margin-left: 200px;
+	 width: max-content;
+	 display: flex;
+	 // flex-flow: column wrap;
+	 margin-top: 10px;
+	 align-self: flex-end;
+	 // align-items: flex-end;
+	 background-color: cornflowerblue;
+	 color: #fff;
+	 border-bottom-right-radius: 0.1em;
+	 justify-content: center;
+	 
+ }
+ 
+ .message-img{
+	 width: 30px;
+	 height: 30px;
+	 border-radius: 40px;
+ }
+ 
+ 
+ //input message styling
+ 
+ .inputContainer{
+	 width: 100%;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 background-color: #efefef;
+ 
+	 
+ }
+ 
+ .inputTextBox{
+	 padding: 5px;
+	 margin-top: 5px;
+	 border-radius: 30px;
+	 width: 350px;
+	 background-color: #efefef;
+ }
+ 
+ .sendIcon{
+	 width: 25px;
+	 height: 25px;
+ }
+ 
+ 
+ .showEmojis{
+	 position: absolute;
+	 z-index: 1;
+ }
+ 
+ .hideEmojis{
+	 display: none;
+ }
+ 
+ 

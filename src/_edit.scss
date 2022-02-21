@@ -1,9 +1,7 @@
 @import "mixins";
 
 .edit-user {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include form-style;
 }
 
 .edit-user-form {

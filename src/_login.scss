@@ -55,5 +55,15 @@ $background-color: #e07a5f;
       border-radius: 8px;
       background-color: $background-color;
     }
+
+    .signup-info {
+      p {
+        font-weight: bold;
+      }
+      a {
+        font-weight: bold;
+        color: black;
+      }
+    }
   }
 }

@@ -29,11 +29,9 @@ class Swipecard extends React.Component {
   async submitReaction(id, direction) {
     switch (direction) {
       case "right":
-        console.log(id, "right");
         postReaction(id, "true");
         break;
       case "left":
-        console.log(id, "left");
         postReaction(id, "false");
         break;
     }

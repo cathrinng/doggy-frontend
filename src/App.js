@@ -13,8 +13,10 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
+import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
+import Footer from "./components/Footer";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,22 +30,18 @@ class App extends React.Component {
 
   componentDidMount() {
     this.handleLoginStatusChange();
-    this.updateUserInformation();
   }
 
-  async updateUserInformation() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.isLoggedIn !== prevState.isLoggedIn && !prevState.isLoggedIn == true) {
+
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);
       let loggedInUserInfo = await getUsersById(payload.id);
       this.setState({
         loggedInUserInfo,
       });
-      console.log(this.state.loggedInUserInfo);
-    } else return;
+    }
   }
 
   handleLoginStatusChange() {
@@ -53,18 +51,12 @@ class App extends React.Component {
   }
 
   render() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {
-      this.updateUserInformation();
-    }
     return (
       <HashRouter>
         <Navbar
           loggedIn={this.state.isLoggedIn}
           onLoginChange={() => this.handleLoginStatusChange.bind(this)}
-          userInfo={this.state.userInfo}
+          loggedInUserInfo={this.state.loggedInUserInfo}
         />
         <Switch>
           <Route path="/" exact component={Homepage}></Route>
@@ -113,6 +105,7 @@ class App extends React.Component {
           ></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
+        <Footer></Footer>
       </HashRouter>
     );
   }
