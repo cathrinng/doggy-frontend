@@ -19,6 +19,9 @@ import MessagesInput from "./components/MessageInput";
 import Footer from "./components/Footer";
 import UserFeed from "./components/UserFeed";
 // import Profile from "/.components/Profile";
+import socketIOClient from "socket.io-client";
+const API_URL = process.env.REACT_APP_API_URL;
+var socket = socketIOClient(API_URL);
 
 class App extends React.Component {
   constructor(props) {
@@ -32,11 +35,16 @@ class App extends React.Component {
 
   componentDidMount() {
     this.handleLoginStatusChange();
+    socket.on("connection", () => {
+      console.log(`I'm connected with the back-end`);
+    });
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (this.state.isLoggedIn !== prevState.isLoggedIn && !prevState.isLoggedIn == true) {
-
+    if (
+      this.state.isLoggedIn !== prevState.isLoggedIn &&
+      !prevState.isLoggedIn == true
+    ) {
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);
       let loggedInUserInfo = await getUsersById(payload.id);
