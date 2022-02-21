@@ -15,6 +15,7 @@ import Messages from "./components/Message";
 import Feed from "./components/Feed";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
+import Footer from "./components/Footer";
 
 class App extends React.Component {
   constructor(props) {
@@ -103,6 +104,7 @@ class App extends React.Component {
           ></Route>
           <Route path="/feed" component={Feed}></Route>
         </Switch>
+        <Footer></Footer>
       </HashRouter>
     );
   }

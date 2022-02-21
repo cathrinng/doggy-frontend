@@ -4,16 +4,18 @@ import { getMessages } from "../services/dogs";
 import MessagesInput from "./MessageInput";
 import { getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
+import ScrollToBottom from 'react-scroll-to-bottom';
+// import ScrollableFeed from 'react-scrollable-feed'
 
 class Messages extends React.Component {
   constructor(props) {
     super(props);
+    this.messagesEndRef = React.createRef()
 
     this.state = {
       messages: [],
       matchedUserInfo:[],
       payload: {},
-      
       
     };
   }
@@ -28,7 +30,8 @@ class Messages extends React.Component {
   }
   
   async loadMatchedUserInfo(){
-    const matchedUserInfo = await getUsersById(4)
+    const { user_who_matched } = this.props.match.params;
+    const matchedUserInfo = await getUsersById(user_who_matched)
     this.setState({
       matchedUserInfo:matchedUserInfo
     })
@@ -51,15 +54,15 @@ class Messages extends React.Component {
     }
     this.loadmessages(payload);
     this.loadMatchedUserInfo()
-    // this.scrollToBottom();
+    this.scrollToBottom();
   }
-  // scrollToBottom = () => {
-  //   this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  // }
+  scrollToBottom = () => {
+    this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
+  }
   
-  // componentDidUpdate() {
-  //   this.scrollToBottom();
-  // }
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
 
   sendParamsMatch(){
     const { user_who_matched } = this.props.match.params;
@@ -67,8 +70,14 @@ class Messages extends React.Component {
     //denne funksjonen sender verdien av personen du har trykket på til imput og velger
     // å sende meldig til denne personen
   }
+  // componentDidCatch(){
+
+  // }
+  
   render() {
-    const renderMatchedUserInfo = this.state.matchedUserInfo.surname
+    const renderMatchedUserName = this.state.matchedUserInfo.surname
+    const renderMatchedUserImg = this.state.matchedUserInfo.surname
+    
     //renderMatcheser et objekt og kan ikke mappes gjennom
    
     console.log(this.state.matchedUserInfo.id)
@@ -95,11 +104,20 @@ class Messages extends React.Component {
 
     return (
       
-      <div >
-        @{renderMatchedUserInfo}
-        <div className="chat_container" /* ref={(el) => { this.messagesEnd = el; }}*/>
-        {renderMessages}
+      <div className="message-container" >
+        <div className="Matched-user">
+          <h2 className="h2">{renderMatchedUserName}</h2>
         </div>
+
+        <div className="Scrollbox">
+          <div className="chat_container">
+           {renderMessages}
+        </div>
+        <div style={{ float:"left", clear: "both" }}
+             ref={(el) => { this.messagesEndRef = el; }}>
+        </div>
+        </div>
+       
         <div> 
           <MessagesInput user_who_matched={this.sendParamsMatch() }/>
         </div>
