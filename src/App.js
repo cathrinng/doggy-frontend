@@ -31,7 +31,8 @@ class App extends React.Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (this.state.isLoggedIn !== prevState.isLoggedIn) {
+    if (this.state.isLoggedIn !== prevState.isLoggedIn && !prevState.isLoggedIn == true) {
+
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);
       let loggedInUserInfo = await getUsersById(payload.id);
