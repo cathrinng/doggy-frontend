@@ -75,8 +75,10 @@ class Messages extends React.Component {
   // }
   
   render() {
-    const renderMatchedUserName = this.state.matchedUserInfo.surname
-    const renderMatchedUserImg = this.state.matchedUserInfo.surname
+    const renderMatchedUserSurName = this.state.matchedUserInfo.surname
+    const renderMatchedUserImg = this.state.matchedUserInfo.img_url
+    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname
+    
     
     //renderMatcheser et objekt og kan ikke mappes gjennom
    
@@ -105,8 +107,9 @@ class Messages extends React.Component {
     return (
       
       <div className="message-container" >
-        <div className="Matched-user">
-          <h2 className="h2">{renderMatchedUserName}</h2>
+        <div className="matched-user">
+          <img src={renderMatchedUserImg}  alt="" />
+          <h2 className="h2">{renderMatchedUserSurName} {renderMatchedUserFirstName}</h2>
         </div>
 
         <div className="Scrollbox">

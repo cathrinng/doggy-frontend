@@ -17,6 +17,7 @@ import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 import Footer from "./components/Footer";
+import UserFeed from "./components/UserFeed";
 
 class App extends React.Component {
   constructor(props) {
@@ -104,6 +105,7 @@ class App extends React.Component {
             component={Messages}
           ></Route>
           <Route path="/feed" component={Feed}></Route>
+          <Route path="/Userfeed" component={UserFeed}></Route>
         </Switch>
         <Footer></Footer>
       </HashRouter>
