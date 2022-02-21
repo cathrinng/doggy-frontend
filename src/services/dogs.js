@@ -93,7 +93,7 @@ export function postReaction(userId, boolean) {
       to_user_id: userId,
       likes: boolean,
     }),
-  })
+  });
 }
 
 export function getMessagesByUserId() {
