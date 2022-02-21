@@ -28,22 +28,17 @@ class App extends React.Component {
 
   componentDidMount() {
     this.handleLoginStatusChange();
-    this.updateUserInformation();
   }
 
-  async updateUserInformation() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.isLoggedIn !== prevState.isLoggedIn) {
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);
       let loggedInUserInfo = await getUsersById(payload.id);
       this.setState({
         loggedInUserInfo,
       });
-      console.log(this.state.loggedInUserInfo);
-    } else return;
+    }
   }
 
   handleLoginStatusChange() {
@@ -53,18 +48,12 @@ class App extends React.Component {
   }
 
   render() {
-    if (
-      this.state.isLoggedIn &&
-      Object.keys(this.state.loggedInUserInfo).length === 0
-    ) {
-      this.updateUserInformation();
-    }
     return (
       <HashRouter>
         <Navbar
           loggedIn={this.state.isLoggedIn}
           onLoginChange={() => this.handleLoginStatusChange.bind(this)}
-          userInfo={this.state.userInfo}
+          loggedInUserInfo={this.state.loggedInUserInfo}
         />
         <Switch>
           <Route path="/" exact component={Homepage}></Route>
