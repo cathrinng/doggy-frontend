@@ -49,7 +49,7 @@ class Login extends React.Component {
       this.props.onLoginChange();
 
       // 3. Redirect back to feed
-      history.replace("/");
+      history.replace("/swipecard");
     } catch (error) {}
   }
 
