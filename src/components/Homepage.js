@@ -3,7 +3,7 @@ import React from "react";
 class Homepage extends React.Component {
   handleClick() {
     const { history } = this.props;
-    history.push("/about");
+    history.push("/signup");
   }
 
   render() {
