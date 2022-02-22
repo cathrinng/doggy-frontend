@@ -123,7 +123,15 @@ class App extends React.Component {
             path="/messages/:user_who_matched"
             component={Messages}
           ></Route>
-          <Route path="/feed" component={Feed}></Route>
+          <Route
+            path="/feed"
+            render={(routeProps) => (
+              <Feed
+                {...routeProps}
+                onLoginChange={this.handleLoginStatusChange.bind(this)}
+              />
+            )}
+          />
           <Route path="/Userfeed" component={UserFeed}></Route>
         </Switch>
         <Footer
