@@ -10,7 +10,7 @@ const Imageupload = () => {
     data.append("upload_preset", "img_url");
     data.append("cloud_name", "dbniwuu7z");
 
-    fetch("  https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
+    fetch(" https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
       method: "post",
       body: data,
     })

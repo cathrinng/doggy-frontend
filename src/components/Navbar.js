@@ -9,7 +9,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 // Icons
 import { CgLogOut } from "react-icons/cg";
-import { BsGear, BsHeart } from "react-icons/bs";
+import { BsFillPersonFill, BsGear, BsHeart } from "react-icons/bs";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -106,7 +106,7 @@ class Navbar extends React.Component {
                       className="profile-option"
                       onClick={this.toggleDropdown}
                     >
-                      <BsGear />
+                      <BsFillPersonFill />
                       <p>Profile</p>
                     </div>
                   </Link>
