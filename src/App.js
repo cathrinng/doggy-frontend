@@ -17,7 +17,8 @@ import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
 import MessagesInput from "./components/MessageInput";
 import Footer from "./components/Footer";
-import UserFeed from "./components/UserFeed";
+import Profile from "./components/Profile";
+import Matchedprofile from "./components/Matchedprofile";
 // import Profile from "/.components/Profile";
 import socketIOClient from "socket.io-client";
 const API_URL = process.env.REACT_APP_API_URL;
@@ -38,6 +39,13 @@ class App extends React.Component {
     socket.on("connection", () => {
       console.log(`I'm connected with the back-end`);
     });
+  }
+
+  componentWillUnmount() {
+    socket.emit('end');
+    // socket.on('end', () => {
+    //   console.log("Disconnected");
+    // })
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -133,6 +141,8 @@ class App extends React.Component {
             )}
           />
           <Route path="/Userfeed" component={UserFeed}></Route>
+          <Route path="/profile" component={Profile}></Route>
+          <Route path="/matchedprofile/:id" component={Matchedprofile}></Route>
         </Switch>
         <Footer
           loggedIn={this.state.isLoggedIn}
