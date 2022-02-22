@@ -3,7 +3,7 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-import { GiBalloonDog } from "react-icons/gi";
+import Loadingdog from "./Loadingdog";
 
 
 
@@ -67,7 +67,8 @@ class Feed extends React.Component {
 
     if(isLoading) {
       return (
-        <div>Loading feed...</div>
+        <div><Loadingdog />
+          Loading feed...</div>
       )
     }
 
@@ -121,8 +122,9 @@ class Feed extends React.Component {
           <Link to={`/messages/${lastMessage.from_user_id}/${lastMessage.to_user_id}`}>
             <div className="message-cards">
               <img src={lastMessage.from_img_url}/>
-              <p><h5>{displayed_lname} {displayed_fname}</h5>
-              {lastMessage.message} - {timeAgo}</p>
+              <div className="message-text">
+                  <h5>{displayed_lname} {displayed_fname}</h5>
+              {lastMessage.message} - {timeAgo}</div>
             </div>
           </Link>
         </div>
@@ -151,7 +153,7 @@ class Feed extends React.Component {
             </div>
           ) : (
             <div className="message-list">
-                <p className="no-message">No messages yet!</p><GiBalloonDog />
+                <p className="no-message">No messages yet!</p>
             </div>
           )} 
         </div>
