@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BsChatRight } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
+import { BsNewspaper } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { BsHeart } from "react-icons/bs";
 
 class Footer extends Component {
     componentDidMount() {
@@ -16,12 +16,12 @@ class Footer extends Component {
                 <div className='footerContainer'>
                     <Link to='/swipecard'>
                         <div>
-                            <AiOutlineHeart className='heartIcon'/>
+                            <BsHeart className='heartIcon'/>
                         </div> 
                     </Link>
                     <Link to='/feed'>
                         <div>
-                            <BsChatRight className='messageIcon'/>
+                            <BsNewspaper className='messageIcon'/>
                         </div> 
                     </Link>
                 </div>
