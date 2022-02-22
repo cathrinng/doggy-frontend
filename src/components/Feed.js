@@ -133,7 +133,7 @@ class Feed extends React.Component {
             {renderMatches}
           </div>
         </div>
-        <div className="message-container">
+        <div className="msg-container">
           <h3>Messages</h3>
           <div className="message-list">  
             {renderMessages}
