@@ -42,9 +42,9 @@ class App extends React.Component {
 
   componentWillUnmount() {
     socket.emit('end');
-    socket.on('end', () => {
-      console.log("Disconnected");
-    })
+    // socket.on('end', () => {
+    //   console.log("Disconnected");
+    // })
   }
 
   async componentDidUpdate(prevProps, prevState) {
