@@ -3,7 +3,8 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-import Loadingdog from "./Loadingdog";
+// import { GiBalloonDog } from "react-icons/gi";
+
 
 
 class Feed extends React.Component {
@@ -55,6 +56,7 @@ class Feed extends React.Component {
       isLoading,
       newMessages,
       error,
+      matches,
     } = this.state;
 
     if(error) {
@@ -129,25 +131,29 @@ class Feed extends React.Component {
 
     return (
       <div className="feed-container">
-        {this.state.matches.length > 0 ? (
         <div className="match-container">
           <h3>New matches</h3>
-          <div className="matches">
-            {renderMatches}
-          </div>
-        </div>
-        ): (
-          <div className="loading-container">
-            <div className="loading-message">
-              <h2>No matches yet!</h2>
+          {this.state.matches.length > 0 ? (
+            <div className="matches">
+              <p>{renderMatches}</p>
             </div>
-          </div>
-        )}
-        <div className="message-container">
+          ) : (
+            <div className="matches">
+              <p className="no-match">No matches yet!</p>
+            </div>
+          )}
+        </div>
+        <div className="msg-container">
           <h3>Messages</h3>
-          <div className="message-list">  
-            {renderMessages}
-          </div>
+          {this.state.newMessages.length > 0 ? (
+            <div className="message-list">  
+              <p>{renderMessages}</p>
+            </div>
+          ) : (
+            <div className="message-list">
+                <p className="no-message">No messages yet!</p>
+            </div>
+          )} 
         </div>
     </div>
     )

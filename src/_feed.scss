@@ -33,21 +33,30 @@ h5 {
 }
 
 .matches {
+	overflow-x: auto;
+	// width: 360px;
+
+	p {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	overflow-x: auto;
+	padding-top: $size-16;
 	padding-bottom: $size-16;
+	}
 }
 
 .match-info {
 	text-align: center;
 }
 
-//message container
-.message-container {
-	height: 550px;
+.no-match {
+	text-align: center;
+}
 
+//message container
+.msg-container {
+	height: 500px;
+  
 		img {
 			border-radius: 50%;
 			height: 80px;
@@ -65,11 +74,12 @@ h5 {
 	display: flex;
 	align-items: center;
 	padding-bottom: $size-16;
+
+	p {
+		padding-left: $size-16;
+	}
 }
 
-p {
-	margin-left: $size-16;
+.no-message{
+	text-align: center;
 }
-
-
-
