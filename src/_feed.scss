@@ -26,7 +26,6 @@ h5 {
 
 //match container
 .match-container {
-<<<<<<< HEAD
 
 	img {
 		height: 150px;
@@ -48,28 +47,6 @@ h5 {
 .match-info {
 	text-align: center;
 	display: flex;
-=======
-  img {
-    height: 150px;
-    width: 120px;
-    border-radius: 8px;
-  }
-}
-
-.matches {
-  overflow-x: auto;
-  // width: 360px;
-
-  p {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-}
-
-.match-info {
-  text-align: center;
->>>>>>> 338956f8e1d369d4cdbdd74a81ef10a88472044f
 }
 
 .no-match {
