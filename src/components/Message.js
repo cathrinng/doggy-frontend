@@ -10,7 +10,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
-var socket = socketIOClient("http://localhost:8080");
+var socket = socketIOClient(API_URL);
 
 class Messages extends React.Component {
   constructor(props) {
@@ -62,6 +62,7 @@ class Messages extends React.Component {
 
     socket.emit("getMessages", { token: token, string: string } );
     socket.on("recieveMessages", (messages) => {
+      console.log(messages);
       this.setState({
         messages,
       });

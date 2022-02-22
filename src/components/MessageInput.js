@@ -68,7 +68,7 @@ class MessagesInput extends React.Component {
           
           ref="messageInput"
           type="text"
-          placeholder="til min fremtidige babbyboo"
+          placeholder="Insert message"
           onKeyDown={this.handleKeyDown.bind(this)}
         />
         <FiSend
