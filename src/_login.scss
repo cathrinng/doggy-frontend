@@ -56,6 +56,10 @@ $background-color: #e07a5f;
       background-color: $background-color;
     }
 
+    button:active {
+      background-color: #b94d2f;
+    }
+
     .signup-info {
       p {
         font-weight: bold;
@@ -63,6 +67,7 @@ $background-color: #e07a5f;
       a {
         font-weight: bold;
         color: black;
+        text-decoration: underline;
       }
     }
   }

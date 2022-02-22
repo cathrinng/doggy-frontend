@@ -101,10 +101,10 @@ $background-color: #e07a5f;
 }
 
 @keyframes growDown {
-    0% {
-      transform: translateX(200px)
-    }
-    100% {
-      transform: translateX(0)
-    }
+  0% {
+    transform: translateX(200px);
   }
+  100% {
+    transform: translateX(0);
+  }
+}
