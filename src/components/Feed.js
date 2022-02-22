@@ -76,7 +76,7 @@ class Feed extends React.Component {
         <div key={matchInfo.id} className="match-info">
           <Link to={`/messages/${matchInfo.user_who_matched}`}>
             <img src={matchInfo.img_url} alt=""/>
-            <h5>{matchInfo.surname} {matchInfo.firstname}</h5>
+            <h5>{matchInfo.firstname} {matchInfo.surname}</h5>
           </Link>
         </div>
       );
@@ -124,7 +124,7 @@ class Feed extends React.Component {
             <div className="message-cards">
               <img src={lastMessage.from_img_url}/>
               <div className="message-text">
-                  <h5>{displayed_lname} {displayed_fname}</h5>
+                  <h5>{displayed_fname} {displayed_lname}</h5>
               {lastMessage.message} - {timeAgo}</div>
             </div>
           </Link>
@@ -138,7 +138,7 @@ class Feed extends React.Component {
           <h3>New matches</h3>
           {this.state.matches.length > 0 ? (
             <div className="matches">
-              <p>{renderMatches}</p>
+              {renderMatches}
             </div>
           ) : (
             <div className="matches">
@@ -150,7 +150,7 @@ class Feed extends React.Component {
           <h3>Messages</h3>
           {this.state.newMessages.length > 0 ? (
             <div className="message-list">  
-              <p>{renderMessages}</p>
+              {renderMessages}
             </div>
           ) : (
             <div className="message-list">

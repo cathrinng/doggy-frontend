@@ -35,19 +35,29 @@ h5 {
 }
 
 .matches {
+	display: flex;
+	justify-content: space-evenly;
 	overflow-x: auto;
 	width: 360px;
 
-	p {
-	display: flex;
-	flex-direction: row;
+	.match-info {
+		text-align: center;
+		margin: 0 8px;
+
+		img {
+			height: 80px;
+			width: 80px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
 	}
 }
 
-.match-info {
-	text-align: center;
-	padding-right: $size-16;
-}
+.matches::-webkit-scrollbar {
+	display: none;
+  }
+
+
 
 .no-match {
   text-align: center;

@@ -71,6 +71,12 @@ class Messages extends React.Component {
     });
   }
 
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.messages.length !== prevState.messages.length) {
+      this.scrollToBottom();
+    }
+  }
+
   componentWillUnmount() {
     this.socket.emit("end");
     this.socket.disconnect();
@@ -78,7 +84,7 @@ class Messages extends React.Component {
   }
 
   scrollToBottom = () => {
-    this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
+    this.messagesEndRef.scrollIntoView({ behavior: "auto" });
   };
 
   sendParamsMatch() {
@@ -129,12 +135,15 @@ class Messages extends React.Component {
           <div className="matched-user">
             <img src={renderMatchedUserImg} alt="" />
             <h2 className="h2">
-              {renderMatchedUserSurName} {renderMatchedUserFirstName}
+            {renderMatchedUserFirstName} {renderMatchedUserSurName} 
             </h2>
           </div>
         </Link>
 
-        <ScrollToBottom className="message-wrapper" initialScrollBehavior={"auto"}>
+        <ScrollToBottom
+          className="message-wrapper"
+          initialScrollBehavior={"auto"}
+        >
           <div className="message-container">
             {renderMessages}
             <div
