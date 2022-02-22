@@ -18,10 +18,10 @@ $tongue__pink--dark: #b63d55;
 .loading-container {
   display: flex;
   justify-content: center;
+  flex: 1;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 100vh;
 
   .loading-message {
       color: white;

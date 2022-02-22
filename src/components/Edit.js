@@ -160,7 +160,7 @@ class Edit extends React.Component {
           onSubmit={(e) => this.handleSignUp(e)}
         >
           <div className="profile-picture">
-            {this.state.profilePictureUrl === "" ? (
+            {/* {this.state.profilePictureUrl === "" ? (
               <CgProfile size="50px" className="default-profile-picture" />
             ) : (
               <img
@@ -169,7 +169,7 @@ class Edit extends React.Component {
                 alt="Profile Image"
                 onError={() => this.handlePictureInputError()}
               />
-            )}
+            )} */}
             <label className="input-label">
               Upload profile picture
               <input
@@ -245,7 +245,7 @@ class Edit extends React.Component {
               />
             </label>
           </div>
-          <label className="input-label" htmlFor="breed">
+          <label className="input-label auto-field" htmlFor="breed">
             Breed
             <Autocomplete
               className="input-style"

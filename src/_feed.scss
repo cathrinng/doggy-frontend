@@ -1,7 +1,6 @@
 //import fonts
 @import url("https://fonts.googleapis.com/css2?family=Voces&display=swap");
 
-
 //common
 $logo-size: 16px;
 $size-16: 16px;
@@ -17,16 +16,17 @@ $logo-font: "Voces";
 }
 
 a {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 h5 {
-	margin: 0;
+  margin: 0;
 }
 
 //match container
 .match-container {
+<<<<<<< HEAD
 
 	img {
 		height: 150px;
@@ -48,21 +48,41 @@ h5 {
 .match-info {
 	text-align: center;
 	display: flex;
+=======
+  img {
+    height: 150px;
+    width: 120px;
+    border-radius: 8px;
+  }
+}
+
+.matches {
+  overflow-x: auto;
+  // width: 360px;
+
+  p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+.match-info {
+  text-align: center;
+>>>>>>> 338956f8e1d369d4cdbdd74a81ef10a88472044f
 }
 
 .no-match {
-	text-align: center;
+  text-align: center;
 }
 
 //message container
 .msg-container {
-	height: 500px;
-  
-		img {
-			border-radius: 50%;
-			height: 80px;
-		}
-	}
+  img {
+    border-radius: 50%;
+    height: 80px;
+  }
+}
 
 .message-list {
 		overflow-y: auto;
@@ -72,15 +92,15 @@ h5 {
 }
 
 .message-cards {
-	display: flex;
-	align-items: center;
-	padding-bottom: $size-16;
+  display: flex;
+  align-items: center;
+  padding-bottom: $size-16;
 }
 
 .message-text {
-	padding-left: $size-16;
+  padding-left: $size-16;
 }
 
-.no-message{
-	text-align: center;
+.no-message {
+  text-align: center;
 }
