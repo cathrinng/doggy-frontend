@@ -20,6 +20,12 @@ class Login extends React.Component {
     });
   }
 
+  handleSubmit(e) {
+    if (e.keyCode === 13) {
+      this.handleLoginAttempt();
+    }
+  }
+
   async handleLoginAttempt() {
     const { history } = this.props;
 
@@ -83,6 +89,7 @@ class Login extends React.Component {
               value={this.state.password}
               placeholder="password"
               onChange={this.handleInputChange.bind(this, "password")}
+              onKeyDown={this.handleSubmit.bind(this)}
             />
             {!this.state.showPassword ? (
               <BiShow onClick={this.toggleShowPassword.bind(this)} />

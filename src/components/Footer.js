@@ -3,7 +3,6 @@ import { BsChatRight } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-
 class Footer extends Component {
     componentDidMount() {
         this.props.onLoginChange();

@@ -24,7 +24,7 @@ class Homepage extends React.Component {
               className="button-homepage"
               onClick={this.handleClick.bind(this)}
             >
-              Woof Woof
+              Woof Woof!
             </button>
             <div className="clearfix"></div>
           </div>
