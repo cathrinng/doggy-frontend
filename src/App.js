@@ -36,16 +36,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.handleLoginStatusChange();
-    socket.on("connection", () => {
-      console.log(`I'm connected with the back-end`);
-    });
-  }
-
-  componentWillUnmount() {
-    socket.emit('end');
-    // socket.on('end', () => {
-    //   console.log("Disconnected");
-    // })
   }
 
   async componentDidUpdate(prevProps, prevState) {

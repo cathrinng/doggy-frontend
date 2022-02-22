@@ -19,8 +19,9 @@ class Matchedprofile extends Component {
       }
      
   async loadProfile(payload){
-    
-    const user = await getUsersById(payload.id)
+
+    const { id } = this.props.match.params;
+    const user = await getUsersById(id)
     this.setState({
       user:user
     })
