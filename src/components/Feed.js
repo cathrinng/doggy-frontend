@@ -137,7 +137,11 @@ class Feed extends React.Component {
           </div>
         </div>
         ): (
-          <div className="loading-container"></div>
+          <div className="loading-container">
+            <div className="loading-message">
+              <h2>No matches yet!</h2>
+            </div>
+          </div>
         )}
         <div className="message-container">
           <h3>Messages</h3>
