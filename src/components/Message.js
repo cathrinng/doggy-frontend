@@ -9,7 +9,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 
 import socketIOClient from "socket.io-client";
 const API_URL = process.env.REACT_APP_API_URL;
-var socket = socketIOClient("http://localhost:8080");
+var socket = socketIOClient(API_URL);
 
 
 class Messages extends React.Component {
@@ -132,6 +132,7 @@ class Messages extends React.Component {
           <div className="chat_container">
            {renderMessages}
         </div>
+
         <div style={{ float:"left", clear: "both" }}
              ref={(el) => { this.messagesEndRef = el; }}>
         </div>
