@@ -9,6 +9,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
+import validator from "validator";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -116,15 +117,25 @@ class Messages extends React.Component {
           break;
       }
 
-      return (
-        <div
-          key={data.id}
-          className={isUser ? "Loged_inn_user-post" : "match-post"}
-        >
-          {/* <div><img className="message-img" src={data.from_img_url} alt="" /></div> */}
-          {data.message}
-        </div>
-      );
+      if (validator.isURL(data.message)) {
+        return (
+          <div
+            key={data.id}
+            className={isUser ? "Loged_inn_user-post user-post" : "match-post user-post"}
+          >
+            <a href={data.message}><p>{data.message}</p></a>
+          </div>
+        );
+      } else {
+        return (
+          <div
+            key={data.id}
+            className={isUser ? "Loged_inn_user-post user-post" : "match-post user-post"}
+          >
+            <p>{data.message}</p>
+          </div>
+        );
+      }
     });
 
     return (

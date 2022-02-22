@@ -7,7 +7,6 @@ import { FiSend } from "react-icons/fi";
 import { IconName } from "react-icons/ai";
 import Picker from "emoji-picker-react";
 import { GrEmoji } from "react-icons/gr";
-import validator from "validator";
 
 class MessagesInput extends React.Component {
   constructor(props) {
@@ -41,13 +40,6 @@ class MessagesInput extends React.Component {
     
     // console.log(inputText.value);
     const user_who_matched = this.props.user_who_matched;
-
-    if (validator.isURL(inputText.value)) {
-      console.log("Is Valid URL");
-    } else {
-      console.log("Is Not Valid URL");
-    }
-
     postMessage(inputText.value, user_who_matched);
     inputText.value = "";
   }
