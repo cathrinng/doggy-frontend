@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 import socketIOClient from "socket.io-client";
+import { Link } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
 var socket = socketIOClient(API_URL);
 
@@ -83,11 +84,15 @@ class Messages extends React.Component {
   // }
 
   render() {
-    const renderMatchedUserSurName = this.state.matchedUserInfo.surname;
-    const renderMatchedUserImg = this.state.matchedUserInfo.img_url;
-    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname;
-
+    const renderMatchedUserSurName = this.state.matchedUserInfo.surname
+    const renderMatchedUserImg = this.state.matchedUserInfo.img_url
+    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname
+    const id = this.state.matchedUserInfo.id
+    
+    
     //renderMatcheser et objekt og kan ikke mappes gjennom
+   
+    // console.log(this.state.matchedUserInfo.id)
     const userId = this.state.payload.id;
     const renderMessages = this.state.messages.reverse().map((data) => {
       let isUser;
@@ -112,27 +117,24 @@ class Messages extends React.Component {
     });
 
     return (
-      <div className="message-container">
-        <div className="matched-user">
+      <div>
+        <Link to={`/matchedprofile/${id}`}>
+      <div className="matched-user">
           <img src={renderMatchedUserImg} alt="" />
-          <h2 className="h2">
-            {renderMatchedUserSurName} {renderMatchedUserFirstName}
-          </h2>
+          <h2 className="h2">{renderMatchedUserSurName} {renderMatchedUserFirstName}</h2>
         </div>
+        </Link>
+      
+      <div className="message-container" >         
+           {renderMessages}
+           <div style={{ float:"left", clear: "both" }}
+             ref={(el) => { this.messagesEndRef = el; }}>
 
-        <div className="Scrollbox">
-          <div className="chat_container">{renderMessages}</div>
-
-          <div
-            style={{ float: "left", clear: "both" }}
-            ref={(el) => {
-              this.messagesEndRef = el;
-            }}
-          ></div>
         </div>
-
-        <div>
-          <MessagesInput user_who_matched={this.sendParamsMatch()} />
+       
+      </div>
+      <div> 
+          <MessagesInput user_who_matched={this.sendParamsMatch() }/>
         </div>
       </div>
     );
