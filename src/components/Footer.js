@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
-import { BsChatRight } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
+import { BsNewspaper } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { BsHeart } from "react-icons/bs";
 
 class Footer extends Component {
-<<<<<<< HEAD
-    constructor(props) {
-        super(props);
-    
-        this.state = { 
-       
-        };
-      }
-    render() {
-        return (
-            <div className='footerContainer'>
-                <Link to='/swipecard'>
-                    <div>
-                        <AiOutlineHeart className='heartIcon'/>
-                    </div> 
-                </Link>
-=======
     componentDidMount() {
         this.props.onLoginChange();
     };
->>>>>>> 62a607f1112f3a54979a3ca575e44160a0ca7d0b
 
     render() {
         if(!this.props.loggedIn) {
@@ -34,12 +16,12 @@ class Footer extends Component {
                 <div className='footerContainer'>
                     <Link to='/swipecard'>
                         <div>
-                            <AiOutlineHeart className='heartIcon'/>
+                            <BsHeart className='heartIcon'/>
                         </div> 
                     </Link>
                     <Link to='/feed'>
                         <div>
-                            <BsChatRight className='messageIcon'/>
+                            <BsNewspaper className='messageIcon'/>
                         </div> 
                     </Link>
                 </div>
