@@ -126,7 +126,11 @@ class App extends React.Component {
           <Route path="/feed" component={Feed}></Route>
           <Route path="/Userfeed" component={UserFeed}></Route>
         </Switch>
-        <Footer></Footer>
+        <Footer
+          loggedIn={this.state.isLoggedIn}
+          onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+          // loggedInUserInfo={this.state.loggedInUserInfo}
+        />
       </HashRouter>
     );
   }
