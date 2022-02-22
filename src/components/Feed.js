@@ -3,7 +3,7 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-// import { GiBalloonDog } from "react-icons/gi";
+import { GiBalloonDog } from "react-icons/gi";
 
 
 
@@ -151,7 +151,7 @@ class Feed extends React.Component {
             </div>
           ) : (
             <div className="message-list">
-                <p className="no-message">No messages yet!</p>
+                <p className="no-message">No messages yet!</p><GiBalloonDog />
             </div>
           )} 
         </div>
