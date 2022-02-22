@@ -3,6 +3,7 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
+import Loadingdog from "./Loadingdog";
 
 
 class Feed extends React.Component {
@@ -123,7 +124,7 @@ class Feed extends React.Component {
         </div>
       )
     });
-  
+
     return (
       <div className="feed-container">
         <div className="match-container">
@@ -138,7 +139,7 @@ class Feed extends React.Component {
             {renderMessages}
           </div>
         </div>
-      </div>
+    </div>
     )
   }
 }
