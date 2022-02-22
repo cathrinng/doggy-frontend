@@ -9,8 +9,6 @@ import ScrollToBottom from "react-scroll-to-bottom";
 
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
-const API_URL = process.env.REACT_APP_API_URL;
-var socket = socketIOClient(API_URL);
 
 class Messages extends React.Component {
   constructor(props) {
@@ -22,6 +20,7 @@ class Messages extends React.Component {
       matchedUserInfo: [],
       payload: {},
     };
+    this.socket = socketIOClient(process.env.REACT_APP_API_URL);
   }
 
   async loadmessages(payload) {
@@ -42,7 +41,10 @@ class Messages extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("funksjon som returnerer en verdi" + this.sendparamstomessageinput())
+
+    this.socket.on("connection", () => {
+      console.log(`I'm connected with the back-end`);
+    });
 
     const token = localStorage.getItem("doggytoken");
     const payload = jwtDecode(token);
@@ -62,14 +64,20 @@ class Messages extends React.Component {
 
     console.log(payload.id, string);
 
-    socket.emit("getMessages", { token: token, string: string } );
-    socket.on("recieveMessages", (messages) => {
-      console.log(messages);
+    this.socket.emit("getMessages", { token: token, string: string } );
+    this.socket.on("recieveMessages", (messages) => {
       this.setState({
         messages,
       });
     });
   }
+
+  componentWillUnmount() {
+    this.socket.emit('end');
+    this.socket.disconnect();
+    console.log(`I'm disconnected from the back-end`);
+  }
+
 
   scrollToBottom = () => {
     this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
