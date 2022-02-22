@@ -35,7 +35,7 @@ h5 {
 .matches {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	overflow-x: auto;
 	padding-bottom: $size-16;
 }
