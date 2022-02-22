@@ -4,11 +4,9 @@
   width: 100vw;
   background-color: #f4f1de;
   padding: 20px 0;
+  align-self: flex-end;
   align-items: center;
   justify-content: space-evenly;
-  position: fixed;
-  left: 0;
-  bottom: 0;
 
   .heartIcon {
     width: 40px;
