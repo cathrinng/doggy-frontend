@@ -2,15 +2,16 @@
 
 .edit-user {
   @include form-style;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .edit-user-form {
-  display: flex;
-  flex-direction: column;
+  
   width: 80%;
-  height: calc(100vh - 82px);
   margin: 0 auto;
-
   & > * {
     margin-bottom: 10px;
   }

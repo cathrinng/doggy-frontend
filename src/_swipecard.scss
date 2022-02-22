@@ -3,9 +3,10 @@ $background-color: #e07a5f;
 
 .swipecards {
   display: flex;
+  flex: 1;
+  flex-direction: column;
   justify-content: center;
   width: 100vw;
-  min-height: calc(100vh - 82px);
 
   .swipecards > div {
     display: flex;
