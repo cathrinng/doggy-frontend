@@ -11,6 +11,9 @@ $logo-font: "Voces";
 	background-color: white;
 	font-family: $logo-font;
 	padding: $size-16;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 
 a {
@@ -63,7 +66,7 @@ h5 {
 
 .message-list {
 		overflow-y: auto;
-		height: 400px;
+		max-height: 400px;
 		display: flex;
 		flex-direction: column;
 }
