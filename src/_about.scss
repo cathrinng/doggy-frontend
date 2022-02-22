@@ -1,0 +1,27 @@
+.about-card-container {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 82px);
+  justify-content: center;
+
+  .about-card {
+    background-color: white;
+    width: 90vw;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+    -webkit-box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: 1px 1px 38px 0px rgba(0, 0, 0, 0.47);
+  }
+  .about-card-content {
+    h1 {
+      display: flex;
+      justify-content: space-around;
+    }
+    p {
+      margin: 16px;
+    }
+  }
+}

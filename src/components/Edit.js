@@ -3,6 +3,7 @@ import { editUser, getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 import Autocomplete from "./Autocomplete";
 import { CgProfile } from "react-icons/cg";
+import Loadingdog from "../components/Loadingdog";
 
 class Edit extends React.Component {
   constructor(props) {
@@ -133,8 +134,11 @@ class Edit extends React.Component {
 
     if (isLoading) {
       return (
-        <div>
-          <p>Loading user details...</p>
+        <div className="loading-container">
+          <Loadingdog />
+          <div className="loading-message">
+            <h1>Fetching Profile!</h1>
+          </div>
         </div>
       );
     }

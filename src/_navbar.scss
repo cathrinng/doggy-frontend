@@ -19,6 +19,7 @@ $background-color: #e07a5f;
     .profile-img {
       height: $logo-size;
       width: $logo-size;
+      object-fit: cover;
       border-radius: 50%;
       background-color: $text-color;
       border: 2px solid $text-color;
@@ -101,10 +102,10 @@ $background-color: #e07a5f;
 }
 
 @keyframes growDown {
-    0% {
-      transform: translateX(200px)
-    }
-    100% {
-      transform: translateX(0)
-    }
+  0% {
+    transform: translateX(200px);
   }
+  100% {
+    transform: translateX(0);
+  }
+}

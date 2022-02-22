@@ -4,6 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 class Footer extends Component {
+<<<<<<< HEAD
     constructor(props) {
         super(props);
     
@@ -19,14 +20,32 @@ class Footer extends Component {
                         <AiOutlineHeart className='heartIcon'/>
                     </div> 
                 </Link>
+=======
+    componentDidMount() {
+        this.props.onLoginChange();
+    };
+>>>>>>> 62a607f1112f3a54979a3ca575e44160a0ca7d0b
 
-                <Link to='/feed'>
-                    <div>
-                        <BsChatRight className='messageIcon'/>
-                    </div> 
-                </Link>
-            </div>
-        );
+    render() {
+        if(!this.props.loggedIn) {
+            return null
+        } else {
+            return (
+                <div className='footerContainer'>
+                    <Link to='/swipecard'>
+                        <div>
+                            <AiOutlineHeart className='heartIcon'/>
+                        </div> 
+                    </Link>
+                    <Link to='/feed'>
+                        <div>
+                            <BsChatRight className='messageIcon'/>
+                        </div> 
+                    </Link>
+                </div>
+                )
+            }
+        
     }
 }
 

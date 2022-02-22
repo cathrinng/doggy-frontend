@@ -41,6 +41,13 @@ class App extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    socket.emit('end');
+    socket.on('end', () => {
+      console.log("Disconnected");
+    })
+  }
+
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.isLoggedIn !== prevState.isLoggedIn &&
@@ -128,7 +135,11 @@ class App extends React.Component {
           <Route path="/profile" component={Profile}></Route>
           <Route path="/matchedprofile/:id" component={Matchedprofile}></Route>
         </Switch>
-        <Footer></Footer>
+        <Footer
+          loggedIn={this.state.isLoggedIn}
+          onLoginChange={() => this.handleLoginStatusChange.bind(this)}
+          // loggedInUserInfo={this.state.loggedInUserInfo}
+        />
       </HashRouter>
     );
   }

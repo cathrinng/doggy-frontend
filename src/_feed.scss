@@ -18,18 +18,16 @@ a {
 	color: inherit;
 }
 
-.names {
-	font-weight: bolder;
-	font-size: $logo-size;
+h5 {
+	margin: 0;
 }
 
 //match container
 .match-container {
 
 	img {
-		height: 180px;
-		width: 150px;
-		display: flex;
+		height: 150px;
+		width: 120px;
 		border-radius: 8px;
 	}
 }
@@ -37,16 +35,45 @@ a {
 .matches {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
-	padding: 16px 0px 16px 0px;
+	justify-content: space-between;
+	overflow-x: auto;
+	padding-bottom: $size-16;
 }
 
 .match-info {
 	text-align: center;
-	
-	.names {
-		margin-top: $size-16;
-	}
 }
+
+<<<<<<< HEAD
+=======
+//message container
+.message-container {
+	height: 500px;
+
+		img {
+			border-radius: 50%;
+			height: 80px;
+		}
+	}
+
+.message-list {
+		overflow-y: auto;
+		height: 400px;
+		display: flex;
+		flex-direction: column;
+}
+
+.message-cards {
+	display: flex;
+	align-items: center;
+	padding-bottom: $size-16;
+}
+
+p {
+	margin-left: $size-16;
+}
+>>>>>>> 62a607f1112f3a54979a3ca575e44160a0ca7d0b
+
+// border-bottom: 1px solid lightgray;
 
 

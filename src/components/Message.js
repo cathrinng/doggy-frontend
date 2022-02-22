@@ -5,22 +5,21 @@ import MessagesInput from "./MessageInput";
 import { getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 // import ScrollableFeed from 'react-scrollable-feed'
-import ScrollToBottom from 'react-scroll-to-bottom';
+import ScrollToBottom from "react-scroll-to-bottom";
 
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
 var socket = socketIOClient(API_URL);
 
-
 class Messages extends React.Component {
   constructor(props) {
     super(props);
-    this.messagesEndRef = React.createRef()
+    this.messagesEndRef = React.createRef();
 
     this.state = {
       messages: [],
-      matchedUserInfo:[],
+      matchedUserInfo: [],
       payload: {},
     };
   }
@@ -33,22 +32,18 @@ class Messages extends React.Component {
       messages: messages,
     });
   }
-  
-  async loadMatchedUserInfo(){
-    const { user_who_matched } = this.props.match.params;
-    const matchedUserInfo = await getUsersById(user_who_matched)
-    this.setState({
-      matchedUserInfo:matchedUserInfo
-    })
 
+  async loadMatchedUserInfo() {
+    const { user_who_matched } = this.props.match.params;
+    const matchedUserInfo = await getUsersById(user_who_matched);
+    this.setState({
+      matchedUserInfo: matchedUserInfo,
+    });
   }
 
   componentDidMount() {
-
-    
     // console.log("funksjon som returnerer en verdi" + this.sendparamstomessageinput())
-    
-    
+
     const token = localStorage.getItem("doggytoken");
     const payload = jwtDecode(token);
 
@@ -59,47 +54,49 @@ class Messages extends React.Component {
     }
 
     this.loadmessages(payload);
-    this.loadMatchedUserInfo()
+    this.loadMatchedUserInfo();
     this.scrollToBottom();
 
     socket.emit("getMessages", token);
     socket.on("recieveMessages", (messages) => {
       this.setState({
-        messages
-      })
-    })
+        messages,
+      });
+    });
   }
-
 
   scrollToBottom = () => {
     this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
-  }
-  
+  };
+
   componentDidUpdate() {
     this.scrollToBottom();
   }
 
-  componentWillUnmount() {
-    socket.emit('end');
-  }
-
-  sendParamsMatch(){
+  sendParamsMatch() {
     const { user_who_matched } = this.props.match.params;
-    return user_who_matched
+    return user_who_matched;
     //denne funksjonen sender verdien av personen du har trykket på til imput og velger
     // å sende meldig til denne personen
   }
   // componentDidCatch(){
 
   // }
-  
+
   render() {
+<<<<<<< HEAD
     const renderMatchedUserSurName = this.state.matchedUserInfo.surname
     const renderMatchedUserImg = this.state.matchedUserInfo.img_url
     const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname
     const id = this.state.matchedUserInfo.id
     
     
+=======
+    const renderMatchedUserSurName = this.state.matchedUserInfo.surname;
+    const renderMatchedUserImg = this.state.matchedUserInfo.img_url;
+    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname;
+
+>>>>>>> 62a607f1112f3a54979a3ca575e44160a0ca7d0b
     //renderMatcheser et objekt og kan ikke mappes gjennom
    
     // console.log(this.state.matchedUserInfo.id)
@@ -116,15 +113,18 @@ class Messages extends React.Component {
       }
 
       return (
-        <div key={data.id} className={isUser ? "Loged_inn_user-post" : "match-post"}>
+        <div
+          key={data.id}
+          className={isUser ? "Loged_inn_user-post" : "match-post"}
+        >
           {/* <div><img className="message-img" src={data.from_img_url} alt="" /></div> */}
           {data.message}
-          
         </div>
       );
     });
 
     return (
+<<<<<<< HEAD
       <div>
         <Link to={`/matchedprofile/${id}`}>
       <div className="matched-user">
@@ -143,14 +143,33 @@ class Messages extends React.Component {
       </div>
       <div> 
           <MessagesInput user_who_matched={this.sendParamsMatch() }/>
+=======
+      <div className="message-container">
+        <div className="matched-user">
+          <img src={renderMatchedUserImg} alt="" />
+          <h2 className="h2">
+            {renderMatchedUserSurName} {renderMatchedUserFirstName}
+          </h2>
+        </div>
+
+        <div className="Scrollbox">
+          <div className="chat_container">{renderMessages}</div>
+
+          <div
+            style={{ float: "left", clear: "both" }}
+            ref={(el) => {
+              this.messagesEndRef = el;
+            }}
+          ></div>
+        </div>
+
+        <div>
+          <MessagesInput user_who_matched={this.sendParamsMatch()} />
+>>>>>>> 62a607f1112f3a54979a3ca575e44160a0ca7d0b
         </div>
       </div>
-     
     );
   }
 }
 
 export default Messages;
-
-
-

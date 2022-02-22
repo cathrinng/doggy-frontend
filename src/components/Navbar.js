@@ -1,15 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactDropdownProps } from "react-dropdown";
 import logo from "../logo.png";
-import { isThisYear } from "date-fns/esm";
-import jwtDecode from "jwt-decode";
-import { getUsersById } from "../services/dogs";
 import OutsideClickHandler from "react-outside-click-handler";
 
 // Icons
 import { CgLogOut } from "react-icons/cg";
-import { BsFillPersonFill, BsGear, BsHeart } from "react-icons/bs";
+import { BsFillPersonFill, BsGear, BsHeart, BsNewspaper } from "react-icons/bs";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -101,6 +97,15 @@ class Navbar extends React.Component {
                       <p>Find Matches</p>
                     </div>
                   </Link>
+                  <Link to="/feed">
+                    <div
+                      className="feed-option"
+                      onClick={this.toggleDropdown}
+                    >
+                      <BsNewspaper/>
+                      <p>Go to feed</p>
+                    </div>
+                  </Link>
                   <Link to="/profile">
                     <div
                       className="profile-option"
@@ -117,15 +122,6 @@ class Navbar extends React.Component {
                     >
                       <BsGear />
                       <p>Edit profile</p>
-                    </div>
-                  </Link>
-                  <Link to="/preferences">
-                    <div
-                      className="preferences-option"
-                      onClick={this.toggleDropdown}
-                    >
-                      <BsGear />
-                      <p>Edit preferences</p>
                     </div>
                   </Link>
                   <Link to="/logout">

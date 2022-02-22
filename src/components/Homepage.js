@@ -3,7 +3,7 @@ import React from "react";
 class Homepage extends React.Component {
   handleClick() {
     const { history } = this.props;
-    history.push("/about");
+    history.push("/signup");
   }
 
   render() {
@@ -24,7 +24,7 @@ class Homepage extends React.Component {
               className="button-homepage"
               onClick={this.handleClick.bind(this)}
             >
-              Woof Woof
+              Woof Woof!
             </button>
             <div className="clearfix"></div>
           </div>
