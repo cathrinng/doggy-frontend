@@ -21,7 +21,6 @@ class Edit extends React.Component {
       user: {},
       isLoading: false,
       profilePictureUrl: "",
-      showProfilePictureError: false,
       breed: "",
     };
   }
@@ -97,19 +96,27 @@ class Edit extends React.Component {
     }
   }
 
-  handlePictureInput(e) {
-    this.setState({
-      profilePictureUrl: e.target.value,
-      showProfilePictureError: false,
-    });
-  }
-
-  handlePictureInputError() {
-    this.setState({ profilePictureUrl: "", showProfilePictureError: true });
-  }
-
   handleSexSelect(e) {
     this.setState({ selectSexValue: e.target.value });
+  }
+
+  async uploadImageToCloud(imgFile) {
+    const data = new FormData();
+    data.append("file", imgFile);
+    data.append("upload_preset", "img_url");
+    data.append("cloud_name", "dbniwuu7z");
+    console.log(data);
+    fetch("  https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        this.setState({
+          profilePictureUrl: data.url,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -159,16 +166,16 @@ class Edit extends React.Component {
                 onError={() => this.handlePictureInputError()}
               />
             )}
-            <input
-              className="picture-input"
-              type="text"
-              name="profile picture"
-              placeholder="Input profile picture url"
-              onBlur={(e) => this.handlePictureInput(e)}
-            />
-            {this.state.showProfilePictureError && (
-              <span className="image-error">Image does not exist</span>
-            )}
+            <label className="input-label">
+              Upload profile picture
+              <input
+                className="picture-input"
+                type="file"
+                name="profile picture"
+                placeholder="Input profile picture url"
+                onChange={(e) => this.uploadImageToCloud(e.target.files[0])}
+              />
+            </label>
           </div>
           <div className="two-column-row">
             <label className="input-label" htmlFor="first name">
