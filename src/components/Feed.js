@@ -1,6 +1,6 @@
 import React from "react";
 import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
-import { formatDistance } from "date-fns";
+import { formatDistance, nextMonday } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
 
@@ -70,8 +70,8 @@ class Feed extends React.Component {
       return (
         <div key={matchInfo.id} className="match-info">
           <Link to={`/messages/${matchInfo.user_who_matched}`}>
-            <img src={matchInfo.img_url} alt="" className="match-img"/>
-            {matchInfo.surname} {matchInfo.firstname}
+            <img src={matchInfo.img_url} alt=""/>
+            <div className="names">{matchInfo.surname} {matchInfo.firstname}</div>
           </Link>
         </div>
       );
@@ -114,21 +114,30 @@ class Feed extends React.Component {
       return (
         <div key={lastMessage.id}>
           <Link to={`/messages/${lastMessage.from_user_id}/${lastMessage.to_user_id}`}>
-          <p><img className="img-message" src={lastMessage.from_img_url}/>{displayed_fname} {displayed_lname} - {timeAgo}</p>
-          <p>{lastMessage.message}</p></Link>
+            <div className="message-list">
+            <div className="message-cards">
+              <img src={lastMessage.from_img_url}/><p><div className="names">{displayed_lname} {displayed_fname}</div>
+              <div className="message">{lastMessage.message} - {timeAgo}</div></p>
+            </div>
           </div>
+          </Link>
+        </div>
       )
     });
   
     return (
       <div className="feed-container">
-        <h4>Chat with your new matches, {this.state.payload.firstname}!</h4>
         <div className="match-container">
-          {renderMatches}
+          <h3>Your new matches, {this.state.payload.firstname}!</h3>
+          <div className="matches">
+            {renderMatches}
+          </div>
         </div>
-        <h4>Messages</h4>
         <div className="message-container">
-          {renderMessages}
+          <h3>Messages</h3>
+          <div className="messages">  
+            {renderMessages}
+          </div>
         </div>
       </div>
     )
