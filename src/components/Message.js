@@ -61,8 +61,6 @@ class Messages extends React.Component {
     let { user_who_matched } = this.props.match.params;
     let string = user_who_matched;
 
-    console.log(payload.id, string);
-
     this.socket.emit("getMessages", { token: token, string: string });
     this.socket.on("recieveMessages", (messages) => {
       this.setState({
