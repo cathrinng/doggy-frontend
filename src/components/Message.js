@@ -41,7 +41,6 @@ class Messages extends React.Component {
   }
 
   componentDidMount() {
-
     this.socket.on("connection", () => {
       console.log(`I'm connected with the back-end`);
     });
@@ -59,12 +58,12 @@ class Messages extends React.Component {
     this.loadMatchedUserInfo();
     this.scrollToBottom();
 
-    let { user_who_matched }  = this.props.match.params;
+    let { user_who_matched } = this.props.match.params;
     let string = user_who_matched;
 
     console.log(payload.id, string);
 
-    this.socket.emit("getMessages", { token: token, string: string } );
+    this.socket.emit("getMessages", { token: token, string: string });
     this.socket.on("recieveMessages", (messages) => {
       this.setState({
         messages,
@@ -73,19 +72,14 @@ class Messages extends React.Component {
   }
 
   componentWillUnmount() {
-    this.socket.emit('end');
+    this.socket.emit("end");
     this.socket.disconnect();
     console.log(`I'm disconnected from the back-end`);
   }
 
-
   scrollToBottom = () => {
     this.messagesEndRef.scrollIntoView({ behavior: "smooth" });
   };
-
-  componentDidUpdate() {
-    this.scrollToBottom();
-  }
 
   sendParamsMatch() {
     const { user_who_matched } = this.props.match.params;
@@ -98,14 +92,13 @@ class Messages extends React.Component {
   // }
 
   render() {
-    const renderMatchedUserSurName = this.state.matchedUserInfo.surname
-    const renderMatchedUserImg = this.state.matchedUserInfo.img_url
-    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname
-    const id = this.state.matchedUserInfo.id
-    
-    
+    const renderMatchedUserSurName = this.state.matchedUserInfo.surname;
+    const renderMatchedUserImg = this.state.matchedUserInfo.img_url;
+    const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname;
+    const id = this.state.matchedUserInfo.id;
+
     //renderMatcheser et objekt og kan ikke mappes gjennom
-   
+
     // console.log(this.state.matchedUserInfo.id)
     const userId = this.state.payload.id;
     const renderMessages = this.state.messages.reverse().map((data) => {
@@ -131,25 +124,29 @@ class Messages extends React.Component {
     });
 
     return (
-      <div>
+      <div className="chat-wrapper">
         <Link to={`/matchedprofile/${id}`}>
-      <div className="matched-user">
-          <img src={renderMatchedUserImg} alt="" />
-          <h2 className="h2">{renderMatchedUserSurName} {renderMatchedUserFirstName}</h2>
-        </div>
+          <div className="matched-user">
+            <img src={renderMatchedUserImg} alt="" />
+            <h2 className="h2">
+              {renderMatchedUserSurName} {renderMatchedUserFirstName}
+            </h2>
+          </div>
         </Link>
-      
-      <div className="message-container" >         
-           {renderMessages}
-           <div style={{ float:"left", clear: "both" }}
-             ref={(el) => { this.messagesEndRef = el; }}>
 
-        </div>
-       
-      </div>
-      <div> 
-          <MessagesInput user_who_matched={this.sendParamsMatch() }/>
-        </div>
+        <ScrollToBottom className="message-wrapper" initialScrollBehavior={"auto"}>
+          <div className="message-container">
+            {renderMessages}
+            <div
+              style={{ float: "left", clear: "both" }}
+              ref={(el) => {
+                this.messagesEndRef = el;
+              }}
+            ></div>
+          </div>
+        </ScrollToBottom>
+
+        <MessagesInput user_who_matched={this.sendParamsMatch()} />
       </div>
     );
   }

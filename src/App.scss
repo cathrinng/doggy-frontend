@@ -37,3 +37,7 @@ html, body {
   clear: both;
   display: table;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}
