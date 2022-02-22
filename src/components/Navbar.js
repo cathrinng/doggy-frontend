@@ -61,7 +61,7 @@ class Navbar extends React.Component {
     } else {
       return (
         <div className="navbar private-navbar">
-          <Link to="/" onClick={() => this.toggleDropdown("close")}>
+          <Link to="/feed" onClick={() => this.toggleDropdown("close")}>
             <div className="logo">
               <img src={logo} className="logo-img" />
               <h1>Doggy</h1>
