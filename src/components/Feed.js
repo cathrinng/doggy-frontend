@@ -1,6 +1,6 @@
 import React from "react";
 import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
-import { formatDistance, nextMonday } from "date-fns";
+import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
 
@@ -71,7 +71,7 @@ class Feed extends React.Component {
         <div key={matchInfo.id} className="match-info">
           <Link to={`/messages/${matchInfo.user_who_matched}`}>
             <img src={matchInfo.img_url} alt=""/>
-            <div className="names">{matchInfo.surname} {matchInfo.firstname}</div>
+            <h5>{matchInfo.surname} {matchInfo.firstname}</h5>
           </Link>
         </div>
       );
@@ -114,12 +114,11 @@ class Feed extends React.Component {
       return (
         <div key={lastMessage.id}>
           <Link to={`/messages/${lastMessage.from_user_id}/${lastMessage.to_user_id}`}>
-            <div className="message-list">
             <div className="message-cards">
-              <img src={lastMessage.from_img_url}/><p><div className="names">{displayed_lname} {displayed_fname}</div>
-              <div className="message">{lastMessage.message} - {timeAgo}</div></p>
+              <img src={lastMessage.from_img_url}/>
+              <p><h5>{displayed_lname} {displayed_fname}</h5>
+              {lastMessage.message} - {timeAgo}</p>
             </div>
-          </div>
           </Link>
         </div>
       )
@@ -128,14 +127,14 @@ class Feed extends React.Component {
     return (
       <div className="feed-container">
         <div className="match-container">
-          <h3>Your new matches, {this.state.payload.firstname}!</h3>
+          <h3>New matches</h3>
           <div className="matches">
             {renderMatches}
           </div>
         </div>
         <div className="message-container">
           <h3>Messages</h3>
-          <div className="messages">  
+          <div className="message-list">  
             {renderMessages}
           </div>
         </div>
