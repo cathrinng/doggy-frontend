@@ -37,6 +37,8 @@ class Feed extends React.Component {
       isLoading: false,
       matches,
     })
+
+    this.props.onLoginChange();
   }
 
   async componentDidMount() {
@@ -127,13 +129,17 @@ class Feed extends React.Component {
 
     return (
       <div className="feed-container">
+        {this.state.matches.length > 0 ? (
         <div className="match-container">
           <h3>New matches</h3>
           <div className="matches">
             {renderMatches}
           </div>
         </div>
-        <div className="msg-container">
+        ): (
+          <div className="loading-container"></div>
+        )}
+        <div className="message-container">
           <h3>Messages</h3>
           <div className="message-list">  
             {renderMessages}
