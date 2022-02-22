@@ -26,26 +26,27 @@ h5 {
 
 //match container
 .match-container {
-  img {
-    height: 150px;
-    width: 120px;
-    border-radius: 8px;
-  }
+
+	img {
+		height: 150px;
+		width: 100px;
+		border-radius: 8px;
+	}
 }
 
 .matches {
-  overflow-x: auto;
-  // width: 360px;
+	overflow-x: auto;
+	width: 360px;
 
-  p {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
+	p {
+	display: flex;
+	flex-direction: row;
+	}
 }
 
 .match-info {
-  text-align: center;
+	text-align: center;
+	display: flex;
 }
 
 .no-match {

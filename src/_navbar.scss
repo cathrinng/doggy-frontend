@@ -102,6 +102,10 @@ $background-color: #e07a5f;
   }
 }
 
+.login-button {
+  font-size: larger;
+}
+
 @keyframes growDown {
   0% {
     transform: translateX(200px);

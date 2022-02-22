@@ -67,8 +67,7 @@ class Feed extends React.Component {
 
     if(isLoading) {
       return (
-        <div><Loadingdog />
-          Loading feed...</div>
+       <div className="loading-container"></div>
       )
     }
 
@@ -117,6 +116,7 @@ class Feed extends React.Component {
           new Date(),
           { addSuffix: true }
         );
+
 
       return (
         <div key={lastMessage.id}>
