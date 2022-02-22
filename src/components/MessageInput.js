@@ -18,6 +18,7 @@ class MessagesInput extends React.Component {
       isLoggedIn: false,
       displayEmojis: false,
     };
+    this.inputRef = React.createRef();
   }
 
   handleKeyDown(e) {
@@ -27,15 +28,16 @@ class MessagesInput extends React.Component {
   }
 
   sendMessage() {
-    const inputText = this.refs.messageInput;
+    const inputText = this.inputRef.current;
     if (inputText.value === "") {
       return;
     }
 
+    
     this.setState({
       messagesInput: inputText.value,
     });
-
+    
     // console.log(inputText.value);
     const user_who_matched = this.props.user_who_matched;
     postMessage(inputText.value, user_who_matched);
@@ -63,7 +65,7 @@ class MessagesInput extends React.Component {
         {/* <div onClick={this.toggleEmojis.bind(this)}><GrEmoji></GrEmoji></div> */}
         <form className="inputTextBox">
           <input
-            ref="messageInput"
+            ref={this.inputRef}
             type="text"
             placeholder="Insert message"
             onKeyDown={this.handleKeyDown.bind(this)}

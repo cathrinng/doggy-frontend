@@ -22,6 +22,7 @@ $logo-size: 50px;
   background-color: #fcfcfc;
   overflow-y: auto;
   padding: 8px;
+  margin: 8px;
 }
 
 .matched-user {
@@ -93,7 +94,30 @@ $logo-size: 50px;
 // COMMON CHAT BUBBLE FEATURES
 $border-radius: 20px;
 $padding: 8px 14px;
-$margin: 8px;
+$margin: 0;
+
+.user-post {
+  word-break: break-all;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  word-wrap: break-word;
+  max-width: 90%;
+  p {
+    padding: 0;
+    margin: 0;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  a {
+    text-decoration: underline;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+}
 
 .match-post {
   display: flex;
