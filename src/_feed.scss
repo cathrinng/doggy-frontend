@@ -30,24 +30,24 @@ h5 {
 
 	img {
 		height: 150px;
-		width: 120px;
+		width: 100px;
 		border-radius: 8px;
 	}
 }
 
 .matches {
 	overflow-x: auto;
-	// width: 360px;
+	width: 360px;
 
 	p {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
 	}
 }
 
 .match-info {
 	text-align: center;
+	display: flex;
 }
 
 .no-match {
