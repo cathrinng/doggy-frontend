@@ -65,9 +65,9 @@ class Messages extends React.Component {
     socket.emit("getMessages", { token: token, string: string } );
     socket.on("recieveMessages", (messages) => {
       console.log(messages);
-      // this.setState({
-      //   messages,
-      // });
+      this.setState({
+        messages,
+      });
     });
   }
 
