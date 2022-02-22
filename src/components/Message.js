@@ -10,7 +10,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
-var socket = socketIOClient(API_URL);
+var socket = socketIOClient("http://localhost:8080");
 
 class Messages extends React.Component {
   constructor(props) {
@@ -57,7 +57,10 @@ class Messages extends React.Component {
     this.loadMatchedUserInfo();
     this.scrollToBottom();
 
-    socket.emit("getMessages", token);
+    let { user_who_matched }  = this.props.match.params;
+    let string = user_who_matched;
+
+    socket.emit("getMessages", { token: token, string: string } );
     socket.on("recieveMessages", (messages) => {
       this.setState({
         messages,
