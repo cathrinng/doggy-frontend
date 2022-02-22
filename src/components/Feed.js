@@ -110,6 +110,7 @@ class Feed extends React.Component {
 
       const displayed_fname = lastMessage.from_user_id == myID ? (lastMessage.to_firstname) : (lastMessage.from_firstname);
       const displayed_lname = lastMessage.from_user_id == myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
+      const renderedID = lastMessage.from_user_id == myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
 
       const timeAgo = formatDistance(
           new Date(lastMessage.created_at),
@@ -119,7 +120,7 @@ class Feed extends React.Component {
 
       return (
         <div key={lastMessage.id}>
-          <Link to={`/messages/${lastMessage.from_user_id}/${lastMessage.to_user_id}`}>
+          <Link to={`/messages/${renderedID}`}>
             <div className="message-cards">
               <img src={lastMessage.from_img_url}/>
               <div className="message-text">
