@@ -2,13 +2,12 @@ $logo-size: 50px;
 
 .message-container{
 	
-	// height: 700px;
+	height: 600px;
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
 	background-color: #efefef;
-	width: 100vw;
-	height: 600px;
+	border: 1px solid lightgray;
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -26,6 +25,39 @@ $logo-size: 50px;
 		padding: 10px; 
 	}
 }
+
+//message container
+
+// .message-container {
+// 	height: 400px;
+
+// 	.messages {
+// 		display: flex;
+// 		flex-direction: column;
+// 		overflow-x: hidden;
+// 		overflow-y: auto;
+// 		height: 400px;
+// 		width: 100vw;
+	
+// 		img {
+// 			border-radius: 50%;
+// 			height: 80px;
+// 		}
+// 	}
+// }
+
+// .message-cards {
+// 	display: flex;
+// 	flex-direction: row;
+// 	align-items: center;
+// 	padding: 16px 0px 16px 0px;
+// 	border-bottom: 1px solid lightgray;
+// }
+
+// p {
+// 	margin-left: $size-16;
+// }
+
 
 
 // .chat_container{
@@ -102,12 +134,21 @@ $logo-size: 50px;
  }
  
  .inputTextBox{
+	 display: flex;
 	 padding: 5px;
 	 margin-top: 5px;
+	 border: 1px solid lightgray;
 	 border-radius: 30px;
 	 width: 350px;
 	 height: 30px;
-	 background-color: #efefef;
+	 background-color: white;
+	 input{
+		 flex-grow: 2;
+		border:none;
+		
+
+
+	 }
  }
  
  .sendIcon{

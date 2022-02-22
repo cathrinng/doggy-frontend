@@ -23,7 +23,7 @@ class MessagesInput extends React.Component {
   handleKeyDown(e) {
     if (e.keyCode !== 13) {
       return;
-    }
+    } else this.sendMessage()
   }
 
   sendMessage() {
@@ -61,8 +61,11 @@ class MessagesInput extends React.Component {
     return (
       <div className="inputContainer">
         {/* <div onClick={this.toggleEmojis.bind(this)}><GrEmoji></GrEmoji></div> */}
+        <form className="inputTextBox">
+
+       
         <input
-          className="inputTextBox"
+          
           ref="messageInput"
           type="text"
           placeholder="til min fremtidige babbyboo"
@@ -72,6 +75,7 @@ class MessagesInput extends React.Component {
           onClick={this.sendMessage.bind(this)}
           className="sendIcon"
         ></FiSend>
+         </form>
       </div>
     );
   }

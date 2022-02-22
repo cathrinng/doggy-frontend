@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 import socketIOClient from "socket.io-client";
+import { Link } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
 var socket = socketIOClient(API_URL);
 
@@ -96,6 +97,7 @@ class Messages extends React.Component {
     const renderMatchedUserSurName = this.state.matchedUserInfo.surname
     const renderMatchedUserImg = this.state.matchedUserInfo.img_url
     const renderMatchedUserFirstName = this.state.matchedUserInfo.firstname
+    const id = this.state.matchedUserInfo.id
     
     
     //renderMatcheser et objekt og kan ikke mappes gjennom
@@ -124,10 +126,12 @@ class Messages extends React.Component {
 
     return (
       <div>
+        <Link to={`/matchedprofile/${id}`}>
       <div className="matched-user">
-          <img src={renderMatchedUserImg}  alt="" />
+          <img src={renderMatchedUserImg} alt="" />
           <h2 className="h2">{renderMatchedUserSurName} {renderMatchedUserFirstName}</h2>
         </div>
+        </Link>
       
       <div className="message-container" >         
            {renderMessages}
