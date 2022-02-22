@@ -140,7 +140,6 @@ class App extends React.Component {
               />
             )}
           />
-          <Route path="/Userfeed" component={UserFeed}></Route>
           <Route path="/profile" component={Profile}></Route>
           <Route path="/matchedprofile/:id" component={Matchedprofile}></Route>
         </Switch>
