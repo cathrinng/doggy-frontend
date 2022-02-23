@@ -34,6 +34,10 @@ class Navbar extends React.Component {
           displayDropdown: true,
         });
         break;
+        default: 
+        this.setState({
+          displayDropdown: false,
+        });
     }
     switch (action) {
       case "close":
@@ -49,7 +53,7 @@ class Navbar extends React.Component {
         <div className="navbar public-navbar">
           <Link to="/" onClick={() => this.toggleDropdown("close")}>
             <div className="logo">
-              <img src={logo} className="logo-img" />
+              <img src={logo} className="logo-img" alt="site-logo"/>
               <h1>Doggy</h1>
             </div>
           </Link>
@@ -63,7 +67,7 @@ class Navbar extends React.Component {
         <div className="navbar private-navbar">
           <Link to="/feed" onClick={() => this.toggleDropdown("close")}>
             <div className="logo">
-              <img src={logo} className="logo-img" />
+              <img src={logo} className="logo-img" alt="site-logo"/>
               <h1>Doggy</h1>
             </div>
           </Link>
@@ -74,6 +78,7 @@ class Navbar extends React.Component {
             <div className="dropdown-menu">
               <img
                 className="profile-img"
+                alt="user-image"
                 src={
                   this.props.loggedIn
                     ? this.props.loggedInUserInfo.img_url
