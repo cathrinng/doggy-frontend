@@ -104,12 +104,15 @@ class Feed extends React.Component {
 
     const renderMessages = messageList
     .map((listElement) => {
+      console.log(listElement);
       const lastMessage = listElement[0];
       const myID = this.state.payload.id;
 
       const displayed_fname = lastMessage.from_user_id === myID ? (lastMessage.to_firstname) : (lastMessage.from_firstname);
       const displayed_lname = lastMessage.from_user_id === myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
       const renderedID = lastMessage.from_user_id === myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
+      const matchedUserImg = lastMessage.from_user_id === myID ? (lastMessage.from_img_url) : (lastMessage.to_img_url);
+      console.log(matchedUserImg);
 
       const timeAgo = formatDistance(
           new Date(lastMessage.created_at),
@@ -122,7 +125,7 @@ class Feed extends React.Component {
         <div key={lastMessage.id}>
           <Link to={`/messages/${renderedID}`}>
             <div className="message-cards">
-              <img src={lastMessage.from_img_url}/>
+              <img src={matchedUserImg}/>
               <div className="message-text">
                   <h5>{displayed_fname} {displayed_lname}</h5>
               {lastMessage.message} - {timeAgo}</div>
