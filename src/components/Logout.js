@@ -2,8 +2,21 @@ import React from "react";
 import Loadingdog from "../components/Loadingdog";
 
 class Logout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      isDeleted: false,
+    })
+  }
   async componentDidMount() {
     const { history } = this.props;
+
+    if (this.props.location.state !== undefined) {
+      console.log('Yahtsee');
+      this.setState({
+        isDeleted: true
+      })
+    }
 
     await new Promise((resolve) => {
       setTimeout(resolve, 3000);
@@ -15,14 +28,26 @@ class Logout extends React.Component {
   }
 
   render() {
-    return (
-      <div className="loading-container">
-        <Loadingdog />
-        <div className="loading-message">
-          <h1>See you soon!</h1>
+    console.log(this.state.isDeleted);
+    if (this.state.isDeleted === true) {
+      return (
+        <div className="loading-container">
+          <Loadingdog />
+          <div className="loading-message">
+            <h1>Sad to see you go!</h1>
+            <h2>Thank you for using Doggy!</h2>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else return (
+      <div className="loading-container">
+          <Loadingdog />
+          <div className="loading-message">
+            <h1>See you soon!</h1>
+          </div>
+        </div>
+    )
+    
   }
 }
 

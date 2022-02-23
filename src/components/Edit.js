@@ -1,5 +1,5 @@
 import React from "react";
-import { editUser, getUsersById } from "../services/dogs";
+import { editUser, getUsersById, deleteUser } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 import Autocomplete from "./Autocomplete";
 // import { CgProfile } from "react-icons/cg";
@@ -40,9 +40,7 @@ class Edit extends React.Component {
       const user = await getUsersById(payload.id);
 
       this.setState({
-        
-        user: { ...user,
-          id: payload.id },
+        user: { ...user, id: payload.id },
         isLoading: false,
       });
     } catch (error) {
@@ -76,6 +74,25 @@ class Edit extends React.Component {
     } catch (error) {
       console.log("Failed to contact database! Please try again.", error);
     }
+  }
+
+  async handleDeleteUser(e) {
+    if (prompt("This will permanently delete user. Type delete to continue")) {
+      try {
+        let deletedBoolean = await deleteUser();
+        console.log(deletedBoolean.userDeleted);
+        if (deletedBoolean.userDeleted === true) {
+          console.log("User deleted");
+          const { history } = this.props;
+          history.push({
+            pathname: '/logout',
+            state: { deleted: true }
+        });
+        } else return;
+      } catch (error) {
+        console.log("Failed to contact database! Please try again.", error);
+      }
+    } else return;
   }
 
   async uploadImageToCloud(imgFile) {
@@ -234,6 +251,12 @@ class Edit extends React.Component {
             </button>
           </div>
         </form>
+        <button
+          className="delete-user-button"
+          onClick={(e) => this.handleDeleteUser(e)}
+        >
+          Delete user
+        </button>
       </div>
     );
   }
