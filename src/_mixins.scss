@@ -3,8 +3,9 @@
   color: white;
   width: 90px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 8px;
   border-style: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 @mixin form-style {
