@@ -3,7 +3,7 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-// import Loadingdog from "./Loadingdog";
+import Loadingdog from "../components/Loadingdog";
 
 class Feed extends React.Component {
   constructor(props) {
@@ -60,7 +60,14 @@ class Feed extends React.Component {
     }
 
     if (isLoading) {
-      return <div className="loading-container"></div>;
+      return (
+        <div className="loading-container">
+          <Loadingdog />
+          <div className="loading-message">
+            <h1>Fetching feed!</h1>
+          </div>
+        </div>
+      );
     }
 
     const renderMatches = this.state.matches.map((matchInfo) => {
