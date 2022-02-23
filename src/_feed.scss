@@ -86,3 +86,7 @@ h5 {
 .no-message {
   text-align: center;
 }
+
+.message-list:-webkit-scrollbar {
+	display: none;
+  }
