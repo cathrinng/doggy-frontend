@@ -51,7 +51,7 @@ class Edit extends React.Component {
   handleCancelClick(e) {
     e.preventDefault();
     const { history } = this.props;
-    history.push("/");
+    history.push("/feed");
   }
 
   async handleSaveClick(e) {
@@ -91,7 +91,7 @@ class Edit extends React.Component {
     try {
       await editUser(editedUser);
       const { history } = this.props;
-      history.push("/");
+      history.push("/feed");
     } catch (error) {
       console.log("Deleting user failed", error);
     }
