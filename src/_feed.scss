@@ -34,9 +34,9 @@ h5 {
 		margin-right: $size-16;
 
 		img {
-			height: 150px;
+			height: 140px;
 			width: 100px;
-			object-fit: cover;
+			// object-fit: cover;
 			border-radius: 8px;
 		}
 	}
@@ -60,7 +60,7 @@ h5 {
 
 .message-list {
 		overflow-y: auto;
-		max-height: 380px;
+		max-height: 385px;
 		display: flex;
 		flex-direction: column;
 }
