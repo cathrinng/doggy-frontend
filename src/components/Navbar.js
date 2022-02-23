@@ -78,7 +78,7 @@ class Navbar extends React.Component {
             <div className="dropdown-menu">
               <img
                 className="profile-img"
-                alt="user-image"
+                
                 src={
                   this.props.loggedIn
                     ? this.props.loggedInUserInfo.img_url
