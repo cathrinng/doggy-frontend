@@ -10,6 +10,9 @@ $logo-font: "Voces";
   background-color: white;
   font-family: $logo-font;
   padding: $size-16;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -22,30 +25,33 @@ h5 {
 }
 
 //match container
-.match-container {
-  img {
-    height: 150px;
-    width: 120px;
-    border-radius: 8px;
+.matches {
+  display: flex;
+  overflow-x: auto;
+
+  .match-info {
+    text-align: center;
+    margin-right: $size-16;
+
+    img {
+      height: 150px;
+      width: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
   }
 }
 
-.matches {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  overflow-x: auto;
-  padding-bottom: $size-16;
+.matches::-webkit-scrollbar {
+  display: none;
 }
 
-.match-info {
+.no-match {
   text-align: center;
 }
 
 //message container
-.message-container {
-  height: 500px;
-
+.msg-container {
   img {
     border-radius: 50%;
     height: 80px;
@@ -54,7 +60,7 @@ h5 {
 
 .message-list {
   overflow-y: auto;
-  height: 400px;
+  max-height: 380px;
   display: flex;
   flex-direction: column;
 }
@@ -63,10 +69,19 @@ h5 {
   display: flex;
   align-items: center;
   padding-bottom: $size-16;
+
+  img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 }
 
-p {
-  margin-left: $size-16;
+.message-text {
+  padding-left: $size-16;
 }
 
-// border-bottom: 1px solid lightgray;
+.no-message {
+  text-align: center;
+}
