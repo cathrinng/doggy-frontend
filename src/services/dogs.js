@@ -104,12 +104,10 @@ export function getMessagesByUserId() {
   }).then((response) => response.json());
 }
 
-// export function deleteUser() {
-//   console.log("test delete user");
-//   return fetch(`${API_URL}/delete`, {
-//     method: "DELETE",
-//     headers: {
-//       "X-Auth-Token": localStorage.getItem("doggytoken"),
-//     },
-//   }).then((res) => res.json());
-// }
+export function deleteUser() {
+  return fetch(`${API_URL}/delete`, {
+    headers: {
+      "X-Auth-Token": localStorage.getItem("doggytoken"),
+    },
+  }).then((res) => res.json());
+}
