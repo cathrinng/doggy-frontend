@@ -104,7 +104,6 @@ class Feed extends React.Component {
 
     const renderMessages = messageList
     .map((listElement) => {
-      console.log(listElement);
       const lastMessage = listElement[0];
       const myID = this.state.payload.id;
 
@@ -112,7 +111,6 @@ class Feed extends React.Component {
       const displayed_lname = lastMessage.from_user_id === myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
       const renderedID = lastMessage.from_user_id === myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
       const matchedUserImg = lastMessage.from_user_id === myID ? (lastMessage.to_img_url) : (lastMessage.from_img_url);
-      console.log(matchedUserImg);
 
       const timeAgo = formatDistance(
           new Date(lastMessage.created_at),
