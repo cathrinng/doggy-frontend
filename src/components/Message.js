@@ -153,8 +153,7 @@ class Messages extends React.Component {
           <div className="matched-user">
             <img src={this.props.location.user !== undefined ? this.props.location.user.image : renderMatchedUserImg} alt="" />
             <h2 className="h2">
-              {this.props.location.user !== undefined ? this.props.location.user.firstname : renderMatchedUserFirstName} 
-              {this.props.location.user !== undefined ? this.props.location.user.surname : renderMatchedUserSurName}
+              {this.props.location.user !== undefined ? this.props.location.user.firstname : renderMatchedUserFirstName} {this.props.location.user !== undefined ? this.props.location.user.surname : renderMatchedUserSurName}
             </h2>
           </div>
         </Link>
