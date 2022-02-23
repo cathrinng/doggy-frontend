@@ -80,7 +80,6 @@ class Edit extends React.Component {
     if (prompt("This will permanently delete user. Type delete to continue")) {
       try {
         let deletedBoolean = await deleteUser();
-        console.log(deletedBoolean.userDeleted);
         if (deletedBoolean.userDeleted === true) {
           console.log("User deleted");
           const { history } = this.props;

@@ -12,7 +12,6 @@ class Logout extends React.Component {
     const { history } = this.props;
 
     if (this.props.location.state !== undefined) {
-      console.log('Yahtsee');
       this.setState({
         isDeleted: true
       })
@@ -28,7 +27,6 @@ class Logout extends React.Component {
   }
 
   render() {
-    console.log(this.state.isDeleted);
     if (this.state.isDeleted === true) {
       return (
         <div className="loading-container">
