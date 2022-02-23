@@ -100,7 +100,6 @@ class Feed extends React.Component {
     });
 
     const messageList = Object.values(messageElements);
-    console.log("messagelist", messageList)
 
     const renderMessages = messageList
     .map((listElement) => {
