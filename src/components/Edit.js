@@ -2,7 +2,7 @@ import React from "react";
 import { editUser, getUsersById } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 import Autocomplete from "./Autocomplete";
-import { CgProfile } from "react-icons/cg";
+// import { CgProfile } from "react-icons/cg";
 import Loadingdog from "../components/Loadingdog";
 
 class Edit extends React.Component {
@@ -60,32 +60,32 @@ class Edit extends React.Component {
     const editedUser = {
       id: user.id,
       img_url:
-        this.state.profilePictureUrl == ""
+        this.state.profilePictureUrl === ""
           ? user.img_url
           : this.state.profilePictureUrl,
       firstname:
-        this.firstnameRef.current.value == ""
+        this.firstnameRef.current.value === ""
           ? user.firstname
           : this.firstnameRef.current.value,
       surname:
-        this.surnameRef.current.value == ""
+        this.surnameRef.current.value === ""
           ? user.surname
           : this.surnameRef.current.value,
       email:
-        this.emailRef.current.value == ""
+        this.emailRef.current.value === ""
           ? user.email
           : this.emailRef.current.value,
       password:
-        this.passwordRef.current.value == ""
+        this.passwordRef.current.value === ""
           ? user.password
           : this.passwordRef.current.value,
       sex:
-        this.state.selectSexValue == "" ? user.sex : this.state.selectSexValue,
+        this.state.selectSexValue === "" ? user.sex : this.state.selectSexValue,
       age:
-        this.ageRef.current.value == "" ? user.age : this.ageRef.current.value,
-      breed: this.state.breed == "" ? user.breed : this.state.breed,
+        this.ageRef.current.value === "" ? user.age : this.ageRef.current.value,
+      breed: this.state.breed === "" ? user.breed : this.state.breed,
       bio:
-        this.bioRef.current.value == "" ? user.bio : this.bioRef.current.value,
+        this.bioRef.current.value === "" ? user.bio : this.bioRef.current.value,
     };
     console.log(editedUser);
     try {
