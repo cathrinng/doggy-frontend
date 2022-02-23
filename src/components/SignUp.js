@@ -35,14 +35,12 @@ class SignUp extends React.Component {
       breed: this.breedRef.current,
       bio: this.bioRef.current.value,
     };
-    console.log(user);
     if (Object.values(user).some((field) => field === "")) {
       this.setState({ showFormError: true });
       return;
     }
 
     try {
-      console.log(user);
       const registeredUser = await createUser(user);
       console.log(registeredUser);
       const { history } = this.props;
