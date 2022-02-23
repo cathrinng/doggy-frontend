@@ -84,7 +84,10 @@ class Edit extends React.Component {
         if (deletedBoolean.userDeleted === true) {
           console.log("User deleted");
           const { history } = this.props;
-          history.replace("/logout");
+          history.push({
+            pathname: '/logout',
+            state: { deleted: true }
+        });
         } else return;
       } catch (error) {
         console.log("Failed to contact database! Please try again.", error);
