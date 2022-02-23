@@ -111,7 +111,7 @@ class Feed extends React.Component {
       const displayed_fname = lastMessage.from_user_id === myID ? (lastMessage.to_firstname) : (lastMessage.from_firstname);
       const displayed_lname = lastMessage.from_user_id === myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
       const renderedID = lastMessage.from_user_id === myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
-      const matchedUserImg = lastMessage.from_user_id === myID ? (lastMessage.from_img_url) : (lastMessage.to_img_url);
+      const matchedUserImg = lastMessage.from_user_id === myID ? (lastMessage.to_img_url) : (lastMessage.from_img_url);
       console.log(matchedUserImg);
 
       const timeAgo = formatDistance(
