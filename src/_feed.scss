@@ -25,29 +25,19 @@ h5 {
 }
 
 //match container
-.match-container {
-
-	img {
-		height: 150px;
-		width: 100px;
-		border-radius: 8px;
-	}
-}
-
 .matches {
 	display: flex;
 	overflow-x: auto;
-	width: 360px;
 
 	.match-info {
 		text-align: center;
-		margin: 0 8px;
+		margin-right: $size-16;
 
 		img {
-			height: 80px;
-			width: 80px;
-			border-radius: 50%;
+			height: 150px;
+			width: 100px;
 			object-fit: cover;
+			border-radius: 8px;
 		}
 	}
 }
@@ -55,8 +45,6 @@ h5 {
 .matches::-webkit-scrollbar {
 	display: none;
   }
-
-
 
 .no-match {
   text-align: center;
@@ -72,7 +60,7 @@ h5 {
 
 .message-list {
 		overflow-y: auto;
-		max-height: 300px;
+		max-height: 380px;
 		display: flex;
 		flex-direction: column;
 }
