@@ -31,7 +31,7 @@ class About extends React.Component {
             <p>
               From the Dream Team <br></br> - Anders, Cathrin, Amanda and Ahmed!
               <span role="img" aria-label="heart">
-                &#10084;
+                ❤️
               </span>
             </p>
           </div>
