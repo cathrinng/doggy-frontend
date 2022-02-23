@@ -8,7 +8,7 @@ import jwtDecode from "jwt-decode";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 import socketIOClient from "socket.io-client";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import validator from "validator";
 
 class Messages extends React.Component {
@@ -21,6 +21,9 @@ class Messages extends React.Component {
       matchedUserInfo: [],
       payload: {},
     };
+    // const location = useLocation();
+    // const { from } = location.state;
+
     this.socket = socketIOClient(process.env.REACT_APP_API_URL);
   }
 
@@ -29,7 +32,7 @@ class Messages extends React.Component {
     const { user_who_matched } = this.props.match.params;
     const messages = await getMessages(userId, user_who_matched);
     this.setState({
-      messages: messages,
+      messages,
     });
   }
 
@@ -37,7 +40,7 @@ class Messages extends React.Component {
     const { user_who_matched } = this.props.match.params;
     const matchedUserInfo = await getUsersById(user_who_matched);
     this.setState({
-      matchedUserInfo: matchedUserInfo,
+      matchedUserInfo,
     });
   }
 
@@ -51,7 +54,7 @@ class Messages extends React.Component {
 
     if (token) {
       this.setState({
-        payload: payload,
+        payload,
       });
     }
 
@@ -121,16 +124,22 @@ class Messages extends React.Component {
         return (
           <div
             key={data.id}
-            className={isUser ? "Loged_inn_user-post user-post" : "match-post user-post"}
+            className={
+              isUser ? "Loged_inn_user-post user-post" : "match-post user-post"
+            }
           >
-            <a href={data.message}><p>{data.message}</p></a>
+            <a href={data.message}>
+              <p>{data.message}</p>
+            </a>
           </div>
         );
       } else {
         return (
           <div
             key={data.id}
-            className={isUser ? "Loged_inn_user-post user-post" : "match-post user-post"}
+            className={
+              isUser ? "Loged_inn_user-post user-post" : "match-post user-post"
+            }
           >
             <p>{data.message}</p>
           </div>
@@ -142,9 +151,10 @@ class Messages extends React.Component {
       <div className="chat-wrapper">
         <Link to={`/matchedprofile/${id}`}>
           <div className="matched-user">
-            <img src={renderMatchedUserImg} alt="" />
+            <img src={this.props.location.user !== undefined ? this.props.location.user.image : renderMatchedUserImg} alt="" />
             <h2 className="h2">
-            {renderMatchedUserFirstName} {renderMatchedUserSurName} 
+              {this.props.location.user !== undefined ? this.props.location.user.firstname : renderMatchedUserFirstName} 
+              {this.props.location.user !== undefined ? this.props.location.user.surname : renderMatchedUserSurName}
             </h2>
           </div>
         </Link>
