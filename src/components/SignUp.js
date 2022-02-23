@@ -75,6 +75,12 @@ class SignUp extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  handleCancelClick(e) {
+    e.preventDefault();
+    const { history } = this.props;
+    history.replace("/");
+  }
+
   render() {
     return (
       <div className="sign-up">
@@ -83,6 +89,9 @@ class SignUp extends React.Component {
           id="form"
           className="sign-up-form"
           onSubmit={(e) => this.handleSignUp(e)}
+          autoComplete="off"
+          autoComplete="chrome-off"
+          autoComplete="new-password"
         >
           <div className="profile-picture">
             {this.state.profilePictureUrl === "" ? (
@@ -95,7 +104,7 @@ class SignUp extends React.Component {
                 onError={() => this.handlePictureInputError()}
               />
             )}
-            <label className="input-label">
+            <label className="input-label img-label">
               Upload profile picture
               <input
                 className="picture-input"
@@ -195,12 +204,7 @@ class SignUp extends React.Component {
             </span>
           )}
           <div className="buttons-sign-up-form">
-            <a
-              href="https://doggy-frontend.herokuapp.com/#/"
-              className="cancel-button-link"
-            >
-              Cancel
-            </a>
+            <button className="cancel-button" onClick={(e) => this.handleCancelClick(e)}>Cancel</button>
             <button className="sign-up-button" type="submit">
               Sign Up
             </button>
