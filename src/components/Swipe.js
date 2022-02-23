@@ -68,7 +68,7 @@ function Swipe(props) {
   };
 
   return (
-    <div>
+    <div className="card-wrapper">
       <div className="cardContainer">
         {db.map((character, index) => (
           <TinderCard

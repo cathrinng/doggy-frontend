@@ -4,6 +4,7 @@ import Loadingdog from "../components/Loadingdog";
 
 import Swipe from "../components/Swipe";
 import jwtDecode from "jwt-decode";
+import socketIOClient from "socket.io-client";
 
 class Swipecard extends React.Component {
   constructor(props) {
@@ -13,9 +14,14 @@ class Swipecard extends React.Component {
       matches: [],
       payload: {},
     };
+    this.socket = socketIOClient(process.env.REACT_APP_API_URL);
   }
 
   async componentDidMount() {
+    this.socket.on("connection", () => {
+      console.log(`Fetching matches from back-end`);
+    });
+
     const token = localStorage.getItem("doggytoken");
     const payload = jwtDecode(token);
     const matches = await getPotentialMatchesByUserId(payload.id);
@@ -24,6 +30,19 @@ class Swipecard extends React.Component {
       matches,
       payload,
     });
+
+    this.socket.emit("getMatches", token);
+    this.socket.on("recieveMatches", (potentialMatches) => {
+      this.setState({
+        matches,
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.socket.emit("end");
+    this.socket.disconnect();
+    console.log(`I'm disconnected from the back-end`);
   }
 
   async submitReaction(id, direction) {
@@ -41,12 +60,12 @@ class Swipecard extends React.Component {
     return (
       <div className="swipecards">
         {this.state.matches.length > 0 ? (
-          <div>
+          
             <Swipe
               matches={this.state.matches}
               submitReaction={this.submitReaction}
             />
-          </div>
+          
         ) : (
           <div className="loading-container">
             <Loadingdog />

@@ -6,11 +6,9 @@ $background-color: #e07a5f;
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  width: 100vw;
 
-  .swipecards > div {
+  .card-wrapper {
     display: flex;
-    flex: 1;
     flex-direction: column;
   }
 
@@ -45,33 +43,34 @@ $background-color: #e07a5f;
     box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
     -webkit-box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
     -moz-box-shadow: 1px 1px 56px 1px rgba(0, 0, 0, 0.57);
-  }
 
-  .card {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    img {
-      display: block;
+    .card {
+      position: relative;
       width: 100%;
       max-width: 300px;
-      height: auto;
-      margin: 8px;
-      margin: 0;
-    }
-    .card-info {
-      background-color: white;
-      max-height: 100px;
-      min-height: 100px;
-      // overflow-y: scroll;
-      min-width: 100%;
-
-      p {
+      height: 450px;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+      img {
+        display: block;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        margin: 8px;
         margin: 0;
+      }
+      .card-info {
+        background-color: white;
+        overflow-y: auto;
+        max-height: 100px;
+        min-height: 100px;
+        // overflow-y: scroll;
+        min-width: 100%;
+
+        p {
+          margin: 0;
+        }
       }
     }
   }
@@ -98,33 +97,36 @@ $background-color: #e07a5f;
 
   .buttons {
     display: flex;
-    overflow: hidden;
-    border-radius: 8px;
-    background-color: white;
-    padding: 8px;
-    justify-content: center;
-    // button:hover {
-    //   transform: scale(1.05);
+    justify-content: space-between;
+    width: 300px;
+    max-width: 300px;
+    margin: 0 auto;
+
+    // :nth-child(2) {
+    //   margin: 0 20px;
     // }
 
-    :nth-child(2) {
-      margin: 0 24px;
-    }
-
     button {
-      width: 60px;
-      height: 60px;
-      border-radius: 5px;
-      border: none;
-      // transition: 200ms;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      height: 70px;
+      width: 70px;
       padding: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: none;
+      background-color: white;
 
       svg {
         fill: $background-color;
         background-color: white;
+        border-radius: 50%;
         fill-opacity: 1;
-        height: 100%;
-        width: 100%;
+        height: 50px;
+        width: 50px;
+        margin: auto;
+        padding: 0;
       }
     }
   }
