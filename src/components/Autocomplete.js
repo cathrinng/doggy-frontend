@@ -126,7 +126,7 @@ class Autocomplete extends Component {
           ref={this.breedRef}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          value={userInput}
+          value={this.props.editValue ? this.props.editValue : userInput}
         />
         {suggestionsListComponent}
       </Fragment>
