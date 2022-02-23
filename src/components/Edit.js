@@ -11,6 +11,7 @@ class Edit extends React.Component {
 
     this.state = {
       user: {
+        id: "",
         firstname: "",
         surname: "",
         email: "",
@@ -33,12 +34,15 @@ class Edit extends React.Component {
     }
 
     try {
-      const id = await this.getUserIdFromToken(window.localStorage.doggytoken);
+      const token = localStorage.getItem("doggytoken");
+      const payload = jwtDecode(token);
       this.setState({ isLoading: true });
-      const user = await getUsersById(id);
+      const user = await getUsersById(payload.id);
 
       this.setState({
-        user,
+        
+        user: { ...user,
+          id: payload.id },
         isLoading: false,
       });
     } catch (error) {
@@ -46,15 +50,10 @@ class Edit extends React.Component {
     }
   }
 
-  async getUserIdFromToken(token) {
-    const { id } = await jwtDecode(token);
-    return id;
-  }
-
   handleCancelClick(e) {
     e.preventDefault();
     const { history } = this.props;
-    history.push("/feed");
+    history.replace("/feed");
   }
 
   handleInputChange(field, event) {
@@ -66,7 +65,8 @@ class Edit extends React.Component {
     });
   }
 
-  async handleEditSubmit() {
+  async handleEditSubmit(e) {
+    e.preventDefault();
     const { history } = this.props;
 
     const editedUser = this.state.user;
@@ -90,7 +90,10 @@ class Edit extends React.Component {
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({
-          user: {img_url: data.url}
+          user: {
+            ...this.state.user,
+            img_url: data.url,
+          },
         });
       })
       .catch((err) => console.log(err));
