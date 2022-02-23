@@ -6,7 +6,7 @@ class Logout extends React.Component {
     const { history } = this.props;
 
     await new Promise((resolve) => {
-      setTimeout(resolve, 3000);
+      setTimeout(resolve, 2000);
     });
 
     localStorage.removeItem("doggytoken");

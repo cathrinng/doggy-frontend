@@ -78,10 +78,17 @@ class Edit extends React.Component {
 
   async handleDeleteUser(e) {
     if (prompt("This will permanently delete user. Type delete to continue")) {
-      const { history } = this.props;
-      await deleteUser();
-      history.replace("/logout");
-      return;
+      try {
+        let deletedBoolean = await deleteUser();
+        console.log(deletedBoolean.userDeleted);
+        if (deletedBoolean.userDeleted === true) {
+          console.log("User deleted");
+          const { history } = this.props;
+          history.replace("/logout");
+        } else return;
+      } catch (error) {
+        console.log("Failed to contact database! Please try again.", error);
+      }
     } else return;
   }
 

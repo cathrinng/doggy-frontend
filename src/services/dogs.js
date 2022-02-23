@@ -113,5 +113,5 @@ export function deleteUser() {
       "Content-Type": "application/json",
       "X-Auth-Token": localStorage.getItem("doggytoken"),
     },
-  }).then((res) => res.json()).then((data) => console.log(data));
+  }).then((res) => res.json());
 }
