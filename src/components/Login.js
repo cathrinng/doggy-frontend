@@ -11,6 +11,7 @@ class Login extends React.Component {
       email: "",
       password: "",
       showPassword: false,
+      flagError: false,
     };
   }
 
@@ -39,8 +40,13 @@ class Login extends React.Component {
       });
 
       if (!token) {
+        this.setState({
+          flagError: true,
+        })
         throw new Error("Unsuccessful login");
-      }
+      } this.setState({
+        flagError: false,
+      })
 
       // 2. Store token in local storage
       localStorage.setItem("doggytoken", token);
@@ -90,7 +96,7 @@ class Login extends React.Component {
               placeholder="password"
               onChange={this.handleInputChange.bind(this, "password")}
               onKeyDown={this.handleSubmit.bind(this)}
-            />
+              />
             {!this.state.showPassword ? (
               <BiShow onClick={this.toggleShowPassword.bind(this)} />
             ) : (
@@ -100,6 +106,7 @@ class Login extends React.Component {
           <div>
             <button onClick={this.handleLoginAttempt.bind(this)}>Log In</button>
           </div>
+          <div className={this.state.flagError ? "show-error" : "hide-error"}>Invalid username or password</div>
           <div className="signup-info">
             <p>Not registered?</p>
             <p>

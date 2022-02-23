@@ -54,6 +54,7 @@ $background-color: #e07a5f;
       font-weight: bold;
       border-radius: 8px;
       background-color: $background-color;
+      margin-bottom: 16px;
     }
 
     button:active {
@@ -71,4 +72,13 @@ $background-color: #e07a5f;
       }
     }
   }
+}
+
+.show-error {
+  color: red;
+  font-weight: bolder;
+}
+
+.hide-error {
+  visibility: hidden;
 }
