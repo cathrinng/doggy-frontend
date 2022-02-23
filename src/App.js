@@ -1,5 +1,5 @@
 import "./App.scss";
-import React, { Component } from "react";
+import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
@@ -13,16 +13,11 @@ import Logout from "./components/Logout";
 import Edit from "./components/Edit";
 import Messages from "./components/Message";
 import Feed from "./components/Feed";
-import Imageupload from "./components/Imageupload";
 import { getUsersById } from "./services/dogs";
-import MessagesInput from "./components/MessageInput";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Matchedprofile from "./components/Matchedprofile";
-// import Profile from "/.components/Profile";
-import socketIOClient from "socket.io-client";
-const API_URL = process.env.REACT_APP_API_URL;
-var socket = socketIOClient(API_URL);
+
 
 class App extends React.Component {
   constructor(props) {
@@ -41,7 +36,7 @@ class App extends React.Component {
   async componentDidUpdate(prevProps, prevState) {
     if (
       this.state.isLoggedIn !== prevState.isLoggedIn &&
-      !prevState.isLoggedIn == true
+      !prevState.isLoggedIn === true
     ) {
       const token = localStorage.getItem("doggytoken");
       const payload = jwtDecode(token);

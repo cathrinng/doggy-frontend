@@ -3,7 +3,7 @@ import { getUserMatchesById, getMessagesByUserId } from "../services/dogs";
 import { formatDistance } from "date-fns";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
-import Loadingdog from "./Loadingdog";
+// import Loadingdog from "./Loadingdog";
 
 
 
@@ -12,7 +12,7 @@ class Feed extends React.Component {
     super(props);
 
     this.state = {
-      matches: [],
+      // matches: [],
       newMessages: [],
       payload: {},
       isLoading: true,
@@ -107,9 +107,9 @@ class Feed extends React.Component {
       const lastMessage = listElement[0];
       const myID = this.state.payload.id;
 
-      const displayed_fname = lastMessage.from_user_id == myID ? (lastMessage.to_firstname) : (lastMessage.from_firstname);
-      const displayed_lname = lastMessage.from_user_id == myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
-      const renderedID = lastMessage.from_user_id == myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
+      const displayed_fname = lastMessage.from_user_id === myID ? (lastMessage.to_firstname) : (lastMessage.from_firstname);
+      const displayed_lname = lastMessage.from_user_id === myID ? (lastMessage.to_surname) : (lastMessage.from_surname);
+      const renderedID = lastMessage.from_user_id === myID ? (lastMessage.to_user_id) : (lastMessage.from_user_id);
 
       const timeAgo = formatDistance(
           new Date(lastMessage.created_at),
