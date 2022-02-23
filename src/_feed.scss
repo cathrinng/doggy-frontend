@@ -13,6 +13,7 @@ $logo-font: "Voces";
 	flex: 1;
 	display: flex;
 	flex-direction: column;
+	overflow-y: auto;
 }
 
 a {
@@ -34,7 +35,7 @@ h5 {
 		margin-right: $size-16;
 
 		img {
-			height: 140px;
+			height: 120px;
 			width: 100px;
 			// object-fit: cover;
 			border-radius: 8px;
