@@ -35,6 +35,8 @@ class SignUp extends React.Component {
       breed: this.breedRef.current,
       bio: this.bioRef.current.value,
     };
+
+    //checks if all the fields are filled out
     if (Object.values(user).some((field) => field === "")) {
       this.setState({ showFormError: true });
       return;
