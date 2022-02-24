@@ -1,6 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 class About extends React.Component {
+
+  handleClick() {
+    const { history } = this.props;
+    history.push("/");
+  }
+
   render() {
     return (
       <div className="about-card-container">
@@ -12,7 +20,7 @@ class About extends React.Component {
               You are probably wondering why we came up with this app Doggy,
               don’t you?
             </p>
-            <p>
+            <p className="main-text">
               Have you ever felt lonely and have no one to socialize with? We
               guarantee you that we all have felt that during the shutdowns
               under the pandemic. Some of us have been lucky to have a cute
@@ -35,6 +43,12 @@ class About extends React.Component {
               </span>
             </p>
           </div>
+          </div>     
+            <button
+            onClick={this.handleClick.bind(this)}
+            ><BsArrowLeftCircle style={{marginRight: "5px"}}/>Go back to homepage
+            </button>
+          <div>
         </div>
       </div>
     );

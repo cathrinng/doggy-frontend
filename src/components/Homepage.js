@@ -1,4 +1,6 @@
 import React from "react";
+import About from "./About";
+import { Link } from "react-router-dom";
 
 class Homepage extends React.Component {
   handleClick() {
@@ -19,6 +21,7 @@ class Homepage extends React.Component {
             <p>
               Doggy is the largest dating app for dogs. Stop
               barking up the wrong tree and join us to find out why!
+               <Link to={"/about"} className="learn-link">Learn more</Link>
             </p>
             <button
               className="button-homepage"
@@ -30,6 +33,7 @@ class Homepage extends React.Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }
