@@ -7,43 +7,33 @@ class SignUp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.firstnameRef = React.createRef();
-    this.surnameRef = React.createRef();
-    this.emailRef = React.createRef();
-    this.passwordRef = React.createRef();
-    this.ageRef = React.createRef();
-    this.breedRef = React.createRef();
-    this.bioRef = React.createRef();
-
     this.state = {
       selectSexValue: "",
-      profilePictureUrl: "",
       showFormError: false,
+      user: {
+        firstname: "",
+        surname: "",
+        email: "",
+        password: "",
+        sex: "",
+        age: "",
+        breed: "",
+        bio: "",
+        img_url: "",
+      },
     };
   }
 
   async handleSignUp(e) {
     e.preventDefault();
-    const user = {
-      img_url: this.state.profilePictureUrl,
-      firstname: this.firstnameRef.current.value,
-      surname: this.surnameRef.current.value,
-      email: this.emailRef.current.value.toString().toLowerCase(),
-      password: this.passwordRef.current.value,
-      sex: this.state.selectSexValue,
-      age: this.ageRef.current.value,
-      breed: this.breedRef.current,
-      bio: this.bioRef.current.value,
-    };
-
     //checks if all the fields are filled out
-    if (Object.values(user).some((field) => field === "")) {
+    if (Object.values(this.state.user).some((field) => field === "")) {
       this.setState({ showFormError: true });
       return;
     }
 
     try {
-      await createUser(user);
+      await createUser(this.state.user);
       const { history } = this.props;
       history.push("/login");
     } catch (error) {
@@ -51,8 +41,31 @@ class SignUp extends React.Component {
     }
   }
 
-  handleSexSelct(e) {
-    this.setState({ selectSexValue: e.target.value });
+  handleInputChange(field, event) {
+    if (field == "email") {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [field]: event.target.value.toLowerCase(),
+        },
+      });
+    } else {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [field]: event.target.value,
+        },
+      });
+    }
+  }
+
+  handleSexSelect(e) {
+    this.setState({
+      user: {
+        ...this.state.user,
+        sex: e.target.value,
+      },
+    });
   }
 
   async uploadImageToCloud(imgFile) {
@@ -60,15 +73,17 @@ class SignUp extends React.Component {
     data.append("file", imgFile);
     data.append("upload_preset", "img_url");
     data.append("cloud_name", "dbniwuu7z");
-    console.log(data);
-    fetch("  https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
+    fetch("https://api.cloudinary.com/v1_1/dbniwuu7z/image/upload", {
       method: "post",
       body: data,
     })
       .then((resp) => resp.json())
       .then((data) => {
         this.setState({
-          profilePictureUrl: data.url,
+          user: {
+            ...this.state.user,
+            img_url: data.url,
+          },
         });
       })
       .catch((err) => console.log(err));
@@ -93,12 +108,12 @@ class SignUp extends React.Component {
           autoComplete="new-password"
         >
           <div className="profile-picture">
-            {this.state.profilePictureUrl === "" ? (
+            {this.state.user.img_url === "" ? (
               <CgProfile size="50px" className="default-profile-picture" />
             ) : (
               <img
                 className="profile-picture-circle"
-                src={this.state.profilePictureUrl}
+                src={this.state.user.img_url}
                 alt="Profile Image"
                 onError={() => this.handlePictureInputError()}
               />
@@ -122,7 +137,8 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="first name"
-                ref={this.firstnameRef}
+                value={this.state.user.firstname}
+                onChange={this.handleInputChange.bind(this, "firstname")}
               />
             </label>
 
@@ -132,7 +148,8 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="surname"
-                ref={this.surnameRef}
+                value={this.state.user.surname}
+                onChange={this.handleInputChange.bind(this, "surname")}
               />
             </label>
           </div>
@@ -142,7 +159,8 @@ class SignUp extends React.Component {
               className="input-style"
               type="text"
               name="email"
-              ref={this.emailRef}
+              value={this.state.user.email}
+              onChange={this.handleInputChange.bind(this, "email")}
             />
           </label>
           <label className="input-label" htmlFor="password">
@@ -151,7 +169,8 @@ class SignUp extends React.Component {
               className="input-style"
               type="password"
               name="password"
-              ref={this.passwordRef}
+              value={this.state.user.password}
+              onChange={this.handleInputChange.bind(this, "password")}
             />
           </label>
           <div className="two-column-row">
@@ -161,7 +180,7 @@ class SignUp extends React.Component {
                 className="input-style-sex"
                 name="sex"
                 defaultValue={this.state.selectSexValue || ""}
-                onChange={(e) => this.handleSexSelct(e)}
+                onChange={(e) => this.handleSexSelect(e)}
               >
                 <option disabled value="">
                   - select an option -
@@ -176,7 +195,8 @@ class SignUp extends React.Component {
                 className="input-style"
                 type="text"
                 name="age"
-                ref={this.ageRef}
+                value={this.state.user.age}
+                onChange={this.handleInputChange.bind(this, "age")}
               />
             </label>
           </div>
@@ -185,8 +205,9 @@ class SignUp extends React.Component {
             <Autocomplete
               className="input-style"
               setBreedValue={(value) => {
-                this.breedRef.current = value;
+                this.setState({ user: { ...this.state.user, breed: value } });
               }}
+              editValue={this.state.user.breed}
             />
           </label>
           <label className="input-label" htmlFor="bio">
@@ -194,7 +215,8 @@ class SignUp extends React.Component {
             <textarea
               className="text-area-style"
               name="bio"
-              ref={this.bioRef}
+              value={this.state.user.bio}
+              onChange={this.handleInputChange.bind(this, "bio")}
             />
           </label>
           {this.state.showFormError && (
@@ -203,7 +225,12 @@ class SignUp extends React.Component {
             </span>
           )}
           <div className="buttons-sign-up-form">
-            <button className="cancel-button" onClick={(e) => this.handleCancelClick(e)}>Cancel</button>
+            <button
+              className="cancel-button"
+              onClick={(e) => this.handleCancelClick(e)}
+            >
+              Cancel
+            </button>
             <button className="sign-up-button" type="submit">
               Sign Up
             </button>
