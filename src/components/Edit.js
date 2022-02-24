@@ -54,6 +54,7 @@ class Edit extends React.Component {
   }
 
   handleInputChange(field, event) {
+    console.log(field);
     this.setState({
       user: {
         ...this.state.user,
