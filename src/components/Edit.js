@@ -2,7 +2,6 @@ import React from "react";
 import { editUser, getUsersById, deleteUser } from "../services/dogs";
 import jwtDecode from "jwt-decode";
 import Autocomplete from "./Autocomplete";
-// import { CgProfile } from "react-icons/cg";
 import Loadingdog from "../components/Loadingdog";
 
 class Edit extends React.Component {
