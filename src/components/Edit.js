@@ -72,6 +72,15 @@ class Edit extends React.Component {
     }
   }
 
+  handleSexSelect(e) {
+    this.setState({
+      user: {
+        ...this.state.user,
+        sex: e.target.value,
+      },
+    });
+  }
+
   async handleEditSubmit(e) {
     e.preventDefault();
     const { history } = this.props;

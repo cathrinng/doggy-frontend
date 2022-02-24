@@ -105,9 +105,9 @@ export function getMessagesByUserId() {
 }
 
 export function deleteUser() {
-  console.log('Delete user function call');
+  console.log("Delete user function call");
   return fetch(`${API_URL}/delete`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       "X-Auth-Token": localStorage.getItem("doggytoken"),
