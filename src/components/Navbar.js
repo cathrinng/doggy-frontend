@@ -12,7 +12,7 @@ class Navbar extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: this.props.loggedIn,
       displayDropdown: false,
     };
     this.toggleDropdown = this.toggleDropdown.bind(this);
