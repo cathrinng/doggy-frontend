@@ -22,6 +22,7 @@ class Edit extends React.Component {
         img_url: "",
       },
       isLoading: false,
+      imgIsEdited: false,
     };
   }
 
@@ -115,6 +116,7 @@ class Edit extends React.Component {
       .then((data) => {
         this.props.onLoginChange();
         this.setState({
+          imgIsEdited: true,
           user: {
             ...this.state.user,
             img_url: data.url,
@@ -162,7 +164,7 @@ class Edit extends React.Component {
         <form id="form" className="edit-user-form">
           <div className="profile-picture">
             <label className="input-label">
-              Upload profile picture
+              {this.state.imgIsEdited == false ? "Upload profile picture" : "Picture updated ✔"}
               <input
                 className="picture-input"
                 type="file"
