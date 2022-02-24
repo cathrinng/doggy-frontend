@@ -28,6 +28,7 @@ $text-color: #f4f1de;
   h4 {
     margin: 0;
     padding: 0;
+    font-size: larger;
   }
 
   .card-info {
@@ -43,6 +44,12 @@ $text-color: #f4f1de;
     border: 1px solid $background-color;
     padding: 8px;
     float: right;
-    font-size: 20px;
+    font-size: 18px;
   }
+}
+
+.learn-link {
+  font-weight: bolder;
+  margin-left: 5px;
+  text-decoration: underline;
 }
