@@ -54,13 +54,21 @@ class Edit extends React.Component {
   }
 
   handleInputChange(field, event) {
-    console.log(field);
-    this.setState({
-      user: {
-        ...this.state.user,
-        [field]: event.target.value,
-      },
-    });
+    if (field == "email") {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [field]: event.target.value.toLowerCase(),
+        },
+      });
+    } else {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [field]: event.target.value,
+        },
+      });
+    }
   }
 
   async handleEditSubmit(e) {
@@ -84,9 +92,9 @@ class Edit extends React.Component {
           console.log("User deleted");
           const { history } = this.props;
           history.push({
-            pathname: '/logout',
-            state: { deleted: true }
-        });
+            pathname: "/logout",
+            state: { deleted: true },
+          });
         } else return;
       } catch (error) {
         console.log("Failed to contact database! Please try again.", error);
@@ -105,6 +113,7 @@ class Edit extends React.Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        this.props.onLoginChange();
         this.setState({
           user: {
             ...this.state.user,
@@ -113,6 +122,15 @@ class Edit extends React.Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  capitalizeTheFirstLetterOfEachWord(words) {
+    var separateWord = words.toLowerCase().split(" ");
+    for (var i = 0; i < separateWord.length; i++) {
+      separateWord[i] =
+        separateWord[i].charAt(0).toUpperCase() + separateWord[i].substring(1);
+    }
+    return separateWord.join(" ");
   }
 
   render() {
