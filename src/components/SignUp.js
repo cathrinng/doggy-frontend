@@ -28,7 +28,7 @@ class SignUp extends React.Component {
       img_url: this.state.profilePictureUrl,
       firstname: this.firstnameRef.current.value,
       surname: this.surnameRef.current.value,
-      email: this.emailRef.current.value,
+      email: this.emailRef.current.value.toString().toLowerCase(),
       password: this.passwordRef.current.value,
       sex: this.state.selectSexValue,
       age: this.ageRef.current.value,

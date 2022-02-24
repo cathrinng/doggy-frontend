@@ -3,11 +3,10 @@ const API_URL = process.env.REACT_APP_API_URL;
 export async function getLoginToken({ email, password }) {
   console.log(API_URL);
   return fetch(`${API_URL}/login`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-  .then((res) => res.json());
+  }).then((res) => res.json());
 }
