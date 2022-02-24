@@ -35,7 +35,7 @@ class Login extends React.Component {
     try {
       // 1. Make a POST request to /login in the API
       const { token } = await getLoginToken({
-        email: this.state.email,
+        email: this.state.email.toLowerCase(),
         password: this.state.password,
       });
 

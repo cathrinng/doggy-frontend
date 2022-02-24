@@ -1,8 +1,8 @@
 import React from "react";
 import { editUser, getUsersById, deleteUser } from "../services/dogs";
 import jwtDecode from "jwt-decode";
-import Autocomplete from "./Autocomplete";
 import Loadingdog from "../components/Loadingdog";
+import Autocomplete from "./Autocomplete";
 
 class Edit extends React.Component {
   constructor(props) {
