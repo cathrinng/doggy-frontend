@@ -14,7 +14,7 @@ class About extends React.Component {
       <div className="about-card-container">
         <div className="about-card">
           <div className="about-card-content">
-            <h1>About</h1>
+            <h1>About Doggy</h1>
             <p>Hello, thank you so much for coming by!</p>
             <p>
               You are probably wondering why we came up with this app Doggy,
