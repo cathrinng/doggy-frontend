@@ -172,7 +172,7 @@ class Feed extends React.Component {
             <div className="matches">{renderMatches}</div>
           ) : (
             <div className="matches">
-              <p className="no-match">No matches yet!</p>
+              <p className="no-match" style={{textAlign: "center"}}>No matches yet!</p>
             </div>
           )}
         </div>

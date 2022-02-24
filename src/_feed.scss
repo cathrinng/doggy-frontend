@@ -28,6 +28,7 @@ h5 {
 .matches {
 	display: flex;
 	overflow-x: auto;
+	justify-content: center;
 
 	.match-info {
 		text-align: center;
@@ -60,6 +61,7 @@ h5 {
 
 .message-list {
 		overflow-y: auto;
+		overflow-x: hidden;
 		max-height: 380px;
 		display: flex;
 		flex-direction: column;
